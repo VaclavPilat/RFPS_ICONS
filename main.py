@@ -32,3 +32,16 @@ def Multiplayer(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: 
         draw.line([x, size-width/2+y, size+x, size-width/2+y], outline, width)
     person(draw, size*2/3, outline, fill, width, size/3, 0)
     person(draw, size*2/3, outline, fill, width, 0, size/3)
+
+@icon()
+def Settings(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
+    def line(points: tuple) -> None:
+        draw.line(points + points[:], outline, width, joint="curve")
+    def cog(size: int, x: float, y: float):
+        line([size/2+x, width/2+y, size/2+x, size-width/2+y])
+        line([size*1/8+x, size*3/10+y, size*7/8+x, size*7/10+y])
+        line([size*1/8+x, size*7/10+y, size*7/8+x, size*3/10+y])
+        draw.ellipse([0.2*size+x, 0.2*size+y, 0.8*size+x, 0.8*size+y], (0,0,0,0), outline, width)
+        draw.ellipse([0.2*size+x, 0.2*size+y, 0.8*size+x, 0.8*size+y], fill, outline, width)
+    cog(size*3/5, 0, size*2/5)
+    cog(size*3/5, size*2/5, 0)
