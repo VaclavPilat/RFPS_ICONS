@@ -111,3 +111,10 @@ def Settings(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: flo
     dot([size*5/6, size/2])
     polygon([(width/2, size*5/6), (size-width/2, size*5/6)])
     dot([size/4, size*5/6])
+
+@icon()
+def Globe(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
+    draw.ellipse([0, 0, size, size], outline=outline, width=width)
+    draw.ellipse([size*2.75/10, 0, size*7.25/10, size], outline=outline, width=width)
+    draw.line([width/2, size*3.5/10, size-width/2, size*3.5/10], outline, width)
+    draw.line([width/2, size*6.5/10, size-width/2, size*6.5/10], outline, width)
