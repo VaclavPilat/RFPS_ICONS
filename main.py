@@ -74,10 +74,30 @@ def Graphics(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: flo
     polyline([(width/2, size*3.6/5), (width/2, width/2), (size-width/2, width/2), (size-width/2, size*3.2/5), (width/2, size*3.2/5), (width/2, size*3.6/5), (size-width/2, size*3.6/5), (size-width/2, size/2)])
     polyline([(size/2-width/2, size-width/2), (size/2-width/2, size*3.6/5), (size/2+width/2, size*3.6/5), (size/2+width/2, size-width/2)])
 
-@icon()
+#@icon()
 def Audio(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
     draw.arc([0, 0, size, size], -60, 60, outline, width)
     draw.arc([size/3, size/4, size*6.25/8, size*3/4], -65, 65, outline, width)
     def polygon(points: tuple):
         draw.line(points + points[:2], outline, width, joint="curve")
     polygon([(width/2, size/3), (width/2, size*2/3), (size/4, size*2/3), (size/2, size-width), (size/2, width), (size/4, size/3)])
+
+@icon()
+def Input(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
+    def polygon(points: tuple):
+        draw.line(points + points[:2], outline, width, joint="curve")
+    polygon([(width/2, size/5), (size-width/2, size/5), (size-width/2, size*4/5), (width/2, size*4/5)])
+    draw.line([(size*3/10, size*6.5/10), (size*7/10, size*6.5/10)], outline, width)
+    def point(point: tuple):
+        draw.line([point[0]-width/2, point[1], point[0]+width/2, point[1]], outline, width)
+    point([size*2/10, size*6.5/10])
+    point([size*8/10, size*6.5/10])
+    point([size*2/10, size*3.5/10])
+    point([size*3.5/10, size*3.5/10])
+    point([size*5/10, size*3.5/10])
+    point([size*6.5/10, size*3.5/10])
+    draw.line([size*2/10-width/2, size/2, size*3.25/10, size/2], outline, width)
+    point([size*4.25/10, size*5/10])
+    point([size*5.75/10, size*5/10])
+    draw.line([(size*8/10, size*3/10), (size*8/10, size*5.5/10)], outline, width)
+    draw.line([size*7.25/10-width/2, size/2, size*8/10, size/2], outline, width)
