@@ -65,3 +65,11 @@ def Statistics(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: f
         draw.line([points[1]] + points + [points[-2]], outline, width, joint="curve")
     polyline([(size-width/2, size-width/2), (width/2, size-width/2), (width/2, width/2)])
     polyline([(size*1/4-width/2, size*4/5), (size*2/4-width/2, size*2/5), (size*3/4-width/2, size*3/5), (size-width/2, size*1/5)])
+
+@icon()
+def Graphics(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
+    def polyline(points: tuple):
+        draw.line([points[1]] + points + [points[-2]], outline, width, joint="curve")
+    polyline([(size*2/8, size-width/2), (size*6/8, size-width/2)])
+    polyline([(width/2, size*3.6/5), (width/2, width/2), (size-width/2, width/2), (size-width/2, size*3.2/5), (width/2, size*3.2/5), (width/2, size*3.6/5), (size-width/2, size*3.6/5), (size-width/2, size/2)])
+    polyline([(size/2-width/2, size-width/2), (size/2-width/2, size*3.6/5), (size/2+width/2, size*3.6/5), (size/2+width/2, size-width/2)])
