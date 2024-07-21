@@ -86,18 +86,20 @@ def Audio(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float)
 def Input(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
     def polygon(points: tuple):
         draw.line(points + points[:2], outline, width, joint="curve")
-    polygon([(width/2, size/5), (size-width/2, size/5), (size-width/2, size*4/5), (width/2, size*4/5)])
-    draw.line([(size*3/10, size*6.5/10), (size*7/10, size*6.5/10)], outline, width)
-    def point(point: tuple):
-        draw.line([point[0]-width/2, point[1], point[0]+width/2, point[1]], outline, width)
-    point([size*2/10, size*6.5/10])
-    point([size*8/10, size*6.5/10])
-    point([size*2/10, size*3.5/10])
-    point([size*3.5/10, size*3.5/10])
-    point([size*5/10, size*3.5/10])
-    point([size*6.5/10, size*3.5/10])
-    draw.line([size*2/10-width/2, size/2, size*3.25/10, size/2], outline, width)
-    point([size*4.25/10, size*5/10])
-    point([size*5.75/10, size*5/10])
-    draw.line([(size*8/10, size*3/10), (size*8/10, size*5.5/10)], outline, width)
-    draw.line([size*7.25/10-width/2, size/2, size*8/10, size/2], outline, width)
+    def rectangle(start: tuple, end: tuple, direction: int):
+        polygon([(start[0]+width/2, start[1]+width/2), (end[0]-width/2, start[1]+width/2), (end[0]-width/2, end[1]-width/2), (start[0]+width/2, end[1]-width/2)])
+        draw.rectangle([start[0]+width, start[1]+width, end[0]-width, end[1]-width], outline)
+        delta = end[0] - start[0]
+        if direction == 0:
+            draw.polygon([(end[0]-delta/5, end[1]-delta/5), (end[0]-delta*4/5, end[1]-delta/5), (end[0]-delta/2, end[1]-delta*4/5)], (0,0,0,0))
+        elif direction == 1:
+            draw.polygon([(start[0]+delta/5, start[1]+delta/5), (start[0]+delta/5, start[1]+delta*4/5), (start[0]+delta*4/5, start[1]+delta/2)], (0,0,0,0))
+        elif direction == 2:
+            draw.polygon([(start[0]+delta/5, start[1]+delta/5), (start[0]+delta*4/5, start[1]+delta/5), (start[0]+delta/2, start[1]+delta*4/5)], (0,0,0,0))
+        elif direction == 3:
+            draw.polygon([(end[0]-delta/5, end[1]-delta/5), (end[0]-delta/5, end[1]-delta*4/5), (end[0]-delta*4/5, end[1]-delta/2)], (0,0,0,0))
+    length = (size-width)/3
+    rectangle((size/2-length/2, size/2-width/4 - length), (size/2+length/2, size/2-width/4), 0)
+    rectangle((0, size/2+width/4), (length, size/2+width/4 + length), 3)
+    rectangle((size/2-length/2, size/2+width/4), (size/2+length/2, size/2+width/4 + length), 2)
+    rectangle((size-length, size/2+width/4), (size, size/2+width/4 + length), 1)
