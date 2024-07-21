@@ -34,7 +34,7 @@ def Multiplayer(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: 
     person(draw, size*2/3, outline, fill, width, 0, size/3)
 
 #@icon()
-def Settings(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
+def General(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
     def line(points: tuple) -> None:
         draw.line(points + points[:], outline, width, joint="curve")
     def cog(size: int, x: float, y: float):
@@ -104,8 +104,8 @@ def Input(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float)
     rectangle((size/2-length/2, size/2+width/4), (size/2+length/2, size/2+width/4 + length), 2)
     rectangle((size-length, size/2+width/4), (size, size/2+width/4 + length), 1)
 
-@icon()
-def General(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
+#@icon()
+def Settings(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
     def polygon(points: tuple):
         draw.line(points + points[:2], outline, width, joint="curve")
     def dot(point: tuple):
