@@ -16,13 +16,13 @@ def icon() -> None:
         image.save("{}.png".format(func.__name__), "PNG")
     return wrap
 
-@icon()
+#@icon()
 def Singleplayer(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
     draw.ellipse([0.25*size, 0, 0.75*size, size/2], fill, outline, width)
     draw.arc([0, size/2-width, size, 1.5*size], -180, 180, fill, width)
     draw.line([0, size-width/2, size, size-width/2], fill, width)
 
-@icon()
+#@icon()
 def Multiplayer(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
     def person(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float, x: float, y: float):
         draw.ellipse([0.25*size+x-width, y-width, 0.75*size+x+width, size/2+y+width], (0,0,0,0), None, width*2)
@@ -33,7 +33,7 @@ def Multiplayer(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: 
     person(draw, size*2/3, outline, fill, width, size/3, 0)
     person(draw, size*2/3, outline, fill, width, 0, size/3)
 
-@icon()
+#@icon()
 def Settings(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
     def line(points: tuple) -> None:
         draw.line(points + points[:], outline, width, joint="curve")
@@ -46,7 +46,7 @@ def Settings(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: flo
     cog(size*3/5, 0, size*2/5)
     cog(size*3/5, size*2/5, 0)
 
-@icon()
+#@icon()
 def Tutorials(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
     draw.arc([size/5, size*2/3, size*4/5, size], 0, 180, outline, width)
     draw.ellipse([size/5, size*5/6-width/2, size/5+width, size*5/6+width/2], outline, None, width*2)
@@ -59,17 +59,25 @@ def Tutorials(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: fl
     polygon([(size/2, width/2), (width/2, size*3/10), (size/2, size*6/10), (size-width/2, size*3/10)])
     draw.line([(size/6, size/4+size*2.5/10), (size/2, size/4+width/2), (size/6, size/4+size*2.5/10), (size/9, size/4+size*3/10), (size/10, size/4+size*3.25/10), (size/14, size/4+size*5/10)], outline, width, joint="curve")
 
-@icon()
+#@icon()
 def Statistics(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
     def polyline(points: tuple):
         draw.line([points[1]] + points + [points[-2]], outline, width, joint="curve")
     polyline([(size-width/2, size-width/2), (width/2, size-width/2), (width/2, width/2)])
     polyline([(size*1/4-width/2, size*4/5), (size*2/4-width/2, size*2/5), (size*3/4-width/2, size*3/5), (size-width/2, size*1/5)])
 
-@icon()
+#@icon()
 def Graphics(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
     def polyline(points: tuple):
         draw.line([points[1]] + points + [points[-2]], outline, width, joint="curve")
     polyline([(size*2/8, size-width/2), (size*6/8, size-width/2)])
     polyline([(width/2, size*3.6/5), (width/2, width/2), (size-width/2, width/2), (size-width/2, size*3.2/5), (width/2, size*3.2/5), (width/2, size*3.6/5), (size-width/2, size*3.6/5), (size-width/2, size/2)])
     polyline([(size/2-width/2, size-width/2), (size/2-width/2, size*3.6/5), (size/2+width/2, size*3.6/5), (size/2+width/2, size-width/2)])
+
+@icon()
+def Audio(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
+    draw.arc([0, 0, size, size], -60, 60, outline, width)
+    draw.arc([size/3, size/4, size*6.25/8, size*3/4], -65, 65, outline, width)
+    def polygon(points: tuple):
+        draw.line(points + points[:2], outline, width, joint="curve")
+    polygon([(width/2, size/3), (width/2, size*2/3), (size/4, size*2/3), (size/2, size-width), (size/2, width), (size/4, size/3)])
