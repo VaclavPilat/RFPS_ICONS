@@ -1,4 +1,4 @@
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFont
 
 def icon() -> None:
     def wrap(func) -> None:
@@ -84,25 +84,19 @@ def Audio(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float)
 
 #@icon()
 def Input(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
+    font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", size/4.3)
     def polygon(points: tuple):
         draw.line(points + points[:2], outline, width, joint="curve")
-    def rectangle(start: tuple, end: tuple, direction: int):
+    def rectangle(start: tuple, end: tuple, letter: str):
         polygon([(start[0]+width/2, start[1]+width/2), (end[0]-width/2, start[1]+width/2), (end[0]-width/2, end[1]-width/2), (start[0]+width/2, end[1]-width/2)])
         draw.rectangle([start[0]+width, start[1]+width, end[0]-width, end[1]-width], outline)
         delta = end[0] - start[0]
-        if direction == 0:
-            draw.polygon([(end[0]-delta/5, end[1]-delta/5), (end[0]-delta*4/5, end[1]-delta/5), (end[0]-delta/2, end[1]-delta*4/5)], (0,0,0,0))
-        elif direction == 1:
-            draw.polygon([(start[0]+delta/5, start[1]+delta/5), (start[0]+delta/5, start[1]+delta*4/5), (start[0]+delta*4/5, start[1]+delta/2)], (0,0,0,0))
-        elif direction == 2:
-            draw.polygon([(start[0]+delta/5, start[1]+delta/5), (start[0]+delta*4/5, start[1]+delta/5), (start[0]+delta/2, start[1]+delta*4/5)], (0,0,0,0))
-        elif direction == 3:
-            draw.polygon([(end[0]-delta/5, end[1]-delta/5), (end[0]-delta/5, end[1]-delta*4/5), (end[0]-delta*4/5, end[1]-delta/2)], (0,0,0,0))
+        draw.text((start[0]+(end[0]-start[0])/2, start[1]+(end[1]-start[1])/2), letter, fill=(0,0,0,0), anchor="mm", font=font)
     length = (size-width)/3
-    rectangle((size/2-length/2, size/2-width/4 - length), (size/2+length/2, size/2-width/4), 0)
-    rectangle((0, size/2+width/4), (length, size/2+width/4 + length), 3)
-    rectangle((size/2-length/2, size/2+width/4), (size/2+length/2, size/2+width/4 + length), 2)
-    rectangle((size-length, size/2+width/4), (size, size/2+width/4 + length), 1)
+    rectangle((size/2-length*3/4, size/2-width/4 - length), (size/2+length*1/4, size/2-width/4), "W")
+    rectangle((0, size/2+width/4), (length, size/2+width/4 + length), "A")
+    rectangle((size/2-length/2, size/2+width/4), (size/2+length/2, size/2+width/4 + length), "S")
+    rectangle((size-length, size/2+width/4), (size, size/2+width/4 + length), "D")
 
 #@icon()
 def Settings(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
