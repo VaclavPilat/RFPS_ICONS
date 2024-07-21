@@ -82,7 +82,7 @@ def Audio(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float)
         draw.line(points + points[:2], outline, width, joint="curve")
     polygon([(width/2, size/3), (width/2, size*2/3), (size/4, size*2/3), (size/2, size-width), (size/2, width), (size/4, size/3)])
 
-@icon()
+#@icon()
 def Input(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
     def polygon(points: tuple):
         draw.line(points + points[:2], outline, width, joint="curve")
@@ -103,3 +103,17 @@ def Input(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float)
     rectangle((0, size/2+width/4), (length, size/2+width/4 + length), 3)
     rectangle((size/2-length/2, size/2+width/4), (size/2+length/2, size/2+width/4 + length), 2)
     rectangle((size-length, size/2+width/4), (size, size/2+width/4 + length), 1)
+
+@icon()
+def General(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
+    def polygon(points: tuple):
+        draw.line(points + points[:2], outline, width, joint="curve")
+    def dot(point: tuple):
+        length = width*3.1
+        draw.ellipse([point[0]-length/2, point[1]-length/2, point[0]+length/2, point[1]+length/2], outline)
+    polygon([(width/2, size*1/6), (size-width/2, size*1/6)])
+    dot([size/2, size/6])
+    polygon([(width/2, size/2), (size-width/2, size/2)])
+    dot([size*5/6, size/2])
+    polygon([(width/2, size*5/6), (size-width/2, size*5/6)])
+    dot([size/4, size*5/6])
