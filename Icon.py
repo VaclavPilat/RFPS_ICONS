@@ -1,4 +1,5 @@
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageChops
+import os
 
 
 
@@ -15,10 +16,23 @@ def CreateIcon(cls, size: int = 100, width: int = 10, sampling: int|float = 5, b
     Returns:
         cls: Icon class
     """
+    # Creating the image
     image = Image.new("RGBA", (size*sampling, size*sampling), background)
     cls(ImageDraw.Draw(image), size*sampling, width*sampling, background, color, 0, 0)
     image = image.resize((size, size), resample=Image.LANCZOS)
-    image.save("{}.png".format(cls.__name__), "PNG")
+    # Getting image file path
+    folder = "images"
+    filepath = "{}/{}.png".format(folder, cls.__name__)
+    if not os.path.exists(folder):
+        os.mkdir(folder)
+    # Comparing older image
+    if os.path.exists(filepath):
+        diff = ImageChops.difference(image, Image.open(filepath))
+        if not diff.getbbox():
+            return cls
+    # Saving the image
+    image.save(filepath, "PNG")
+    print(filepath)
     return cls
 
 

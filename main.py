@@ -47,14 +47,6 @@ class Audio(Icon):
 
 """
 #@icon()
-def Audio(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
-    draw.arc([0, 0, size, size], -60, 60, outline, width)
-    draw.arc([size/3, size/4, size*6.25/8, size*3/4], -65, 65, outline, width)
-    def polygon(points: tuple):
-        draw.line(points + points[:2], outline, width, joint="curve")
-    polygon([(width/2, size/3), (width/2, size*2/3), (size/4, size*2/3), (size/2, size-width), (size/2, width), (size/4, size/3)])
-
-#@icon()
 def General(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
     def line(points: tuple) -> None:
         draw.line(points + points[:], outline, width, joint="curve")
