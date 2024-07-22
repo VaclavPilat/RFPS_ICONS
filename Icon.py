@@ -84,3 +84,13 @@ class Icon:
             points (list | tuple): List of points
         """
         self.draw.ellipse(self.offset(points), outline=self.color, width=self.width)
+    
+    def arc(self, points: list|tuple, start: int|float, end: int|float) -> None:
+        """Drawing an arc
+
+        Args:
+            points (list | tuple): List of points
+            start (int | float): Arc start in degrees
+            end (int | float): Arc end in degrees
+        """
+        self.draw.arc(self.offset(points), start=start, end=end, fill=self.color, width=self.width)

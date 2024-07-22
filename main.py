@@ -8,13 +8,14 @@ class Globe(Icon):
         self.line([self.width/2, self.size*3.5/10, self.size-self.width/2, self.size*3.5/10])
         self.line([self.width/2, self.size*6.5/10, self.size-self.width/2, self.size*6.5/10])
 
-"""
-#@icon()
-def Singleplayer(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
-    draw.ellipse([0.25*size, 0, 0.75*size, size/2], fill, outline, width)
-    draw.arc([0, size/2-width, size, 1.5*size], -180, 180, fill, width)
-    draw.line([0, size-width/2, size, size-width/2], fill, width)
+@CreateIcon
+class User(Icon):
+    def create(self):
+        self.ellipse([0.25*self.size, 0, 0.75*self.size, self.size/2])
+        self.arc([0, self.size/2-self.width, self.size, 1.5*self.size], -180, 0)
+        self.line([0, self.size-self.width/2, self.size, self.size-self.width/2])
 
+"""
 #@icon()
 def Multiplayer(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
     def person(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float, x: float, y: float):
