@@ -1,4 +1,5 @@
 from Icon import Icon, CreateIcon
+import math
 
 @CreateIcon
 class Globe(Icon):
@@ -95,3 +96,9 @@ class Keyboard(Icon):
         self.rectangle([(length, self.size/2-length-gap/2), (length*2, self.size/2-gap/2)], radius=self.width/2)
         for i in range(3):
             self.rectangle([(length*i+gap*i, self.size/2+gap/2), (length*(i+1)+gap*i, self.size/2+gap/2+length)], radius=self.width/2)
+
+@CreateIcon
+class Play(Icon):
+    def create(self):
+        length = math.sqrt(2)/2*self.size
+        self.line([(self.size/2-length/2, self.width/2), (self.size/2-length/2, self.size-self.width/2), (self.size/2+length/2, self.size/2), (self.size/2-length/2, self.width/2)], True)
