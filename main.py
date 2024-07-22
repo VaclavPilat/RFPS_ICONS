@@ -45,6 +45,13 @@ class Audio(Icon):
         self.arc([0, 0, self.size, self.size], -60, 60)
         self.arc([self.size/3, self.size/4, self.size*6.25/8, self.size*3/4], -65, 65)
 
+@CreateIcon
+class Monitor(Icon):
+    def create(self):
+        self.line([self.size/4, self.size-self.width/2, self.size*3/4, self.size-self.width/2], True)
+        self.line([(self.width/2, self.size*3.6/5), (self.width/2, self.width/2), (self.size-self.width/2, self.width/2), (self.size-self.width/2, self.size*3.2/5), (self.width/2, self.size*3.2/5), (self.width/2, self.size*3.6/5), (self.size-self.width/2, self.size*3.6/5), (self.size-self.width/2, self.size/2)], True)
+        self.line([(self.size/2-self.width/2, self.size-self.width/2), (self.size/2-self.width/2, self.size*3.6/5), (self.size/2+self.width/2, self.size*3.6/5), (self.size/2+self.width/2, self.size-self.width/2)], True)
+
 """
 #@icon()
 def General(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
@@ -71,14 +78,6 @@ def Tutorials(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: fl
         draw.line(points + points[:2], outline, width, joint="curve")
     polygon([(size/2, width/2), (width/2, size*3/10), (size/2, size*6/10), (size-width/2, size*3/10)])
     draw.line([(size/6, size/4+size*2.5/10), (size/2, size/4+width/2), (size/6, size/4+size*2.5/10), (size/9, size/4+size*3/10), (size/10, size/4+size*3.25/10), (size/14, size/4+size*5/10)], outline, width, joint="curve")
-
-#@icon()
-def Graphics(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
-    def polyline(points: tuple):
-        draw.line([points[1]] + points + [points[-2]], outline, width, joint="curve")
-    polyline([(size*2/8, size-width/2), (size*6/8, size-width/2)])
-    polyline([(width/2, size*3.6/5), (width/2, width/2), (size-width/2, width/2), (size-width/2, size*3.2/5), (width/2, size*3.2/5), (width/2, size*3.6/5), (size-width/2, size*3.6/5), (size-width/2, size/2)])
-    polyline([(size/2-width/2, size-width/2), (size/2-width/2, size*3.6/5), (size/2+width/2, size*3.6/5), (size/2+width/2, size-width/2)])
 
 #@icon()
 def Input(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
