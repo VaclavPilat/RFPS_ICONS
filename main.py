@@ -104,4 +104,11 @@ class Play(Icon):
         height = self.size/2
         length = math.sqrt(2)/2*height
         self.line([(self.size/2-length/2+self.width*2/3, self.size/2-height/2), (self.size/2-length/2+self.width*2/3, self.size/2+height/2), (self.size/2+length/2+self.width*2/3, self.size/2), (self.size/2-length/2+self.width*2/3, self.size/2-height/2)], True)
-        self.ellipse([self.size*0.35, self.size/3, self.size*2/3, self.size*2/3])
+
+@CreateIcon
+class Warehouse(Icon):
+    def create(self):
+        self.line([(self.width/2, self.size), (self.width/2, self.size/3), (self.size/2, self.width/2), (self.size-self.width/2, self.size/3), (self.size-self.width/2, self.size)])
+        self.line([(self.width/2, self.size/3), (self.size-self.width/2, self.size/3)])
+        for y in range(self.size-self.width//2, self.size//3+self.width, -self.width*2):
+            self.line([(self.size/4, y), (self.size*3/4, y)])
