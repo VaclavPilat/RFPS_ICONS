@@ -68,20 +68,22 @@ class Cap(Icon):
         self.line([(self.size/2, self.width/2), (self.width/2, self.size*3/10), (self.size/2, self.size*6/10), (self.size-self.width/2, self.size*3/10), (self.size/2, self.width/2)], True)
         self.line([(self.size/6, self.size/2), (self.size/2, self.size/4+self.width/2), (self.size/6, self.size/2), (self.size/9, self.size*0.55), (self.size/10, self.size*0.575), (self.size/14, self.size*3/4)], True)
 
-"""
-#@icon()
-def General(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
-    def line(points: tuple) -> None:
-        draw.line(points + points[:], outline, width, joint="curve")
-    def cog(size: int, x: float, y: float):
-        line([size/2+x, width/2+y, size/2+x, size-width/2+y])
-        line([size*1/8+x, size*3/10+y, size*7/8+x, size*7/10+y])
-        line([size*1/8+x, size*7/10+y, size*7/8+x, size*3/10+y])
-        draw.ellipse([0.12*size+x, 0.12*size+y, 0.88*size+x, 0.88*size+y], (0,0,0,0), outline, width)
-        draw.ellipse([0.12*size+x, 0.12*size+y, 0.88*size+x, 0.88*size+y], fill, outline, width)
-    cog(size*3/5, 0, size*2/5)
-    cog(size*3/5, size*2/5, 0)
+class Cog(Icon):
+    def create(self):
+        self.line([(self.size/2, self.width/2), (self.size/2, self.size-self.width/2)], True)
+        self.line([(self.width/2, self.size/2), (self.size-self.width/2, self.size/2)], True)
+        self.line([(self.size*0.2, self.size*0.2), (self.size*0.8, self.size*0.8)], True)
+        self.line([(self.size*0.2, self.size*0.8), (self.size*0.8, self.size*0.2)], True)
+        self.ellipse([0.15*self.size, 0.15*self.size, 0.85*self.size, 0.85*self.size], True, self.background)
+        self.ellipse([0.15*self.size, 0.15*self.size, 0.85*self.size, 0.85*self.size])
 
+@CreateIcon
+class Cogs(Icon):
+    def create(self):
+        self.load(Cog, self.size*0.55, 0, self.size*0.365)
+        self.load(Cog, self.size*0.55, self.size*0.45, self.size*0.085)
+
+"""
 #@icon()
 def Input(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
     font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", size/4.3)
