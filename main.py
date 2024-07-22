@@ -1,21 +1,14 @@
-from PIL import Image, ImageDraw, ImageFont
+from Icon import Icon, CreateIcon
 
-def icon() -> None:
-    def wrap(func) -> None:
-        size = 100
-        sample = 5
-        image = Image.new("RGBA", (size*sample, size*sample), (255, 255, 255, 0))
-        func(
-            draw = ImageDraw.Draw(image),
-            size = size*sample,
-            outline = (255, 255, 255),
-            fill = None,
-            width = 10*sample,
-        )
-        image = image.resize((size, size), resample=Image.LANCZOS)
-        image.save("{}.png".format(func.__name__), "PNG")
-    return wrap
+@CreateIcon
+class Globe(Icon):
+    def create(self):
+        self.ellipse([0, 0, self.size, self.size])
+        self.ellipse([self.size*2.75/10, 0, self.size*7.25/10, self.size])
+        self.line([self.width/2, self.size*3.5/10, self.size-self.width/2, self.size*3.5/10])
+        self.line([self.width/2, self.size*6.5/10, self.size-self.width/2, self.size*6.5/10])
 
+"""
 #@icon()
 def Singleplayer(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
     draw.ellipse([0.25*size, 0, 0.75*size, size/2], fill, outline, width)
@@ -117,4 +110,4 @@ def Globe(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float)
     draw.ellipse([0, 0, size, size], outline=outline, width=width)
     draw.ellipse([size*2.75/10, 0, size*7.25/10, size], outline=outline, width=width)
     draw.line([width/2, size*3.5/10, size-width/2, size*3.5/10], outline, width)
-    draw.line([width/2, size*6.5/10, size-width/2, size*6.5/10], outline, width)
+    draw.line([width/2, size*6.5/10, size-width/2, size*6.5/10], outline, width)"""
