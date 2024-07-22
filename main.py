@@ -82,20 +82,14 @@ class Cogs(Icon):
         self.load(Cog, self.size*0.55, 0, self.size*0.365)
         self.load(Cog, self.size*0.55, self.size*0.45, self.size*0.085)
 
-"""
-#@icon()
-def Input(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
-    font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", size/4.3)
-    def polygon(points: tuple):
-        draw.line(points + points[:2], outline, width, joint="curve")
-    def rectangle(start: tuple, end: tuple, letter: str):
-        polygon([(start[0]+width/2, start[1]+width/2), (end[0]-width/2, start[1]+width/2), (end[0]-width/2, end[1]-width/2), (start[0]+width/2, end[1]-width/2)])
-        draw.rectangle([start[0]+width, start[1]+width, end[0]-width, end[1]-width], outline)
-        delta = end[0] - start[0]
-        draw.text((start[0]+(end[0]-start[0])/2, start[1]+(end[1]-start[1])/2), letter, fill=(0,0,0,0), anchor="mm", font=font)
-    length = (size-width)/3
-    rectangle((size/2-length*3/4, size/2-width/4 - length), (size/2+length*1/4, size/2-width/4), "W")
-    rectangle((0, size/2+width/4), (length, size/2+width/4 + length), "A")
-    rectangle((size/2-length/2, size/2+width/4), (size/2+length/2, size/2+width/4 + length), "S")
-    rectangle((size-length, size/2+width/4), (size, size/2+width/4 + length), "D")
-"""
+@CreateIcon
+class Keyboard(Icon):
+    def create(self):
+        length = (self.size-self.width)/3
+        gap = self.width/2
+        for i in range(4):
+            self.rectangle([(length*i+gap*i-gap*2, 0), (length*(i+1)+gap*i-gap*2, length)], radius=self.width/2, width=self.width//3, fill=self.background if i != 1 else None)
+        for i in range(3):
+            self.rectangle([(length*i+gap*i, self.size/2-length/2), (length*(i+1)+gap*i, self.size/2+length/2)], radius=self.width/2)
+        for i in range(4):
+            self.rectangle([(length*i+gap*i-length/2-gap/2, self.size-length), (length*(i+1)+gap*i-length/2-gap/2, self.size)], radius=self.width/2, width=self.width//3, fill=self.background)
