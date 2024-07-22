@@ -15,18 +15,13 @@ class User(Icon):
         self.arc([0, self.size/2-self.width, self.size, 1.5*self.size], -180, 0)
         self.line([0, self.size-self.width/2, self.size, self.size-self.width/2])
 
-"""
-#@icon()
-def Multiplayer(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
-    def person(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float, x: float, y: float):
-        draw.ellipse([0.25*size+x-width, y-width, 0.75*size+x+width, size/2+y+width], (0,0,0,0), None, width*2)
-        draw.arc([x-width, size/2-width+y-width, size+x+width, 1.5*size+y+width], -180, 0, (0,0,0,0), width*2)
-        draw.ellipse([0.25*size+x, y, 0.75*size+x, size/2+y], fill, outline, width)
-        draw.arc([x, size/2-width+y, size+x, 1.5*size+y], -180, 0, outline, width)
-        draw.line([x, size-width/2+y, size+x, size-width/2+y], outline, width)
-    person(draw, size*2/3, outline, fill, width, size/3, 0)
-    person(draw, size*2/3, outline, fill, width, 0, size/3)
+@CreateIcon
+class Users(Icon):
+    def create(self):
+        self.load(User, self.size*2/3, self.size/3, 0)
+        self.load(User, self.size*2/3, 0, self.size/3)
 
+"""
 #@icon()
 def General(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
     def line(points: tuple) -> None:

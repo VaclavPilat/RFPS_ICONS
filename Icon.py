@@ -69,6 +69,16 @@ class Icon:
         if type(points[0]) in (list, tuple):
             return [(point[0] + self.x, point[1] + self.y) for point in points]
     
+    def load(self, cls, size: int|float, x: int|float, y: int|float) -> None:
+        """Draws an existing icon into this one
+
+        Args:
+            size (int | float): Icon size
+            x (int | float): Icon X offset
+            y (int | float): Icon Y offset
+        """
+        cls(self.draw, size, self.width, self.color, x, y)
+    
     def line(self, points: list|tuple) -> None:
         """Drawing a line
 
