@@ -100,5 +100,8 @@ class Keyboard(Icon):
 @CreateIcon
 class Play(Icon):
     def create(self):
-        length = math.sqrt(2)/2*self.size
-        self.line([(self.size/2-length/2, self.width/2), (self.size/2-length/2, self.size-self.width/2), (self.size/2+length/2, self.size/2), (self.size/2-length/2, self.width/2)], True)
+        self.ellipse([0, 0, self.size, self.size], fill=self.background)
+        height = self.size/2
+        length = math.sqrt(2)/2*height
+        self.line([(self.size/2-length/2+self.width*2/3, self.size/2-height/2), (self.size/2-length/2+self.width*2/3, self.size/2+height/2), (self.size/2+length/2+self.width*2/3, self.size/2), (self.size/2-length/2+self.width*2/3, self.size/2-height/2)], True)
+        self.ellipse([self.size*0.35, self.size/3, self.size*2/3, self.size*2/3])
