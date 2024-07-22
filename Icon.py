@@ -68,7 +68,7 @@ class Icon:
             for i in range(1, len(points), 2):
                 points[i] += self.y
             return points
-        if type(points[0]) in (list, tuple):
+        elif type(points[0]) in (list, tuple):
             return [(point[0] + self.x, point[1] + self.y) for point in points]
     
     def load(self, cls, size: int|float, x: int|float, y: int|float) -> None:
@@ -81,12 +81,18 @@ class Icon:
         """
         cls(self.draw, size, self.width, self.background, self.color, x, y)
     
-    def line(self, points: list|tuple) -> None:
+    def line(self, points: list|tuple, rounded: bool = False) -> None:
         """Drawing a line
 
         Args:
             points (list|tuple): List of points
+            rounded (bool, optional): Should ends of line be rounded? Defaults to False.
         """
+        if rounded:
+            if type(points[0]) in (int, float):
+                points = points[-2:] + points + points[:2]
+            elif type(points[0]) in (list, tuple):
+                points = [points[-1]] + points + [points[0]]
         self.draw.line(self.offset(points), fill=self.color, width=self.width, joint="curve")
     
     def ellipse(self, points: list|tuple, inside: bool = False, color: list|tuple = None) -> None:

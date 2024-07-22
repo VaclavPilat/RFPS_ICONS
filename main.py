@@ -23,6 +23,15 @@ class Users(Icon):
         self.ellipse([-self.width, self.size*2/3-self.width*2, self.size*2/3+self.width, self.size*1.5], True, self.background)
         self.load(User, self.size*2/3, 0, self.size/3)
 
+@CreateIcon
+class Sliders(Icon):
+    def create(self):
+        radius = self.width*1.6
+        x = { 1: 1/2, 3: 5/6, 5: 1/4 }
+        for i in range(1, 6, 2):
+            self.line([self.width/2, self.size*i/6, self.size-self.width/2, self.size*i/6], True)
+            self.ellipse([self.size*x[i]-radius, self.size*i/6-radius, self.size*x[i]+radius, self.size*i/6+radius], True)
+
 """
 #@icon()
 def General(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
@@ -88,24 +97,4 @@ def Input(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float)
     rectangle((0, size/2+width/4), (length, size/2+width/4 + length), "A")
     rectangle((size/2-length/2, size/2+width/4), (size/2+length/2, size/2+width/4 + length), "S")
     rectangle((size-length, size/2+width/4), (size, size/2+width/4 + length), "D")
-
-#@icon()
-def Settings(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
-    def polygon(points: tuple):
-        draw.line(points + points[:2], outline, width, joint="curve")
-    def dot(point: tuple):
-        length = width*3.1
-        draw.ellipse([point[0]-length/2, point[1]-length/2, point[0]+length/2, point[1]+length/2], outline)
-    polygon([(width/2, size*1/6), (size-width/2, size*1/6)])
-    dot([size/2, size/6])
-    polygon([(width/2, size/2), (size-width/2, size/2)])
-    dot([size*5/6, size/2])
-    polygon([(width/2, size*5/6), (size-width/2, size*5/6)])
-    dot([size/4, size*5/6])
-
-@icon()
-def Globe(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
-    draw.ellipse([0, 0, size, size], outline=outline, width=width)
-    draw.ellipse([size*2.75/10, 0, size*7.25/10, size], outline=outline, width=width)
-    draw.line([width/2, size*3.5/10, size-width/2, size*3.5/10], outline, width)
-    draw.line([width/2, size*6.5/10, size-width/2, size*6.5/10], outline, width)"""
+"""
