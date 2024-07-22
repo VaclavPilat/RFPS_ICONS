@@ -2,21 +2,21 @@ from PIL import Image, ImageDraw, ImageFont
 
 
 
-def CreateIcon(cls, size: int = 100, width: int = 10, sampling: int|float = 5, background: tuple = (0,0,0,0), color: tuple = (255,255,255)):
+def CreateIcon(cls, size: int = 100, width: int = 10, sampling: int|float = 5, background: list|tuple = (0,0,0,0), color: list|tuple = (255,255,255)):
     """Wrapper for creating and saving an image created in an Icon class
 
     Args:
         size (int, optional): Icon size. Defaults to 100.
         width (int, optional): Brush width. Defaults to 10.
         sampling (int | float, optional): Sampling multiplier. Defaults to 5.
-        background (tuple, optional): Background color. Defaults to (0,0,0,0).
-        color (tuple, optional): Brush color. Defaults to (255,255,255).
+        background (list|tuple, optional): Background color. Defaults to (0,0,0,0).
+        color (list|tuple, optional): Brush color. Defaults to (255,255,255).
 
     Returns:
         cls: Icon class
     """
     image = Image.new("RGBA", (size*sampling, size*sampling), background)
-    cls(ImageDraw.Draw(image), size*sampling, width*sampling, color, 0, 0)
+    cls(ImageDraw.Draw(image), size*sampling, width*sampling, background, color, 0, 0)
     image = image.resize((size, size), resample=Image.LANCZOS)
     image.save("{}.png".format(cls.__name__), "PNG")
     return cls
@@ -24,20 +24,22 @@ def CreateIcon(cls, size: int = 100, width: int = 10, sampling: int|float = 5, b
 
 
 class Icon:
-    def __init__(self, draw: ImageDraw, size: int = 100, width: int = 5, color: tuple = (255,255,255), x: int = 0, y: int = 0) -> None:
+    def __init__(self, draw: ImageDraw, size: int = 100, width: int = 5, background: list|tuple = (0,0,0,0), color: list|tuple = (255,255,255), x: int = 0, y: int = 0) -> None:
         """Initializing an icon draw class
 
         Args:
             draw (ImageDraw): ImageDraw instance
             size (int, optional): Available image size. Defaults to 100.
             width (int, optional): Brush width. Defaults to 5.
-            color (tuple, optional): Brush color. Defaults to (255,255,255).
+            background (list|tuple, optional): Background color. Defaults to (0,0,0,0).
+            color (list|tuple, optional): Brush color. Defaults to (255,255,255).
             x (int, optional): X offset. Defaults to 0.
             y (int, optional): Y offset. Defaults to 0.
         """
         self.draw = draw
         self.size = size
         self.width = width
+        self.background = background
         self.color = color
         self.x = x
         self.y = y
@@ -77,7 +79,7 @@ class Icon:
             x (int | float): Icon X offset
             y (int | float): Icon Y offset
         """
-        cls(self.draw, size, self.width, self.color, x, y)
+        cls(self.draw, size, self.width, self.background, self.color, x, y)
     
     def line(self, points: list|tuple) -> None:
         """Drawing a line
@@ -87,13 +89,17 @@ class Icon:
         """
         self.draw.line(self.offset(points), fill=self.color, width=self.width, joint="curve")
     
-    def ellipse(self, points: list|tuple) -> None:
+    def ellipse(self, points: list|tuple, inside: bool = False, color: list|tuple = None) -> None:
         """Drawing an ellipse
 
         Args:
             points (list | tuple): List of points
+            inside (bool, optional): Fill the inside? Defaults to False.
+            color (list|tuple, optional): Filler color. Defaults to False.
         """
-        self.draw.ellipse(self.offset(points), outline=self.color, width=self.width)
+        outline = color if color else self.color
+        fill = outline if inside else None
+        self.draw.ellipse(self.offset(points), fill=fill, outline=outline, width=self.width)
     
     def arc(self, points: list|tuple, start: int|float, end: int|float) -> None:
         """Drawing an arc

@@ -19,6 +19,8 @@ class User(Icon):
 class Users(Icon):
     def create(self):
         self.load(User, self.size*2/3, self.size/3, 0)
+        self.ellipse([self.size*0.25/3, self.size/3-self.width, self.size*0.75*2/3+self.width, self.size*2/3+self.width], True, self.background)
+        self.ellipse([-self.width, self.size*2/3-self.width*2, self.size*2/3+self.width, self.size*1.5], True, self.background)
         self.load(User, self.size*2/3, 0, self.size/3)
 
 """
