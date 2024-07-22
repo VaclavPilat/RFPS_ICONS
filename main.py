@@ -35,8 +35,13 @@ class Sliders(Icon):
 @CreateIcon
 class Graph(Icon):
     def create(self):
-        self.line([self.width/2, self.width/2, self.width/2, self.size-self.width/2, self.size-self.width/2, self.size-self.width/2], True)
-        self.line([(self.size*i/4-self.width/2, self.size*[4/5, 2/5, 3/5, 1/5][i-1]) for i in range(1, 5)], True)
+        self.line([(self.width/2, self.width/2), (self.width/2, self.size-self.width/2), (self.size-self.width/2, self.size-self.width/2)], True)
+        xpos = [self.size * x for x in [0.25, 0.45, 0.7, 0.9]]
+        ypos = [self.size * y for y in [0.75, 0.35, 0.6, 0.1]]
+        self.line(list(zip(xpos, ypos)), True)
+        radius = self.width*0.8
+        for (x, y) in zip(xpos, ypos):
+            self.ellipse([x-radius, y-radius, x+radius, y+radius])
 
 @CreateIcon
 class Audio(Icon):
