@@ -95,38 +95,76 @@ class Icon:
         """
         cls(self.draw, size, self.width, self.background, self.color, x, y)
     
-    def line(self, points: list|tuple, rounded: bool = False, color: list|tuple = None) -> None:
-        """Drawing a line
+    def line(self, points: list|tuple, rounded: bool = False, fill: list|tuple = None, width: int|float = None) -> None:
+        """Draws a line with rounded joints
 
         Args:
-            points (list|tuple): List of points
-            rounded (bool, optional): Should ends of line be rounded? Defaults to False.
+            points (list | tuple): List of points
+            rounded (bool, optional): Rounded ends? Defaults to False.
+            fill (list | tuple, optional): Fill color. Defaults to None.
+            width (int | float, optional): Line width. Defaults to None.
         """
+        if fill is None:
+            fill = self.color
+        if width is None:
+            width = self.width
         if rounded:
             if type(points[0]) in (int, float):
                 points = points[2:4] + points + points[-4:-2]
             elif type(points[0]) in (list, tuple):
                 points = [points[1]] + points + [points[-2]]
-        self.draw.line(self.offset(points), fill=self.color if color is None else color, width=self.width, joint="curve")
+        self.draw.line(self.offset(points), fill=fill, width=width, joint="curve")
     
-    def ellipse(self, points: list|tuple, inside: bool = False, color: list|tuple = None) -> None:
-        """Drawing an ellipse
+    def ellipse(self, points: list|tuple, outline: list|tuple = None, fill: list|tuple = None, width: int|float = None) -> None:
+        """Draws an ellipse
 
         Args:
             points (list | tuple): List of points
-            inside (bool, optional): Fill the inside? Defaults to False.
-            color (list|tuple, optional): Filler color. Defaults to False.
+            outline (list | tuple, optional): Outline color. Defaults to None.
+            fill (list | tuple, optional): Fill color. Defaults to None.
+            width (int | float, optional): Outline width. Defaults to None.
         """
-        outline = color if color else self.color
-        fill = outline if inside else None
-        self.draw.ellipse(self.offset(points), fill=fill, outline=outline, width=self.width)
+        if outline is None:
+            outline = self.color
+        if fill is None:
+            fill = self.color
+        if width is None:
+            width = self.width
+        self.draw.ellipse(self.offset(points), fill=fill, outline=outline, width=width)
     
-    def arc(self, points: list|tuple, start: int|float, end: int|float) -> None:
+    def arc(self, points: list|tuple, start: int|float, end: int|float, fill: list|tuple = None, width: int|float = None) -> None:
         """Drawing an arc
 
         Args:
             points (list | tuple): List of points
-            start (int | float): Arc start in degrees
-            end (int | float): Arc end in degrees
+            start (int | float): Start point in degrees
+            end (int | float): End point in degrees
+            fill (list | tuple, optional): Outline color. Defaults to None.
+            width (int | float, optional): Outline width. Defaults to None.
         """
-        self.draw.arc(self.offset(points), start=start, end=end, fill=self.color, width=self.width)
+        if fill is None:
+            fill = self.color
+        if width is None:
+            width = self.width
+        self.draw.arc(self.offset(points), start=start, end=end, fill=fill, width=width)
+    
+    def rectangle(self, points: list|tuple, outline: list|tuple = None, fill: list|tuple = None, width: int|float = None, radius: int = None) -> None:
+        """Drawing a rectangle
+
+        Args:
+            points (list | tuple): List of points
+            outline (list | tuple, optional): Outline color. Defaults to None.
+            fill (list | tuple, optional): Fill color. Defaults to None.
+            width (int | float, optional): Outline width. Defaults to None.
+            radius (int, optional): Corner radius. Defaults to None.
+        """
+        if outline is None:
+            outline = self.color
+        if fill is None:
+            fill = self.color
+        if width is None:
+            width = self.width
+        if radius is not None:
+            self.draw.rounded_rectangle(self.offset(points), radius=radius, fill=fill, outline=outline, width=width)
+        else:
+            self.draw.rectangle(self.offset(points), fill=fill, outline=outline, width=width)

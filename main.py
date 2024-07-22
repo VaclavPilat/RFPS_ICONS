@@ -3,15 +3,15 @@ from Icon import Icon, CreateIcon
 @CreateIcon
 class Globe(Icon):
     def create(self):
-        self.ellipse([0, 0, self.size, self.size])
-        self.ellipse([self.size*2.75/10, 0, self.size*7.25/10, self.size])
+        self.ellipse([0, 0, self.size, self.size], fill=self.background)
+        self.ellipse([self.size*2.75/10, 0, self.size*7.25/10, self.size], fill=self.background)
         self.line([self.width/2, self.size*3.5/10, self.size-self.width/2, self.size*3.5/10])
         self.line([self.width/2, self.size*6.5/10, self.size-self.width/2, self.size*6.5/10])
 
 @CreateIcon
 class User(Icon):
     def create(self):
-        self.ellipse([0.25*self.size, 0, 0.75*self.size, self.size/2])
+        self.ellipse([0.25*self.size, 0, 0.75*self.size, self.size/2], fill=self.background)
         self.arc([0, self.size/2-self.width, self.size, 1.5*self.size], -180, 0)
         self.line([0, self.size-self.width/2, self.size, self.size-self.width/2])
 
@@ -19,8 +19,8 @@ class User(Icon):
 class Users(Icon):
     def create(self):
         self.load(User, self.size*2/3, self.size/3, 0)
-        self.ellipse([self.size*0.25/3, self.size/3-self.width, self.size*0.75*2/3+self.width, self.size*2/3+self.width], True, self.background)
-        self.ellipse([-self.width, self.size*2/3-self.width*2, self.size*2/3+self.width, self.size*1.5], True, self.background)
+        self.ellipse([self.size*0.25/3, self.size/3-self.width, self.size*0.75*2/3+self.width, self.size*2/3+self.width], outline=self.background, fill=self.background)
+        self.ellipse([-self.width, self.size*2/3-self.width*2, self.size*2/3+self.width, self.size*1.5], outline=self.background, fill=self.background)
         self.load(User, self.size*2/3, 0, self.size/3)
 
 @CreateIcon
@@ -30,7 +30,7 @@ class Sliders(Icon):
         x = { 1: 1/2, 3: 5/6, 5: 1/4 }
         for i in range(1, 6, 2):
             self.line([self.width/2, self.size*i/6, self.size-self.width/2, self.size*i/6], True)
-            self.ellipse([self.size*x[i]-radius, self.size*i/6-radius, self.size*x[i]+radius, self.size*i/6+radius], True)
+            self.ellipse([self.size*x[i]-radius, self.size*i/6-radius, self.size*x[i]+radius, self.size*i/6+radius])
 
 @CreateIcon
 class Graph(Icon):
@@ -64,7 +64,7 @@ class Cap(Icon):
         self.arc([self.size/5, self.size*2/3, self.size*4/5, self.size], 0, 180)
         self.line([self.size/5+self.width/2, self.size*5/6, self.size/5+self.width, self.size/2], True)
         self.line([self.size*4/5-self.width/2, self.size*5/6, self.size*4/5-self.width, self.size/2], True)
-        self.line([(self.width/2, self.size*4/10), (self.size/2, self.size*7/10), (self.size-self.width/2, self.size*4/10)], color=self.background)
+        self.line([(self.width/2, self.size*4/10), (self.size/2, self.size*7/10), (self.size-self.width/2, self.size*4/10)], fill=self.background)
         self.line([(self.size/2, self.width/2), (self.width/2, self.size*3/10), (self.size/2, self.size*6/10), (self.size-self.width/2, self.size*3/10), (self.size/2, self.width/2)], True)
         self.line([(self.size/6, self.size/2), (self.size/2, self.size/4+self.width/2), (self.size/6, self.size/2), (self.size/9, self.size*0.55), (self.size/10, self.size*0.575), (self.size/14, self.size*3/4)], True)
 
@@ -74,8 +74,7 @@ class Cog(Icon):
         self.line([(self.width/2, self.size/2), (self.size-self.width/2, self.size/2)], True)
         self.line([(self.size*0.2, self.size*0.2), (self.size*0.8, self.size*0.8)], True)
         self.line([(self.size*0.2, self.size*0.8), (self.size*0.8, self.size*0.2)], True)
-        self.ellipse([0.15*self.size, 0.15*self.size, 0.85*self.size, 0.85*self.size], True, self.background)
-        self.ellipse([0.15*self.size, 0.15*self.size, 0.85*self.size, 0.85*self.size])
+        self.ellipse([0.15*self.size, 0.15*self.size, 0.85*self.size, 0.85*self.size], fill=self.background)
 
 @CreateIcon
 class Cogs(Icon):
