@@ -32,6 +32,12 @@ class Sliders(Icon):
             self.line([self.width/2, self.size*i/6, self.size-self.width/2, self.size*i/6], True)
             self.ellipse([self.size*x[i]-radius, self.size*i/6-radius, self.size*x[i]+radius, self.size*i/6+radius], True)
 
+@CreateIcon
+class Graph(Icon):
+    def create(self):
+        self.line([self.width/2, self.width/2, self.width/2, self.size-self.width/2, self.size-self.width/2, self.size-self.width/2], True)
+        self.line([(self.size*i/4-self.width/2, self.size*[4/5, 2/5, 3/5, 1/5][i-1]) for i in range(1, 5)], True)
+
 """
 #@icon()
 def General(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
@@ -58,13 +64,6 @@ def Tutorials(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: fl
         draw.line(points + points[:2], outline, width, joint="curve")
     polygon([(size/2, width/2), (width/2, size*3/10), (size/2, size*6/10), (size-width/2, size*3/10)])
     draw.line([(size/6, size/4+size*2.5/10), (size/2, size/4+width/2), (size/6, size/4+size*2.5/10), (size/9, size/4+size*3/10), (size/10, size/4+size*3.25/10), (size/14, size/4+size*5/10)], outline, width, joint="curve")
-
-#@icon()
-def Statistics(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
-    def polyline(points: tuple):
-        draw.line([points[1]] + points + [points[-2]], outline, width, joint="curve")
-    polyline([(size-width/2, size-width/2), (width/2, size-width/2), (width/2, width/2)])
-    polyline([(size*1/4-width/2, size*4/5), (size*2/4-width/2, size*2/5), (size*3/4-width/2, size*3/5), (size-width/2, size*1/5)])
 
 #@icon()
 def Graphics(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:

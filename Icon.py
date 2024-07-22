@@ -90,9 +90,9 @@ class Icon:
         """
         if rounded:
             if type(points[0]) in (int, float):
-                points = points[-2:] + points + points[:2]
+                points = points[2:4] + points + points[-4:-2]
             elif type(points[0]) in (list, tuple):
-                points = [points[-1]] + points + [points[0]]
+                points = [points[1]] + points + [points[-2]]
         self.draw.line(self.offset(points), fill=self.color, width=self.width, joint="curve")
     
     def ellipse(self, points: list|tuple, inside: bool = False, color: list|tuple = None) -> None:
