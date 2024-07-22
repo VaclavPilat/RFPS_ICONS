@@ -58,6 +58,16 @@ class Splitscreen(Icon):
         self.load(Monitor, self.size, 0, 0)
         self.line([self.size/2, 0, self.size/2, self.size*2/3])
 
+@CreateIcon
+class Cap(Icon):
+    def create(self):
+        self.arc([self.size/5, self.size*2/3, self.size*4/5, self.size], 0, 180)
+        self.line([self.size/5+self.width/2, self.size*5/6, self.size/5+self.width, self.size/2], True)
+        self.line([self.size*4/5-self.width/2, self.size*5/6, self.size*4/5-self.width, self.size/2], True)
+        self.line([(self.width/2, self.size*4/10), (self.size/2, self.size*7/10), (self.size-self.width/2, self.size*4/10)], color=self.background)
+        self.line([(self.size/2, self.width/2), (self.width/2, self.size*3/10), (self.size/2, self.size*6/10), (self.size-self.width/2, self.size*3/10), (self.size/2, self.width/2)], True)
+        self.line([(self.size/6, self.size/2), (self.size/2, self.size/4+self.width/2), (self.size/6, self.size/2), (self.size/9, self.size*0.55), (self.size/10, self.size*0.575), (self.size/14, self.size*3/4)], True)
+
 """
 #@icon()
 def General(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
@@ -71,19 +81,6 @@ def General(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: floa
         draw.ellipse([0.12*size+x, 0.12*size+y, 0.88*size+x, 0.88*size+y], fill, outline, width)
     cog(size*3/5, 0, size*2/5)
     cog(size*3/5, size*2/5, 0)
-
-#@icon()
-def Tutorials(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
-    draw.arc([size/5, size*2/3, size*4/5, size], 0, 180, outline, width)
-    draw.ellipse([size/5, size*5/6-width/2, size/5+width, size*5/6+width/2], outline, None, width*2)
-    draw.ellipse([size*4/5-width, size*5/6-width/2, size*4/5, size*5/6+width/2], outline, None, width*2)
-    draw.line([size/5+width/2, size*5/6, size/5+width, size/2], outline, width, joint="curve")
-    draw.line([size*4/5-width/2, size*5/6, size*4/5-width, size/2], outline, width, joint="curve")
-    draw.line([(width/2, size*4/10), (size/2, size*7/10), (size-width/2, size*4/10)], (0,0,0,0), width)
-    def polygon(points):
-        draw.line(points + points[:2], outline, width, joint="curve")
-    polygon([(size/2, width/2), (width/2, size*3/10), (size/2, size*6/10), (size-width/2, size*3/10)])
-    draw.line([(size/6, size/4+size*2.5/10), (size/2, size/4+width/2), (size/6, size/4+size*2.5/10), (size/9, size/4+size*3/10), (size/10, size/4+size*3.25/10), (size/14, size/4+size*5/10)], outline, width, joint="curve")
 
 #@icon()
 def Input(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:

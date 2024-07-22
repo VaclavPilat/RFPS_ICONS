@@ -95,7 +95,7 @@ class Icon:
         """
         cls(self.draw, size, self.width, self.background, self.color, x, y)
     
-    def line(self, points: list|tuple, rounded: bool = False) -> None:
+    def line(self, points: list|tuple, rounded: bool = False, color: list|tuple = None) -> None:
         """Drawing a line
 
         Args:
@@ -107,7 +107,7 @@ class Icon:
                 points = points[2:4] + points + points[-4:-2]
             elif type(points[0]) in (list, tuple):
                 points = [points[1]] + points + [points[-2]]
-        self.draw.line(self.offset(points), fill=self.color, width=self.width, joint="curve")
+        self.draw.line(self.offset(points), fill=self.color if color is None else color, width=self.width, joint="curve")
     
     def ellipse(self, points: list|tuple, inside: bool = False, color: list|tuple = None) -> None:
         """Drawing an ellipse
