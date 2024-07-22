@@ -38,7 +38,22 @@ class Graph(Icon):
         self.line([self.width/2, self.width/2, self.width/2, self.size-self.width/2, self.size-self.width/2, self.size-self.width/2], True)
         self.line([(self.size*i/4-self.width/2, self.size*[4/5, 2/5, 3/5, 1/5][i-1]) for i in range(1, 5)], True)
 
+@CreateIcon
+class Audio(Icon):
+    def create(self):
+        self.line([(self.width/2, self.size/3), (self.width/2, self.size*2/3), (self.size/4, self.size*2/3), (self.size/2, self.size-self.width), (self.size/2, self.width), (self.size/4, self.size/3), (self.width/2, self.size/3)], True)
+        self.arc([0, 0, self.size, self.size], -60, 60)
+        self.arc([self.size/3, self.size/4, self.size*6.25/8, self.size*3/4], -65, 65)
+
 """
+#@icon()
+def Audio(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
+    draw.arc([0, 0, size, size], -60, 60, outline, width)
+    draw.arc([size/3, size/4, size*6.25/8, size*3/4], -65, 65, outline, width)
+    def polygon(points: tuple):
+        draw.line(points + points[:2], outline, width, joint="curve")
+    polygon([(width/2, size/3), (width/2, size*2/3), (size/4, size*2/3), (size/2, size-width), (size/2, width), (size/4, size/3)])
+
 #@icon()
 def General(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
     def line(points: tuple) -> None:
@@ -72,14 +87,6 @@ def Graphics(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: flo
     polyline([(size*2/8, size-width/2), (size*6/8, size-width/2)])
     polyline([(width/2, size*3.6/5), (width/2, width/2), (size-width/2, width/2), (size-width/2, size*3.2/5), (width/2, size*3.2/5), (width/2, size*3.6/5), (size-width/2, size*3.6/5), (size-width/2, size/2)])
     polyline([(size/2-width/2, size-width/2), (size/2-width/2, size*3.6/5), (size/2+width/2, size*3.6/5), (size/2+width/2, size-width/2)])
-
-#@icon()
-def Audio(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
-    draw.arc([0, 0, size, size], -60, 60, outline, width)
-    draw.arc([size/3, size/4, size*6.25/8, size*3/4], -65, 65, outline, width)
-    def polygon(points: tuple):
-        draw.line(points + points[:2], outline, width, joint="curve")
-    polygon([(width/2, size/3), (width/2, size*2/3), (size/4, size*2/3), (size/2, size-width), (size/2, width), (size/4, size/3)])
 
 #@icon()
 def Input(draw: ImageDraw, size: int, outline: tuple, fill: tuple, width: float) -> None:
