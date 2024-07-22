@@ -85,11 +85,8 @@ class Cogs(Icon):
 @CreateIcon
 class Keyboard(Icon):
     def create(self):
-        length = (self.size-self.width)/3
-        gap = self.width/2
-        for i in range(4):
-            self.rectangle([(length*i+gap*i-gap*2, 0), (length*(i+1)+gap*i-gap*2, length)], radius=self.width/2, width=self.width//3, fill=self.background if i != 1 else None)
+        length = (self.size-self.width*1.5)/3
+        gap = self.width*1.5/2
+        self.rectangle([(length, self.size/2-length-gap/2), (length*2, self.size/2-gap/2)], radius=self.width/2)
         for i in range(3):
-            self.rectangle([(length*i+gap*i, self.size/2-length/2), (length*(i+1)+gap*i, self.size/2+length/2)], radius=self.width/2)
-        for i in range(4):
-            self.rectangle([(length*i+gap*i-length/2-gap/2, self.size-length), (length*(i+1)+gap*i-length/2-gap/2, self.size)], radius=self.width/2, width=self.width//3, fill=self.background)
+            self.rectangle([(length*i+gap*i, self.size/2+gap/2), (length*(i+1)+gap*i, self.size/2+gap/2+length)], radius=self.width/2)
