@@ -109,6 +109,6 @@ class Play(Icon):
 class Warehouse(Icon):
     def create(self):
         self.line([(self.width/2, self.size), (self.width/2, self.size/3), (self.size/2, self.width/2), (self.size-self.width/2, self.size/3), (self.size-self.width/2, self.size)])
-        self.line([(self.width/2, self.size/3), (self.size-self.width/2, self.size/3)])
+        self.line([(self.width/2, self.size*0.4-self.width/2), (self.size-self.width/2, self.size*0.4-self.width/2)])
         for y in range(self.size-self.width//2, self.size//3+self.width, -self.width*2):
             self.line([(self.width*2, y), (self.size-self.width*2, y)])
