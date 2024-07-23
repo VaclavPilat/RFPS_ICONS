@@ -118,3 +118,12 @@ class Shutdown(Icon):
     def create(self):
         self.arc([self.width/2, self.width, self.size-self.width/2, self.size], -55, -125)
         self.line([self.size/2, self.width/2, self.size/2, self.size/2], True)
+
+@CreateIcon
+class Home(Icon):
+    def create(self):
+        self.line([(self.size/6, self.size-self.width/2), (self.size*5/6, self.size-self.width/2)])
+        for i in [-1, 1]:
+            self.line([(self.size/2+i*self.size*0.35, self.size), (self.size/2+i*self.size*0.35, self.size*0.4)])
+            self.line([(self.size/2+i*self.width/2, self.size*3/5), (self.size/2+i*self.width/2, self.size)])
+        self.line([(self.width/2, self.size/2), (self.size/2, self.width/2), (self.size-self.width/2, self.size/2)], True)
