@@ -127,3 +127,9 @@ class Home(Icon):
             self.line([(self.size/2+i*self.size*0.35, self.size), (self.size/2+i*self.size*0.35, self.size*0.4)])
             self.line([(self.size/2+i*self.width/2, self.size*3/5), (self.size/2+i*self.width/2, self.size)])
         self.line([(self.width/2, self.size/2), (self.size/2, self.width/2), (self.size-self.width/2, self.size/2)], True)
+
+@CreateIcon
+class Search(Icon):
+    def create(self):
+        self.ellipse([0, 0, self.size*0.7, self.size*0.7], fill=self.background)
+        self.line([self.size*0.6, self.size*0.6, self.size-self.width/2, self.size-self.width/2], True)
