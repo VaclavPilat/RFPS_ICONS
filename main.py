@@ -137,10 +137,9 @@ class Search(Icon):
 @CreateIcon
 class Flag(Icon):
     def create(self):
-        self.line([(self.width, self.width), (self.width, self.size-self.width/2)], True)
-        self.ellipse([0, 0, self.width*2, self.width*2])
+        self.line([(self.width/2, self.width/2), (self.width/2, self.size-self.width/2)], True)
         offset = 0.4
         for i in range(2):
-            self.arc([(self.size*0, self.size*(0.10+i*offset)), (self.size*0.65, self.size*(0.60+i*offset))], -140, -45)
-            self.arc([(self.size*0.37, self.size*(-0.20+i*offset)), (self.size*1.02, self.size*(0.30+i*offset))], 30, 135)
-        self.line([(self.size-self.width/2, self.size*0.13), (self.size-self.width/2, self.size*(0.13+offset))], True)
+            self.arc([(self.size*0, self.size*(0.02+i*offset)), (self.size*0.65, self.size*(0.52+i*offset))], -170, -45)
+            self.arc([(self.size*0.37, self.size*(-0.28+i*offset)), (self.size*1.02, self.size*(0.22+i*offset))], 30, 135)
+        self.line([(self.size-self.width/2, self.size*0.06), (self.size-self.width/2, self.size*(0.05+offset))], True)
