@@ -95,7 +95,7 @@ class Icon:
         """
         cls(self.draw, size, self.width, self.background, self.color, x, y)
     
-    def line(self, points: list|tuple, rounded: bool = False, fill: list|tuple = None, width: int|float = None) -> None:
+    def line(self, points: list|tuple, rounded: bool = False, fill: list|tuple = None, width: int|float = None, polygon: bool = False) -> None:
         """Draws a line with rounded joints
 
         Args:
@@ -108,6 +108,11 @@ class Icon:
             fill = self.color
         if width is None:
             width = self.width
+        if polygon:
+            if type(points[0]) in (int, float):
+                points += points[:2]
+            elif type(points[0]) in (list, tuple):
+                points.append(points[0])
         if rounded:
             if type(points[0]) in (int, float):
                 points = points[2:4] + points + points[-4:-2]
