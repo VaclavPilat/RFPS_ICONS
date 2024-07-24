@@ -153,11 +153,8 @@ class Cursor(Icon):
 @CreateIcon
 class Book(Icon):
     def create(self):
-        for i in [0, 2]:
+        for i in range(3):
             self.line([(self.width/2+i*(self.size/2-self.width/2), self.size*0.1), (self.width/2+i*(self.size/2-self.width/2), self.size*0.9)])
         for i in range(2):
-            for j in [0, 4/3, 4*2/3, 4]:
+            for j in [0, 4]:
                 self.arc([(-self.size/4+self.size/2*i, self.width*2*j+self.width/20), (self.size*3/4+self.size/2*i, self.size+self.width*2*j+self.width/20)], -130, -50)
-        self.line([(self.width*1.5, self.size*0.2), (self.width*1.5, self.size*0.8)], fill=self.background)
-        self.line([(self.size/2, self.size*0.2), (self.size/2, self.size*0.8)], fill=self.background)
-        self.line([(self.size-self.width*1.5, self.size*0.2), (self.size-self.width*1.5, self.size*0.8)], fill=self.background)
