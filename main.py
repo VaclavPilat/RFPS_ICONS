@@ -1,7 +1,7 @@
 from Icon import Icon, CreateIcon
 import math
 
-#@CreateIcon
+@CreateIcon
 class Globe(Icon):
     def create(self):
         self.ellipse([0, 0, self.size, self.size], fill=self.background)
@@ -9,14 +9,14 @@ class Globe(Icon):
         self.line([self.width/2, self.size*3.5/10, self.size-self.width/2, self.size*3.5/10])
         self.line([self.width/2, self.size*6.5/10, self.size-self.width/2, self.size*6.5/10])
 
-#@CreateIcon
+@CreateIcon
 class User(Icon):
     def create(self):
         self.ellipse([0.25*self.size, 0, 0.75*self.size, self.size/2], fill=self.background)
         self.arc([0, self.size/2-self.width, self.size, 1.5*self.size], -180, 0)
         self.line([0, self.size-self.width/2, self.size, self.size-self.width/2])
 
-#@CreateIcon
+@CreateIcon
 class Users(Icon):
     def create(self):
         self.load(User, self.size*2/3, self.size/3, 0)
@@ -24,7 +24,7 @@ class Users(Icon):
         self.ellipse([-self.width, self.size*2/3-self.width*2, self.size*2/3+self.width, self.size*1.5], outline=self.background, fill=self.background)
         self.load(User, self.size*2/3, 0, self.size/3)
 
-#@CreateIcon
+@CreateIcon
 class Sliders(Icon):
     def create(self):
         radius = self.width*1.6
@@ -33,7 +33,7 @@ class Sliders(Icon):
             self.line([self.width/2, self.size*i/6, self.size-self.width/2, self.size*i/6], True)
             self.ellipse([self.size*x[i]-radius, self.size*i/6-radius, self.size*x[i]+radius, self.size*i/6+radius])
 
-#@CreateIcon
+@CreateIcon
 class Graph(Icon):
     def create(self):
         self.line([(self.width/2, self.width/2), (self.width/2, self.size-self.width/2), (self.size-self.width/2, self.size-self.width/2)], True)
@@ -44,27 +44,27 @@ class Graph(Icon):
         for (x, y) in zip(xpos, ypos):
             self.ellipse([x-radius, y-radius, x+radius, y+radius])
 
-#@CreateIcon
+@CreateIcon
 class Audio(Icon):
     def create(self):
         self.line([(self.width/2, self.size/3), (self.width/2, self.size*2/3), (self.size/4, self.size*2/3), (self.size/2, self.size-self.width), (self.size/2, self.width), (self.size/4, self.size/3), (self.width/2, self.size/3)], True)
         self.arc([0, 0, self.size, self.size], -60, 60)
         self.arc([self.size/3, self.size/4, self.size*6.25/8, self.size*3/4], -65, 65)
 
-#@CreateIcon
+@CreateIcon
 class Monitor(Icon):
     def create(self):
         self.line([self.size/4, self.size-self.width/2, self.size*3/4, self.size-self.width/2], True)
         self.line([(self.width/2, self.size*3.6/5), (self.width/2, self.width/2), (self.size-self.width/2, self.width/2), (self.size-self.width/2, self.size*3.2/5), (self.width/2, self.size*3.2/5), (self.width/2, self.size*3.6/5), (self.size-self.width/2, self.size*3.6/5), (self.size-self.width/2, self.size/2)], True)
         self.line([(self.size/2-self.width/2, self.size-self.width/2), (self.size/2-self.width/2, self.size*3.6/5), (self.size/2+self.width/2, self.size*3.6/5), (self.size/2+self.width/2, self.size-self.width/2)], True)
 
-#@CreateIcon
+@CreateIcon
 class Splitscreen(Icon):
     def create(self):
         self.load(Monitor, self.size, 0, 0)
         self.line([self.size/2, 0, self.size/2, self.size*2/3])
 
-#@CreateIcon
+@CreateIcon
 class Cap(Icon):
     def create(self):
         self.arc([self.size/5, self.size*2/3, self.size*4/5, self.size], 0, 180)
@@ -82,13 +82,13 @@ class Cog(Icon):
         self.line([(self.size*0.2, self.size*0.8), (self.size*0.8, self.size*0.2)], True)
         self.ellipse([0.15*self.size, 0.15*self.size, 0.85*self.size, 0.85*self.size], fill=self.background)
 
-#@CreateIcon
+@CreateIcon
 class Cogs(Icon):
     def create(self):
         self.load(Cog, self.size*0.55, 0, self.size*0.365)
         self.load(Cog, self.size*0.55, self.size*0.45, self.size*0.085)
 
-#@CreateIcon
+@CreateIcon
 class Keyboard(Icon):
     def create(self):
         length = (self.size-self.width*1.5)/3
@@ -97,7 +97,7 @@ class Keyboard(Icon):
         for i in range(3):
             self.rectangle([(length*i+gap*i, self.size/2+gap/2), (length*(i+1)+gap*i, self.size/2+gap/2+length)], radius=self.width/2)
 
-#@CreateIcon
+@CreateIcon
 class Play(Icon):
     def create(self):
         self.ellipse([0, 0, self.size, self.size], fill=self.background)
@@ -113,13 +113,13 @@ class Warehouse(Icon):
         for y in range(self.size-self.width//2, self.size//3+self.width, -self.width*2):
             self.line([(self.width*2, y), (self.size-self.width*2, y)])
 
-#@CreateIcon
+@CreateIcon
 class Shutdown(Icon):
     def create(self):
         self.arc([self.width/2, self.width, self.size-self.width/2, self.size], -55, -125)
         self.line([self.size/2, self.width/2, self.size/2, self.size/2], True)
 
-#@CreateIcon
+@CreateIcon
 class Home(Icon):
     def create(self):
         self.line([(self.size/6, self.size-self.width/2), (self.size*5/6, self.size-self.width/2)])
@@ -144,7 +144,7 @@ class Flag(Icon):
             self.arc([(self.size*0.37, self.size*(-0.28+i*offset)), (self.size*1.02, self.size*(0.22+i*offset))], 30, 135)
         self.line([(self.size-self.width/2, self.size*0.06), (self.size-self.width/2, self.size*(0.05+offset))], True)
 
-#@CreateIcon
+@CreateIcon
 class Cursor(Icon):
     def create(self):
         coords = [(self.size*0.60, self.size*0.87), (self.size*0.4, self.size*0.5), (self.size*0.7, self.size*0.45), (self.width/2, self.width/2), (self.width/2, self.size*0.80), (self.size*0.25, self.size*0.58), (self.size*0.45, self.size-self.width/2)]
