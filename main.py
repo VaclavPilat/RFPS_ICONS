@@ -158,3 +158,8 @@ class Book(Icon):
         for i in range(2):
             for j in [0, 4]:
                 self.arc([(-self.size/4+self.size/2*i, self.width*2*j+self.width/20), (self.size*3/4+self.size/2*i, self.size+self.width*2*j+self.width/20)], -130, -50)
+
+@CreateIcon
+class Circle(Icon):
+    def create(self):
+        self.ellipse([(self.size/5, self.size/5), (self.size*4/5, self.size*4/5)])
