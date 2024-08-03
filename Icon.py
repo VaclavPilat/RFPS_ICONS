@@ -3,7 +3,7 @@ import os
 
 
 
-def CreateIcon(cls, size: int = 100, width: int = 10, sampling: int|float = 5, background: list|tuple = (0,0,0,0), color: list|tuple = (255,255,255)):
+def CreateIcon(func, size: int = 100, width: int = 10, sampling: int|float = 5, background: list|tuple = (0,0,0,0), color: list|tuple = (255,255,255)):
     """Wrapper for creating and saving an image created in an Icon class
 
     Args:
@@ -14,26 +14,28 @@ def CreateIcon(cls, size: int = 100, width: int = 10, sampling: int|float = 5, b
         color (list|tuple, optional): Brush color. Defaults to (255,255,255).
 
     Returns:
-        cls: Icon class
+        func: Icon function
     """
     # Creating the image
     image = Image.new("RGBA", (size*sampling, size*sampling), background)
-    cls(ImageDraw.Draw(image), size*sampling, width*sampling, background, color, 0, 0)
+    icon = Icon(ImageDraw.Draw(image), size*sampling, width*sampling, background, color, 0, 0)
+    icon.create = func
+    icon.create(icon)
     image = image.resize((size, size), resample=Image.LANCZOS)
     # Getting image file path
     folder = "images"
-    filepath = "{}/{}.png".format(folder, cls.__name__)
+    filepath = "{}/{}.png".format(folder, func.__name__)
     if not os.path.exists(folder):
         os.mkdir(folder)
     # Comparing older image
     if os.path.exists(filepath):
         diff = ImageChops.difference(image, Image.open(filepath))
         if not diff.getbbox():
-            return cls
+            return func
     # Saving the image
     image.save(filepath, "PNG")
     print(filepath)
-    return cls
+    return func
 
 
 
@@ -57,7 +59,6 @@ class Icon:
         self.color = color
         self.x = x
         self.y = y
-        self.create()
     
     def create(self) -> None:
         """Drawing an image
@@ -85,7 +86,7 @@ class Icon:
         elif type(points[0]) in (list, tuple):
             return [(point[0] + self.x, point[1] + self.y) for point in points]
     
-    def load(self, cls, size: int|float, x: int|float, y: int|float) -> None:
+    def load(self, func, size: int|float, x: int|float, y: int|float) -> None:
         """Draws an existing icon into this one
 
         Args:
@@ -93,7 +94,9 @@ class Icon:
             x (int | float): Icon X offset
             y (int | float): Icon Y offset
         """
-        cls(self.draw, size, self.width, self.background, self.color, x, y)
+        loaded = Icon(self.draw, size, self.width, self.background, self.color, x, y)
+        loaded.create = func
+        loaded.create(loaded)
     
     def line(self, points: list|tuple, rounded: bool = False, fill: list|tuple = None, width: int|float = None, polygon: bool = False) -> None:
         """Draws a line with rounded joints
