@@ -1,0 +1,11 @@
+.memdoc:not(:has(*)) {
+    padding: 0;
+}
+
+.memdoc > .image {
+    background: lightgray;
+}
+
+.memdoc:has(.image:only-child) {
+    background: lightgray;
+}

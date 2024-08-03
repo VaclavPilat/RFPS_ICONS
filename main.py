@@ -1,6 +1,7 @@
 from Icon import Icon, CreateIcon
 import math
 
+## \image html Globe.png
 @CreateIcon
 def Globe(self):
     self.ellipse([0, 0, self.size, self.size], fill=self.background)
@@ -8,12 +9,14 @@ def Globe(self):
     self.line([self.width/2, self.size*3.5/10, self.size-self.width/2, self.size*3.5/10])
     self.line([self.width/2, self.size*6.5/10, self.size-self.width/2, self.size*6.5/10])
 
+## \image html User.png
 @CreateIcon
 def User(self):
     self.ellipse([0.25*self.size, 0, 0.75*self.size, self.size/2], fill=self.background)
     self.arc([0, self.size/2-self.width, self.size, 1.5*self.size], -180, 0)
     self.line([0, self.size-self.width/2, self.size, self.size-self.width/2])
 
+## \image html Users.png
 @CreateIcon
 def Users(self):
     self.load(User, self.size*2/3, self.size/3, 0)
@@ -21,6 +24,7 @@ def Users(self):
     self.ellipse([-self.width, self.size*2/3-self.width*2, self.size*2/3+self.width, self.size*1.5], outline=self.background, fill=self.background)
     self.load(User, self.size*2/3, 0, self.size/3)
 
+## \image html Sliders.png
 @CreateIcon
 def Sliders(self):
     radius = self.width*1.6
@@ -29,6 +33,7 @@ def Sliders(self):
         self.line([self.width/2, self.size*i/6, self.size-self.width/2, self.size*i/6], True)
         self.ellipse([self.size*x[i]-radius, self.size*i/6-radius, self.size*x[i]+radius, self.size*i/6+radius])
 
+## \image html Graph.png
 @CreateIcon
 def Graph(self):
     self.line([(self.width/2, self.width/2), (self.width/2, self.size-self.width/2), (self.size-self.width/2, self.size-self.width/2)], True)
@@ -39,23 +44,27 @@ def Graph(self):
     for (x, y) in zip(xpos, ypos):
         self.ellipse([x-radius, y-radius, x+radius, y+radius])
 
+## \image html Audio.png
 @CreateIcon
 def Audio(self):
     self.line([(self.width/2, self.size/3), (self.width/2, self.size*2/3), (self.size/4, self.size*2/3), (self.size/2, self.size-self.width), (self.size/2, self.width), (self.size/4, self.size/3), (self.width/2, self.size/3)], True)
     self.arc([0, 0, self.size, self.size], -60, 60)
     self.arc([self.size/3, self.size/4, self.size*6.25/8, self.size*3/4], -65, 65)
 
+## \image html Monitor.png
 @CreateIcon
 def Monitor(self):
     self.line([self.size/4, self.size-self.width/2, self.size*3/4, self.size-self.width/2], True)
     self.line([(self.width/2, self.size*3.6/5), (self.width/2, self.width/2), (self.size-self.width/2, self.width/2), (self.size-self.width/2, self.size*3.2/5), (self.width/2, self.size*3.2/5), (self.width/2, self.size*3.6/5), (self.size-self.width/2, self.size*3.6/5), (self.size-self.width/2, self.size/2)], True)
     self.line([(self.size/2-self.width/2, self.size-self.width/2), (self.size/2-self.width/2, self.size*3.6/5), (self.size/2+self.width/2, self.size*3.6/5), (self.size/2+self.width/2, self.size-self.width/2)], True)
 
+## \image html Splitscreen.png
 @CreateIcon
 def Splitscreen(self):
     self.load(Monitor, self.size, 0, 0)
     self.line([self.size/2, 0, self.size/2, self.size*2/3])
 
+## \image html Cap.png
 @CreateIcon
 def Cap(self):
     self.arc([self.size/5, self.size*2/3, self.size*4/5, self.size], 0, 180)
@@ -72,11 +81,13 @@ def Cog(self):
     self.line([(self.size*0.2, self.size*0.8), (self.size*0.8, self.size*0.2)], True)
     self.ellipse([0.15*self.size, 0.15*self.size, 0.85*self.size, 0.85*self.size], fill=self.background)
 
+## \image html Cogs.png
 @CreateIcon
 def Cogs(self):
     self.load(Cog, self.size*0.55, 0, self.size*0.365)
     self.load(Cog, self.size*0.55, self.size*0.45, self.size*0.085)
 
+## \image html Keyboard.png
 @CreateIcon
 def Keyboard(self):
     length = (self.size-self.width*1.5)/3
@@ -85,6 +96,7 @@ def Keyboard(self):
     for i in range(3):
         self.rectangle([(length*i+gap*i, self.size/2+gap/2), (length*(i+1)+gap*i, self.size/2+gap/2+length)], radius=self.width/2)
 
+## \image html Play.png
 @CreateIcon
 def Play(self):
     self.ellipse([0, 0, self.size, self.size], fill=self.background)
@@ -92,6 +104,7 @@ def Play(self):
     length = math.sqrt(2)/2*height
     self.line([(self.size/2-length/2+self.width*2/3, self.size/2-height/2), (self.size/2-length/2+self.width*2/3, self.size/2+height/2), (self.size/2+length/2+self.width*2/3, self.size/2), (self.size/2-length/2+self.width*2/3, self.size/2-height/2)], True)
 
+## \image html Warehouse.png
 @CreateIcon
 def Warehouse(self):
     self.line([(self.width/2, self.size), (self.width/2, self.size/3), (self.size/2, self.width/2), (self.size-self.width/2, self.size/3), (self.size-self.width/2, self.size)])
@@ -99,11 +112,13 @@ def Warehouse(self):
     for y in range(self.size-self.width//2, self.size//3+self.width, -self.width*2):
         self.line([(self.width*2, y), (self.size-self.width*2, y)])
 
+## \image html Shutdown.png
 @CreateIcon
 def Shutdown(self):
     self.arc([self.width/2, self.width, self.size-self.width/2, self.size], -55, -125)
     self.line([self.size/2, self.width/2, self.size/2, self.size/2], True)
 
+## \image html Home.png
 @CreateIcon
 def Home(self):
     self.line([(self.size/6, self.size-self.width/2), (self.size*5/6, self.size-self.width/2)])
@@ -112,11 +127,13 @@ def Home(self):
         self.line([(self.size/2+i*self.width/2, self.size*3/5), (self.size/2+i*self.width/2, self.size)])
     self.line([(self.width/2, self.size/2), (self.size/2, self.width/2), (self.size-self.width/2, self.size/2)], True)
 
+## \image html Search.png
 @CreateIcon
 def Search(self):
     self.ellipse([0, 0, self.size*0.7, self.size*0.7], fill=self.background)
     self.line([self.size*0.6, self.size*0.6, self.size-self.width/2, self.size-self.width/2], True)
 
+## \image html Flag.png
 @CreateIcon
 def Flag(self):
     self.line([(self.width/2, self.width/2), (self.width/2, self.size-self.width/2)], True)
@@ -126,11 +143,13 @@ def Flag(self):
         self.arc([(self.size*0.37, self.size*(-0.28+i*offset)), (self.size*1.02, self.size*(0.22+i*offset))], 30, 135)
     self.line([(self.size-self.width/2, self.size*0.06), (self.size-self.width/2, self.size*(0.05+offset))], True)
 
+## \image html Icon.png
 @CreateIcon
 def Icon(self):
     coords = [(self.size*0.60, self.size*0.87), (self.size*0.4, self.size*0.5), (self.size*0.7, self.size*0.45), (self.width/2, self.width/2), (self.width/2, self.size*0.80), (self.size*0.25, self.size*0.58), (self.size*0.45, self.size-self.width/2)]
     self.line([(c[0]+self.size*0.12, c[1]) for c in coords], True, polygon=True)
 
+## \image html Book.png
 @CreateIcon
 def Book(self):
     for i in range(3):
@@ -139,6 +158,7 @@ def Book(self):
         for j in [0, 4]:
             self.arc([(-self.size/4+self.size/2*i, self.width*2*j+self.width/20), (self.size*3/4+self.size/2*i, self.size+self.width*2*j+self.width/20)], -130, -50)
 
+## \image html Circle.png
 @CreateIcon
 def Circle(self):
     self.ellipse([(self.size/5, self.size/5), (self.size*4/5, self.size*4/5)])
