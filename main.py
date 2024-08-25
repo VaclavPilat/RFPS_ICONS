@@ -168,3 +168,12 @@ def Circle(self):
 def Plus(self):
     self.line([self.size/2, self.width/2, self.size/2, self.size-self.width/2], True)
     self.line([self.width/2, self.size/2, self.size-self.width/2, self.size/2], True)
+
+## \image html Trash.png
+@CreateIcon
+def Trash(self):
+    for i in (-1, 1):
+        self.line([(self.size/2+i*self.width, self.width*4), (self.size/2+i*self.width, self.size-self.width*2.5)], True)
+    self.line([(self.size/2-self.width*3, self.width*2), (self.size/2-self.width*3, self.size-self.width/2), (self.size/2+self.width*3, self.size-self.width/2), (self.size/2+self.width*3, self.width*2)], True)
+    self.line([(self.width, self.width*2), (self.size-self.width, self.width*2)], True)
+    self.line([(self.size*1/3, self.width*2), (self.size*1/3, self.width/2), (self.size*2/3, self.width/2), (self.size*2/3, self.width*2)], True)
