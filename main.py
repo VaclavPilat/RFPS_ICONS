@@ -162,3 +162,9 @@ def Book(self):
 @CreateIcon
 def Circle(self):
     self.ellipse([(self.size/5, self.size/5), (self.size*4/5, self.size*4/5)])
+
+## \image html Plus.png
+@CreateIcon
+def Plus(self):
+    self.line([self.size/2, self.width/2, self.size/2, self.size-self.width/2], True)
+    self.line([self.width/2, self.size/2, self.size-self.width/2, self.size/2], True)
