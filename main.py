@@ -65,6 +65,7 @@ def Splitscreen(self):
     self.line([self.size/2, 0, self.size/2, self.size*2/3])
 
 ## \image html Cap.png
+## \todo Remake icon
 @CreateIcon
 def Cap(self):
     self.arc([self.size/5, self.size*2/3, self.size*4/5, self.size], 0, 180)
@@ -134,6 +135,7 @@ def Search(self):
     self.line([self.size*0.6, self.size*0.6, self.size-self.width/2, self.size-self.width/2], True)
 
 ## \image html Flag.png
+## \todo Remake icon
 @CreateIcon
 def Flag(self):
     self.line([(self.width/2, self.width/2), (self.width/2, self.size-self.width/2)], True)
@@ -143,9 +145,9 @@ def Flag(self):
         self.arc([(self.size*0.37, self.size*(-0.28+i*offset)), (self.size*1.02, self.size*(0.22+i*offset))], 30, 135)
     self.line([(self.size-self.width/2, self.size*0.06), (self.size-self.width/2, self.size*(0.05+offset))], True)
 
-## \image html Icon.png
+## \image html Cursor.png
 @CreateIcon
-def Icon(self):
+def Cursor(self):
     coords = [(self.size*0.60, self.size*0.87), (self.size*0.4, self.size*0.5), (self.size*0.7, self.size*0.45), (self.width/2, self.width/2), (self.width/2, self.size*0.80), (self.size*0.25, self.size*0.58), (self.size*0.45, self.size-self.width/2)]
     self.line([(c[0]+self.size*0.12, c[1]) for c in coords], True, polygon=True)
 
