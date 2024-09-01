@@ -179,3 +179,16 @@ def Trash(self):
     self.line([(self.size/2-self.width*3, self.width*2), (self.size/2-self.width*3, self.size-self.width/2), (self.size/2+self.width*3, self.size-self.width/2), (self.size/2+self.width*3, self.width*2)], True)
     self.line([(self.width, self.width*2), (self.size-self.width, self.width*2)], True)
     self.line([(self.size*1/3, self.width*2), (self.size*1/3, self.width/2), (self.size*2/3, self.width/2), (self.size*2/3, self.width*2)], True)
+
+## \image html Metro.png
+@CreateIcon
+def Metro(self):
+    for i in range(2):
+        self.line([(self.size/2, self.size*0.6), (i*self.size, self.size+self.width)])
+    x = 0.2
+    y = 0.7
+    self.rectangle([(0, 0), (self.size, y*self.size+self.width*1.5)], fill=self.background, outline=self.background)
+    self.line([(x*self.size, self.width/2), ((1-x)*self.size, self.width/2), ((1-x)*self.size, y*self.size), (x*self.size, y*self.size)], True, polygon=True)
+    self.rectangle([(x*self.size, y*self.size-self.width*2.5), ((1-x)*self.size, y*self.size)])
+    self.ellipse([(x*self.size+self.width*0.5, y*self.size-self.width*1.5), (x*self.size+self.width*1.5, y*self.size-self.width*0.5)], outline=self.background)
+    self.ellipse([((1-x)*self.size-self.width*1.5, y*self.size-self.width*1.5), ((1-x)*self.size-self.width*0.5, y*self.size-self.width*0.5)], outline=self.background)
