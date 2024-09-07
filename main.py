@@ -98,6 +98,7 @@ def Keyboard(self):
         self.rectangle([(length*i+gap*i, self.size/2+gap/2), (length*(i+1)+gap*i, self.size/2+gap/2+length)], radius=self.width/2)
 
 ## \image html Play.png
+## \todo Tweak icon
 @CreateIcon
 def Play(self):
     self.ellipse([0, 0, self.size, self.size], fill=self.background)
@@ -177,6 +178,7 @@ def Trash(self):
     self.line([(self.size*1/3, self.width*2), (self.size*1/3, self.width/2), (self.size*2/3, self.width/2), (self.size*2/3, self.width*2)], True)
 
 ## \image html Metro.png
+## \todo Tweak icon
 @CreateIcon
 def Metro(self):
     for i in range(2):
