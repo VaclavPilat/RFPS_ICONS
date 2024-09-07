@@ -230,3 +230,15 @@ def Stopwatch(self):
     rs = ri-self.width*0.65
     self.line([c, (c[0]+math.sin(math.radians(0))*ri, c[1]-math.cos(math.radians(0))*ri)], True)
     self.line([c, (c[0]+math.sin(math.radians(90))*rs, c[1]-math.cos(math.radians(90))*rs)], True)
+
+## \image html Crosshair.png
+@CreateIcon
+def Crosshair(self):
+    offset = self.size*0.1
+    inset = offset+self.size*0.15
+    self.ellipse([(offset, offset), (self.size-offset, self.size-offset)], fill=self.background)
+    self.ellipse([(self.size/2-self.width/2, self.size/2-self.width/2), (self.size/2+self.width/2, self.size/2+self.width/2)])
+    self.line([(self.width/2, self.size/2), (inset, self.size/2)], True)
+    self.line([(self.size-self.width/2, self.size/2), (self.size-inset, self.size/2)], True)
+    self.line([(self.size/2, self.width/2), (self.size/2, inset)], True)
+    self.line([(self.size/2, self.size-self.width/2), (self.size/2, self.size-inset)], True)
