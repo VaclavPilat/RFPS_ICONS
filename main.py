@@ -192,3 +192,21 @@ def Metro(self):
     self.rectangle([(x*self.size, y*self.size-self.width*2.5), ((1-x)*self.size, y*self.size)])
     self.ellipse([(x*self.size+self.width*0.5, y*self.size-self.width*1.5), (x*self.size+self.width*1.5, y*self.size-self.width*0.5)], outline=self.background)
     self.ellipse([((1-x)*self.size-self.width*1.5, y*self.size-self.width*1.5), ((1-x)*self.size-self.width*0.5, y*self.size-self.width*0.5)], outline=self.background)
+
+## \image html Babel.png
+@CreateIcon
+def Babel(self):
+    x = self.width
+    y = 2*self.width
+    start = [self.width/2, self.size-self.width*0.8]
+    end = [self.size-self.width/2, self.size-self.width*0.8-y/2]
+    for i in range(3):
+        self.line([(start[0], start[1]+0.85*y), start, end, (end[0], end[1]+0.85*y)], True)
+        start[0] += x
+        end[0] -= x
+        for a in (start, end):
+            a[1] -= y
+    for a in (start, end):
+        self.line([(a[0], a[1]+0.85*y), (a[0], self.width/2)], True)
+    self.line([(start[0], self.width*1.25), (end[0], self.width*1.25)])
+    self.line([(self.size/2, self.width/2), (self.size/2, self.width)], True)
