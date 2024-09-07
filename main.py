@@ -71,7 +71,6 @@ def Cap(self):
     self.line([(self.size/2, self.width/2), (self.size-self.width/2, cap/2), (self.size/2, cap), (self.width/2, cap/2)], True, polygon=True)
     inset = 0.23*self.size
     curve = self.size*0.2
-    print(curve)
     for i in [-1, 1]:
         self.line([(self.size/2+i*inset, cap*0.75), (self.size/2+i*inset, self.size-curve)], True)
     self.arc([(self.size/2-inset-self.width/2, self.size-2*curve), (self.size/2+inset+self.width/2, self.size)], 0, 180)
@@ -100,7 +99,6 @@ def Keyboard(self):
         self.rectangle([(length*i+gap*i, self.size/2+gap/2), (length*(i+1)+gap*i, self.size/2+gap/2+length)], radius=self.width/2)
 
 ## \image html Play.png
-## \todo Tweak icon
 @CreateIcon
 def Play(self):
     self.ellipse([0, 0, self.size, self.size], fill=self.background)
@@ -180,11 +178,10 @@ def Trash(self):
     self.line([(self.size*1/3, self.width*2), (self.size*1/3, self.width/2), (self.size*2/3, self.width/2), (self.size*2/3, self.width*2)], True)
 
 ## \image html Metro.png
-## \todo Tweak icon
 @CreateIcon
 def Metro(self):
     for i in range(2):
-        self.line([(self.size/2, self.size*0.5), (i*self.size, self.size+self.width)])
+        self.line([(self.size/2, self.size*0.5), (i*self.size, self.size+self.width*2.5)])
     x = 0.2
     y = 0.75
     self.rectangle([(0, 0), (self.size, y*self.size+self.width)], fill=self.background, outline=self.background)
