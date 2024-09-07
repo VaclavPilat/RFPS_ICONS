@@ -65,15 +65,17 @@ def Splitscreen(self):
     self.line([self.size/2, 0, self.size/2, self.size*2/3])
 
 ## \image html Cap.png
-## \todo Remake icon
 @CreateIcon
 def Cap(self):
-    self.arc([self.size/5, self.size*2/3, self.size*4/5, self.size], 0, 180)
-    self.line([self.size/5+self.width/2, self.size*5/6, self.size/5+self.width, self.size/2], True)
-    self.line([self.size*4/5-self.width/2, self.size*5/6, self.size*4/5-self.width, self.size/2], True)
-    self.line([(self.width/2, self.size*4/10), (self.size/2, self.size*7/10), (self.size-self.width/2, self.size*4/10)], fill=self.background)
-    self.line([(self.size/2, self.width/2), (self.width/2, self.size*3/10), (self.size/2, self.size*6/10), (self.size-self.width/2, self.size*3/10), (self.size/2, self.width/2)], True)
-    self.line([(self.size/6, self.size/2), (self.size/2, self.size/4+self.width/2), (self.size/6, self.size/2), (self.size/9, self.size*0.55), (self.size/10, self.size*0.575), (self.size/14, self.size*3/4)], True)
+    cap = self.size*0.65
+    self.line([(self.size/2, self.width/2), (self.size-self.width/2, cap/2), (self.size/2, cap), (self.width/2, cap/2)], True, polygon=True)
+    inset = 0.23*self.size
+    curve = self.size*0.2
+    print(curve)
+    for i in [-1, 1]:
+        self.line([(self.size/2+i*inset, cap*0.75), (self.size/2+i*inset, self.size-curve)], True)
+    self.arc([(self.size/2-inset-self.width/2, self.size-2*curve), (self.size/2+inset+self.width/2, self.size)], 0, 180)
+    self.line([(self.width, cap/2), (self.width, cap)], True)
 
 def Cog(self):
     self.line([(self.size/2, self.width/2), (self.size/2, self.size-self.width/2)], True)
