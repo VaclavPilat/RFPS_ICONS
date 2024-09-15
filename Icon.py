@@ -40,6 +40,9 @@ def CreateIcon(func, size: int = 100, width: int = 10, sampling: int|float = 5, 
 
 
 class Icon:
+    """Class for encapsulating a ImageDraw with custom settings
+    """
+
     def __init__(self, draw: ImageDraw, size: int = 100, width: int = 5, background: list|tuple = (0,0,0,0), color: list|tuple = (255,255,255), x: int = 0, y: int = 0) -> None:
         """Initializing an icon draw class
 
