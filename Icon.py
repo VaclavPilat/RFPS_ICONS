@@ -1,3 +1,6 @@
+## \file
+# Functionality for creating images and saving them
+
 from PIL import Image, ImageDraw, ImageFont, ImageChops
 import os
 

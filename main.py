@@ -1,3 +1,6 @@
+## \file
+# Functions for generating specific icons
+
 from Icon import Icon, CreateIcon
 import math
 
