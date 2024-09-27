@@ -10,5 +10,6 @@ Images are generated in high resolution and then downscaled to 100x100 pixels.
 
 ## Documentation
 - **Create documentation** : `doxygen Doxyfile`
+- **Count lines of code** : `cloc . --include-lang=Python`
 
 Run Doxygen after image generation to see them in HTML documentation.
