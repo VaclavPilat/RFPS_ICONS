@@ -1,3 +1,10 @@
+#projectlogo img {
+    filter: invert(1);
+    aspect-ratio: 1/1;
+    height: 60px;
+    margin: 5px;
+}
+
 .memdoc:not(:has(*)) {
     padding: 0;
 }

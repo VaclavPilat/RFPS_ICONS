@@ -4,10 +4,10 @@
 # Project related configuration options
 #---------------------------------------------------------------------------
 DOXYFILE_ENCODING      = UTF-8
-PROJECT_NAME           = "RFPS_ICONS"
-PROJECT_NUMBER         =
-PROJECT_BRIEF          =
-PROJECT_LOGO           =
+PROJECT_NAME           = "RFPS ICONS"
+PROJECT_NUMBER         = "0.1"
+PROJECT_BRIEF          = "Simple tool for creating icons for the RFPS project"
+PROJECT_LOGO           = "Cursor.png"
 OUTPUT_DIRECTORY       =
 CREATE_SUBDIRS         = NO
 ALLOW_UNICODE_NAMES    = NO
@@ -207,7 +207,7 @@ GENERATE_HTML          = YES
 HTML_OUTPUT            = html
 HTML_FILE_EXTENSION    = .html
 HTML_HEADER            =
-HTML_FOOTER            =
+HTML_FOOTER            = "favicon.html"
 HTML_STYLESHEET        =
 HTML_EXTRA_STYLESHEET  = style.css
 HTML_EXTRA_FILES       =
