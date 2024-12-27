@@ -7,7 +7,7 @@ DOXYFILE_ENCODING      = UTF-8
 PROJECT_NAME           = "RFPS ICONS"
 PROJECT_NUMBER         = "0.1"
 PROJECT_BRIEF          = "Simple tool for creating icons for the RFPS project"
-PROJECT_LOGO           = "Cursor.png"
+PROJECT_LOGO           = "images/Cursor.png"
 OUTPUT_DIRECTORY       =
 CREATE_SUBDIRS         = NO
 ALLOW_UNICODE_NAMES    = NO
@@ -107,7 +107,7 @@ CITE_BIB_FILES         =
 #---------------------------------------------------------------------------
 # Configuration options related to warning and progress messages
 #---------------------------------------------------------------------------
-QUIET                  = NO
+QUIET                  = YES
 WARNINGS               = YES
 WARN_IF_UNDOCUMENTED   = YES
 WARN_IF_DOC_ERROR      = YES
