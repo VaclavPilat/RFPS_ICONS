@@ -68,6 +68,7 @@ def Splitscreen(self):
     self.line([self.size/2, 0, self.size/2, self.size*2/3])
 
 ## \image html Cap.png
+## \todo Reduce icon height
 @CreateIcon
 def Cap(self):
     cap = self.size*0.65
@@ -102,6 +103,7 @@ def Keyboard(self):
         self.rectangle([(length*i+gap*i, self.size/2+gap/2), (length*(i+1)+gap*i, self.size/2+gap/2+length)], radius=self.width/2)
 
 ## \image html Play.png
+## \todo Remove circle, change icon style
 @CreateIcon
 def Play(self):
     self.ellipse([0, 0, self.size, self.size], fill=self.background)
@@ -118,6 +120,7 @@ def Warehouse(self):
         self.line([(self.width*2, y), (self.size-self.width*2, y)])
 
 ## \image html Shutdown.png
+## \todo Make the circle ends rounded
 @CreateIcon
 def Shutdown(self):
     self.arc([self.width/2, self.width, self.size-self.width/2, self.size], -55, -125)
@@ -139,6 +142,7 @@ def Search(self):
     self.line([self.size*0.6, self.size*0.6, self.size-self.width/2, self.size-self.width/2], True)
 
 ## \image html Flag.png
+## \todo Maybe add a curve?
 @CreateIcon
 def Flag(self):
     width = 0.35*self.size
