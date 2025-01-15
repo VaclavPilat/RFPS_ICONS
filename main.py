@@ -96,17 +96,17 @@ def Splitscreen(self):
     self.line([self.size/2, 0, self.size/2, self.size*2/3])
 
 ## \image html Cap.png
-## \todo Reduce icon height
 @CreateIcon
 def Cap(self):
-    cap = self.size*0.65
-    self.line([(self.size/2, self.width/2), (self.size-self.width/2, cap/2), (self.size/2, cap), (self.width/2, cap/2)], True, polygon=True)
+    cap = self.size*0.50
+    offset = self.size*0.075
+    self.line([(x, y+offset) for (x, y) in [(self.size/2, self.width/2), (self.size-self.width/2, cap/2), (self.size/2, cap), (self.width/2, cap/2)]], True, polygon=True)
     inset = 0.23*self.size
     curve = self.size*0.2
     for i in [-1, 1]:
-        self.line([(self.size/2+i*inset, cap*0.75), (self.size/2+i*inset, self.size-curve)], True)
-    self.arc([(self.size/2-inset-self.width/2, self.size-2*curve), (self.size/2+inset+self.width/2, self.size)], 0, 180)
-    self.line([(self.width, cap/2), (self.width, cap)], True)
+        self.line([(self.size/2+i*inset, cap*0.75+offset), (self.size/2+i*inset, self.size-curve-offset)], True)
+    self.arc([(x, y-offset) for (x, y) in [(self.size/2-inset-self.width/2, self.size-2*curve), (self.size/2+inset+self.width/2, self.size)]], 0, 180)
+    self.line([(x, y+offset) for (x, y) in [(self.width, cap/2), (self.width, cap)]], True)
 
 def Cog(self):
     self.line([(self.size/2, self.width/2), (self.size/2, self.size-self.width/2)], True)
