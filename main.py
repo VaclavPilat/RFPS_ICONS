@@ -59,10 +59,10 @@ def Users(self):
 @CreateIcon
 def Sliders(self):
     radius = self.width*1.6
-    x = { 1: 1/2, 3: 5/6, 5: 1/4 }
+    x = { 1: 1/2, 3: 5.1/6, 5: 1/4 }
     for i in range(1, 6, 2):
         self.line([self.width/2, self.size*i/6, self.size-self.width/2, self.size*i/6], True)
-        self.ellipse([self.size*x[i]-radius, self.size*i/6-radius, self.size*x[i]+radius, self.size*i/6+radius])
+        self.ellipse([self.size*x[i]-radius, self.size*i/6-radius, self.size*x[i]+radius, self.size*i/6+radius], outline=self.background, width=self.width//2)
 
 ## \image html Graph.png
 @CreateIcon
