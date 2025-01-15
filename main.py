@@ -253,15 +253,15 @@ def Stopwatch(self):
     self.line([(self.size/2, 0), (self.size/2, (1-s)*self.size)])
     c = (self.size/2, (1-s/2)*self.size)
     r = s/2*self.size-self.width/2
-    ro = r+self.width*1.25
+    ro = r+self.width*0.9
     si = math.sin(math.radians(45))
     co = math.cos(math.radians(45))
     for i in [-1, 1]:
-        self.line([(c[0]+i*si*r, c[1]-co*r), (c[0]+i*si*ro, c[1]-co*ro)])
+        self.line([(c[0]+i*si*r, c[1]-co*r), (c[0]+i*si*ro, c[1]-co*ro)], True)
     ri = r-self.width*1.35
     rs = ri-self.width*0.65
     self.line([c, (c[0]+math.sin(math.radians(0))*ri, c[1]-math.cos(math.radians(0))*ri)], True)
-    self.line([c, (c[0]+math.sin(math.radians(90))*rs, c[1]-math.cos(math.radians(90))*rs)], True)
+    self.line([c, (c[0]+math.sin(math.radians(120))*rs, c[1]-math.cos(math.radians(120))*rs)], True)
 
 ## \image html Crosshair.png
 @CreateIcon
