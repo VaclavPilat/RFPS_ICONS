@@ -1,6 +1,34 @@
 ## \file
 # Functions for generating specific icons
 
+## \defgroup images Icon images
+# \image html Globe.png
+# \image html User.png
+# \image html Users.png
+# \image html Sliders.png
+# \image html Graph.png
+# \image html Audio.png
+# \image html Monitor.png
+# \image html Splitscreen.png
+# \image html Cap.png
+# \image html Cogs.png
+# \image html Keyboard.png
+# \image html Play.png
+# \image html Warehouse.png
+# \image html Shutdown.png
+# \image html Home.png
+# \image html Search.png
+# \image html Flag.png
+# \image html Cursor.png
+# \image html Book.png
+# \image html Circle.png
+# \image html Plus.png
+# \image html Trash.png
+# \image html Metro.png
+# \image html Babel.png
+# \image html Stopwatch.png
+# \image html Crosshair.png
+
 from Icon import Icon, CreateIcon
 import math
 
