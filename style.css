@@ -1,7 +1,10 @@
-img {
-    filter: invert(1);
+#projectlogo img {
     aspect-ratio: 1/1;
     height: 60px;
+}
+
+img {
+    filter: invert(1);
     margin: 5px;
 }
 
