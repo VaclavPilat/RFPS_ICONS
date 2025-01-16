@@ -12,16 +12,17 @@ def defaultSettings(*names) -> "func":
         func: Wrapper for a drawing method
     """
     def wrapper(method: "func") -> "func":
-        def wrapped(self, *args, **kwargs) -> None:
+        def wrapped(self, *points, **settings) -> None:
             values = {k: v for k, v in {
                 "width": self.width,
                 "outline": self.color,
                 "fill": None,
                 "start": 0,
                 "end": 180,
+                "joint": True,
             }.items() if k in names}
-            values.update(kwargs)
-            method(self, *args, **values)
+            values.update(settings)
+            method(self, *self.transform(points), **values)
         return wrapped
     return wrapper
 
@@ -81,19 +82,19 @@ class Canvas:
     def line(self, *points, **settings) -> None:
         """Drawing a line
         """
-        self.draw.line(self.transform(points), **settings)
+        self.draw.line(points, **settings)
     
     @defaultSettings("fill", "outline", "width")
     def ellipse(self, *points, **settings) -> None:
         """Drawing an ellipse
         """
-        self.draw.ellipse(self.transform(points), **settings)
+        self.draw.ellipse(points, **settings)
     
     @defaultSettings("start", "end", "fill", "width")
     def arc(self, *points, **settings) -> None:
         """Drawing an arc
         """
-        self.draw.arc(self.transform(points), **settings)
+        self.draw.arc(points, **settings)
 
 
 

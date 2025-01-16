@@ -39,5 +39,5 @@ def Users(self, W, H, L, C, B) -> None:
 @createImage()
 def Sliders(self, W, H, L, C, B) -> None:
     for y, x in {1: 1/2, 3: 5.1/6, 5: 1/4}.items():
-        self.line((L/2, H*y/6), (W-L/2, H*y/6), joint=True)
+        self.line((L/2, H*y/6), (W-L/2, H*y/6))
         self.ellipse((W*x-1.5*L, H*y/6-1.5*L), (W*x+1.5*L, H*y/6+1.5*L), fill=C, outline=B, width=L//2)
