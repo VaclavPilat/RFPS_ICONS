@@ -16,10 +16,10 @@ def defaultSettings(*names) -> "func":
             values = {k: v for k, v in {
                 "width": self.width,
                 "outline": self.color,
-                "fill": None,
+                "fill": self.color,
                 "start": 0,
                 "end": 180,
-                "joint": True,
+                "joint": "curve",
             }.items() if k in names}
             values.update(settings)
             method(self, *self.transform(points), **values)
