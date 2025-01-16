@@ -1,3 +1,5 @@
+## \file
+# Functionality for generating images using simple shapes
 from PIL import Image, ImageDraw, ImageChops
 import os
 
@@ -92,9 +94,20 @@ def createImage(size: tuple = (100, 100), sampling: float = 5, line: int|float =
         canvas = Canvas(ImageDraw.Draw(image), scaledSize, (0, 0), color, background, scaledLine)
         # Calling the function
         function(canvas, *scaledSize, scaledLine)
-        # Saving the image
         image = image.resize(size, resample=Image.LANCZOS)
-        image.save("image.png", "PNG")
+        # Getting image file path
+        folder = "images"
+        filepath = f"{folder}/{function.__name__}.png"
+        if not os.path.exists(folder):
+            os.mkdir(folder)
+        # Comparing older image
+        if os.path.exists(filepath):
+            diff = ImageChops.difference(image, Image.open(filepath))
+            if not diff.getbbox():
+                return
+        # Saving the image
+        image.save(filepath, "PNG")
+        print(filepath)
     return wrapper
 
 
@@ -102,3 +115,4 @@ def createImage(size: tuple = (100, 100), sampling: float = 5, line: int|float =
 @createImage()
 def Globe(self, W: int, H: int, L: int|float) -> None:
     self.ellipse((0, 0), (W, H))
+    self.ellipse((W*0.275, 0), (W*0.725, H))
