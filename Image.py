@@ -26,7 +26,7 @@ def defaultSettings(*names) -> "func":
 
 
 class Canvas:
-    """Class for creating an image using simple shapes
+    """Class for wrapping the functionality of the Pillow library
     """
 
     def __init__(self, draw: ImageDraw, size: tuple = (100, 100), offset: tuple = (0, 0), color: tuple = (255, 255, 255), background: tuple = (0, 0, 0, 0), line: int|float = 10) -> None:
@@ -109,10 +109,3 @@ def createImage(size: tuple = (100, 100), sampling: float = 5, line: int|float =
         image.save(filepath, "PNG")
         print(filepath)
     return wrapper
-
-
-
-@createImage()
-def Globe(self, W: int, H: int, L: int|float) -> None:
-    self.ellipse((0, 0), (W, H))
-    self.ellipse((W*0.275, 0), (W*0.725, H))
