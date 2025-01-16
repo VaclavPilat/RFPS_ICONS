@@ -1,6 +1,7 @@
 ## \file
 # Functions for generating icons
 from Image import createImage
+import math
 
 
 
@@ -15,22 +16,6 @@ from Image import createImage
 # \image html Splitscreen.png
 # \image html Cap.png
 # \image html Cogs.png
-# \image html Keyboard.png
-# \image html Play.png
-# \image html Warehouse.png
-# \image html Shutdown.png
-# \image html Home.png
-# \image html Search.png
-# \image html Flag.png
-# \image html Cursor.png
-# \image html Book.png
-# \image html Circle.png
-# \image html Plus.png
-# \image html Trash.png
-# \image html Metro.png
-# \image html Babel.png
-# \image html Stopwatch.png
-# \image html Crosshair.png
 
 
 
@@ -92,3 +77,24 @@ def Monitor(self, W, H, L, C, B) -> None:
 def Splitscreen(self, W, H, L, C, B) -> None:
     self.load(Monitor, (W, H), (0, 0))
     self.line((W/2, 0), (W/2, H))
+
+## \image html Cap.png
+@createImage()
+def Cap(self, W, H, L, C, B) -> None:
+    self.line((W/2, H/10+L/2), (W-L/2, H*0.35), (W/2, H*0.6), (L/2, H*0.35), (W/2, H/10+L/2), rounded=True)
+    for i in [-1, 1]:
+        self.line((W/2+i*W/4, H/2), (W/2+i*W/4, H*0.7), rounded=True)
+    self.arc((W/4-L/2, H/2), (W*3/4+L/2, H*0.9), start=0, end=180)
+    self.line((L, H*0.35), (L, H*0.6), rounded=True)
+
+def Cog(self, W, H, L, C, B) -> None:
+    self.ellipse((0.15*W, 0.15*H), (0.85*W, 0.85*H), fill=self.background)
+    for degrees in range(0, 360, 45):
+        angle = math.radians(degrees)
+        self.line((W/2+math.cos(angle)*W*0.35, H/2+math.sin(angle)*W*0.35), (W/2+math.cos(angle)*W*0.4, H/2+math.sin(angle)*W*0.4), rounded=True)
+
+## \image html Cogs.png
+@createImage()
+def Cogs(self, W, H, L, C, B) -> None:
+    self.load(Cog, (W*0.55, H*0.55), (0, H*0.365))
+    self.load(Cog, (W*0.55, H*0.55), (W*0.45, H*0.085))
