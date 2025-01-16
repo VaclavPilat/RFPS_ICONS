@@ -75,7 +75,7 @@ class Canvas:
             offset (tuple): Offset values of the loaded image inside this one
         """
         loaded = Canvas(self.draw, size, offset, self.color, self.background, self.width)
-        function(loaded, *size, self.width)
+        function(loaded, *size, self.width, self.color, self.background)
     
     @defaultSettings("fill", "width", "joint")
     def line(self, *points, **settings) -> None:
@@ -118,7 +118,7 @@ def createImage(size: tuple = (100, 100), sampling: float = 5, line: int|float =
         image = Image.new("RGBA", scaledSize, background)
         canvas = Canvas(ImageDraw.Draw(image), scaledSize, (0, 0), color, background, scaledLine)
         # Calling the function
-        function(canvas, *scaledSize, scaledLine)
+        function(canvas, *scaledSize, scaledLine, color, background)
         image = image.resize(size, resample=Image.LANCZOS)
         # Getting image file path
         folder = "images"
