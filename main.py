@@ -40,13 +40,13 @@ def Users(self, W, H, L, C, B) -> None:
 @createImage()
 def Sliders(self, W, H, L, C, B) -> None:
     for y, x in {1: 1/2, 3: 5.1/6, 5: 1/4}.items():
-        self.line((L/2, H*y/6), (W-L/2, H*y/6))
+        self.line((L/2, H*y/6), (W-L/2, H*y/6), rounded=True)
         self.ellipse((W*x-1.5*L, H*y/6-1.5*L), (W*x+1.5*L, H*y/6+1.5*L), outline=B, width=L//2)
 
 ## \image html Graph.png
 @createImage()
 def Graph(self, W, H, L, C, B) -> None:
-    self.line((L/2, L/2), (L/2, H-L/2), (W-L/2, W-L/2))
+    self.line((L/2, L/2), (L/2, H-L/2), (W-L/2, W-L/2), rounded=True)
     #xpos = [self.size * x for x in [0.25, 0.45, 0.7, 0.9]]
     #ypos = [self.size * y for y in [0.75, 0.35, 0.6, 0.1]]
     #self.line(list(zip(xpos, ypos)), True)

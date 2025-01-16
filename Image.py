@@ -79,9 +79,14 @@ class Canvas:
         function(loaded, *size, self.width, self.color, self.background)
     
     @defaultSettings("fill", "width", "joint")
-    def line(self, *points, **settings) -> None:
+    def line(self, *points, rounded: bool = False, **settings) -> None:
         """Drawing a line
+
+        Args:
+            rounded (bool, optional): Should the line ends be rounded? Defaults to False.
         """
+        if rounded:
+            points = (points[1], ) + points + (points[-2], )
         self.draw.line(points, **settings)
     
     @defaultSettings("fill", "outline", "width")
