@@ -47,9 +47,7 @@ def Sliders(self, W, H, L, C, B) -> None:
 @createImage()
 def Graph(self, W, H, L, C, B) -> None:
     self.line((L/2, L/2), (L/2, H-L/2), (W-L/2, W-L/2), rounded=True)
-    #xpos = [self.size * x for x in [0.25, 0.45, 0.7, 0.9]]
-    #ypos = [self.size * y for y in [0.75, 0.35, 0.6, 0.1]]
-    #self.line(list(zip(xpos, ypos)), True)
-    #radius = self.width*0.8
-    #for (x, y) in zip(xpos, ypos):
-    #    self.ellipse([x-radius, y-radius, x+radius, y+radius])
+    points = ((0.25*W, 0.75*H), (0.45*W, 0.35*H), (0.7*W, 0.6*H), (0.9*W, 0.1*H))
+    self.line(*points)
+    for x, y in points:
+        self.ellipse((x-L*0.8, y-L*0.8), (x+L*0.8, y+L*0.8))
