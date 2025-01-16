@@ -84,12 +84,14 @@ def createImage(size: tuple = (100, 100), sampling: float = 5, line: int|float =
         func: Wrapper for image creation
     """
     def wrapper(function: "func") -> "func":
+        # Calculating sampled sizes
+        scaledSize = (size[0] * sampling, size[1] * sampling)
+        scaledLine = line * sampling
         # Creating an image
-        scaled = (size[0] * sampling, size[1] * sampling)
-        image = Image.new("RGBA", scaled, background)
-        canvas = Canvas(ImageDraw.Draw(image), scaled, (0, 0), color, background, line * sampling)
+        image = Image.new("RGBA", scaledSize, background)
+        canvas = Canvas(ImageDraw.Draw(image), scaledSize, (0, 0), color, background, scaledLine)
         # Calling the function
-        function(canvas)
+        function(canvas, *scaledSize, scaledLine)
         # Saving the image
         image = image.resize(size, resample=Image.LANCZOS)
         image.save("image.png", "PNG")
@@ -98,5 +100,5 @@ def createImage(size: tuple = (100, 100), sampling: float = 5, line: int|float =
 
 
 @createImage()
-def Globe(self) -> None:
-    self.ellipse((0, 0), (self.size[0], self.size[1]))
+def Globe(self, W: int, H: int, L: int|float) -> None:
+    self.ellipse((0, 0), (W, H))
