@@ -3,29 +3,6 @@ import os
 
 
 
-class V2:
-    """Class for a 2D vector
-    """
-
-    def __init__(self, x: int|float = 0, y: int|float = 0) -> None:
-        """Initialising a point
-
-        Args:
-            x (int | float, optional): X value. Defaults to 0.
-            y (int | float, optional): Y value. Defaults to 0.
-        """
-        ## X value
-        self.x = x
-        ## Y value
-        self.y = y
-    
-    def __iter__(self):
-        """Getting an iterator
-        """
-        return iter([self.x, self.y])
-
-
-
 def defaultSettings(*names) -> "func":
     """Decorator for passing some default settings through and allowing their updates
 
@@ -50,13 +27,13 @@ class Canvas:
     """Class for creating an image using simple shapes
     """
 
-    def __init__(self, draw: ImageDraw, size: V2 = V2(100, 100), offset: V2 = V2(), color: tuple = (255, 255, 255), background: tuple = (0, 0, 0, 0), line: int|float = 10) -> None:
+    def __init__(self, draw: ImageDraw, size: tuple = (100, 100), offset: tuple = (0, 0), color: tuple = (255, 255, 255), background: tuple = (0, 0, 0, 0), line: int|float = 10) -> None:
         """Initialising and Image instance
 
         Args:
-            draw (PIL.ImageDraw): ImageDraw instance
-            size (V2, optional): Image size. Defaults to V2(100, 100).
-            offset (V2, optional): Image offset point. Defaults to V2().
+            draw (ImageDraw): ImageDraw instance
+            size (tuple, optional): Image size. Defaults to (100, 100).
+            offset (tuple, optional): Image offset point. Defaults to (0, 0).
             color (tuple, optional): Foreground color. Defaults to (255, 255, 255).
             background (tuple, optional): Background color. Defaults to (0, 0, 0, 0).
             line (int | float, optional): Line width. Defaults to 10.
@@ -78,12 +55,12 @@ class Canvas:
         """Transforming vector points to tuples that Pillow accepts
 
         Args:
-            points (list): List of V2 points
+            points (list): List of coordinate tuples
 
         Returns:
             list: List of ofsetted coordinate tuples
         """
-        return [(point.x + self.offset.x, point.y + self.offset.y) for point in points]
+        return [(point[0] + self.offset[0], point[1] + self.offset[1]) for point in points]
     
     @defaultSettings("fill", "outline", "width")
     def ellipse(self, *points, **settings) -> None:
@@ -93,7 +70,33 @@ class Canvas:
 
 
 
-image = Image.new("RGBA", (100, 100), (0,0,0,0))
-draw = Canvas(ImageDraw.Draw(image))
-draw.ellipse(V2(), V2(100, 50))
-image.save("image.png", "PNG")
+def createImage(size: tuple = (100, 100), sampling: float = 5, line: int|float = 10, background: tuple = (0, 0, 0, 0), color: tuple = (255, 255, 255)) -> "func":
+    """Decorator for creating an image and saving it to a file
+
+    Args:
+        size (tuple, optional): Image size. Defaults to (100, 100).
+        sampling (float, optional): Sampling multiplier. Defaults to 5.
+        line (int | float, optional): Default line width. Defaults to 10.
+        background (tuple, optional): Background color. Defaults to (0, 0, 0, 0).
+        color (tuple, optional): Default foreground color. Defaults to (255, 255, 255).
+
+    Returns:
+        func: Wrapper for image creation
+    """
+    def wrapper(function: "func") -> "func":
+        # Creating an image
+        scaled = (size[0] * sampling, size[1] * sampling)
+        image = Image.new("RGBA", scaled, background)
+        canvas = Canvas(ImageDraw.Draw(image), scaled, (0, 0), color, background, line * sampling)
+        # Calling the function
+        function(canvas)
+        # Saving the image
+        image = image.resize(size, resample=Image.LANCZOS)
+        image.save("image.png", "PNG")
+    return wrapper
+
+
+
+@createImage()
+def Globe(self) -> None:
+    self.ellipse((0, 0), (self.size[0], self.size[1]))
