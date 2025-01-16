@@ -66,6 +66,17 @@ class Canvas:
         """
         return [(point[0] + self.offset[0], point[1] + self.offset[1]) for point in points]
     
+    def load(self, function: "func", size: tuple, offset: tuple) -> None:
+        """Loading another image into this one
+
+        Args:
+            function (func): Function to load
+            size (tuple): Canvas size constraint of the loaded image
+            offset (tuple): Offset values of the loaded image inside this one
+        """
+        loaded = Canvas(self.draw, size, offset, self.color, self.background, self.width)
+        function(loaded, *size, self.width)
+    
     @defaultSettings("fill", "width", "joint")
     def line(self, *points, **settings) -> None:
         """Drawing a line
@@ -118,8 +129,9 @@ def createImage(size: tuple = (100, 100), sampling: float = 5, line: int|float =
         if os.path.exists(filepath):
             diff = ImageChops.difference(image, Image.open(filepath))
             if not diff.getbbox():
-                return
+                return function
         # Saving the image
         image.save(filepath, "PNG")
         print(filepath)
+        return function
     return wrapper
