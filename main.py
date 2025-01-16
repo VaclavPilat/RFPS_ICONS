@@ -6,6 +6,7 @@ from Image import createImage
 
 ## \defgroup icons Generated icon images
 # \image html Globe.png
+# \image html User.png
 
 
 
@@ -16,3 +17,10 @@ def Globe(self, W: int, H: int, L: int|float) -> None:
     self.ellipse((W*0.275, 0), (W*0.725, H))
     for i in (-1, 1):
         self.line((L, H/2 + i*H*0.15), (W-L, H/2 + i*H*0.15))
+
+## \image html User.png
+@createImage()
+def User(self, W: int, H: int, L: int|float) -> None:
+    self.ellipse((0.25*W, 0), (0.75*W, H/2))
+    self.arc((0, H/2-L), (W, 1.5*H), start=-180, end=0)
+    self.line((0, H-L/2), (W, H-L/2))

@@ -17,6 +17,8 @@ def defaultSettings(*names) -> "func":
                 "width": self.width,
                 "outline": self.color,
                 "fill": None,
+                "start": 0,
+                "end": 180,
             }.items() if k in names}
             values.update(kwargs)
             method(self, *args, **values)
@@ -64,17 +66,23 @@ class Canvas:
         """
         return [(point[0] + self.offset[0], point[1] + self.offset[1]) for point in points]
     
+    @defaultSettings("fill", "width", "joint")
+    def line(self, *points, **settings) -> None:
+        """Drawing a line
+        """
+        self.draw.line(self.transform(points), **settings)
+    
     @defaultSettings("fill", "outline", "width")
     def ellipse(self, *points, **settings) -> None:
         """Drawing an ellipse
         """
         self.draw.ellipse(self.transform(points), **settings)
     
-    @defaultSettings("fill", "width", "joint")
-    def line(self, *points, **settings) -> None:
-        """Drawing a line
+    @defaultSettings("start", "end", "fill", "width")
+    def arc(self, *points, **settings) -> None:
+        """Drawing an arc
         """
-        self.draw.line(self.transform(points), **settings)
+        self.draw.arc(self.transform(points), **settings)
 
 
 
