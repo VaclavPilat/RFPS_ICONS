@@ -14,7 +14,7 @@ def defaultSettings(*names) -> "func":
     def wrapper(method: "func") -> "func":
         def wrapped(self, *args, **kwargs) -> None:
             values = {k: v for k, v in {
-                "width": self.line,
+                "width": self.width,
                 "outline": self.color,
                 "fill": None,
             }.items() if k in names}
@@ -29,7 +29,7 @@ class Canvas:
     """Class for wrapping the functionality of the Pillow library
     """
 
-    def __init__(self, draw: ImageDraw, size: tuple = (100, 100), offset: tuple = (0, 0), color: tuple = (255, 255, 255), background: tuple = (0, 0, 0, 0), line: int|float = 10) -> None:
+    def __init__(self, draw: ImageDraw, size: tuple = (100, 100), offset: tuple = (0, 0), color: tuple = (255, 255, 255), background: tuple = (0, 0, 0, 0), width: int|float = 10) -> None:
         """Initialising and Image instance
 
         Args:
@@ -38,7 +38,7 @@ class Canvas:
             offset (tuple, optional): Image offset point. Defaults to (0, 0).
             color (tuple, optional): Foreground color. Defaults to (255, 255, 255).
             background (tuple, optional): Background color. Defaults to (0, 0, 0, 0).
-            line (int | float, optional): Line width. Defaults to 10.
+            width (int | float, optional): Line width. Defaults to 10.
         """
         ## ImageDraw instance
         self.draw = draw
@@ -51,7 +51,7 @@ class Canvas:
         ## Background color
         self.background = background
         ## Line width
-        self.line = line
+        self.width = width
     
     def transform(self, points: list) -> list:
         """Transforming vector points to tuples that Pillow accepts
@@ -69,6 +69,12 @@ class Canvas:
         """Drawing an ellipse
         """
         self.draw.ellipse(self.transform(points), **settings)
+    
+    @defaultSettings("fill", "width", "joint")
+    def line(self, *points, **settings) -> None:
+        """Drawing a line
+        """
+        self.draw.line(self.transform(points), **settings)
 
 
 
