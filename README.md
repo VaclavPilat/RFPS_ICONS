@@ -28,6 +28,7 @@ Run Doxygen after image generation to see them in HTML documentation.
     - **B** as background color.
 - The purspose of that is make the variable names as short as possible and avoid using any unnecessarily long `self.*` calls.
 - Each Canvas method used for drawing accepts the same kwargs as its Pillow variant but with custom default values defined in the `defaultSettings` decorator.
+- You can also load (scaled down versions of) canvases from other draw functions.
 
 The following is a code sample of one of the draw functions. Running this code will create and save the image (if it doesn't exist already).
 
