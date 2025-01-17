@@ -167,11 +167,11 @@ def Search(self, W, H, L, C, B) -> None:
 @createImage()
 def Flag(self, W, H, L, C, B) -> None:
     offsets = (0, H*0.4)
-    self.line((W-L, H*0.07+offsets[0]), (W-L, H*0.07+offsets[1]), rounded=True)
+    self.line((W-L*1.5, H*0.1+offsets[0]), (W-L*1.5, H*0.1+offsets[1]), rounded=True)
     for offset in offsets:
-        self.arc((-L/2, offset), (W*2/3-L/2, H/2+offset), start=-130, end=-45)
-        self.arc((W/3, -L-H/5+offset), (W, H*0.3-L+offset), start=40, end=130)
-    self.line((L, L), (L, H), rounded=True)
+        self.arc((-L/2, offset), (W*2/3-L/2, H/2+offset), start=-120, end=-45)
+        self.arc((W/3, -L-H/5+offset), (W, H*0.3-L+offset), start=50, end=130)
+    self.line((L*1.5, L*0.7), (L*1.5, H), rounded=True)
 
 ## \image html Cursor.png
 @createImage()
