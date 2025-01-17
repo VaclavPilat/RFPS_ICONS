@@ -20,6 +20,8 @@ def defaultSettings(*names) -> "func":
                 "start": 0,
                 "end": 180,
                 "joint": "curve",
+                "radius": self.width,
+                "corners": (True, True, True, True),
             }.items() if k in names}
             values.update(settings)
             method(self, *self.transform(points), **values)
@@ -100,6 +102,12 @@ class Canvas:
         """Drawing an arc
         """
         self.draw.arc(points, **settings)
+    
+    @defaultSettings("fill", "outline", "width", "radius", "corners")
+    def roundedRectangle(self, *points, **settings) -> None:
+        """Drawing a rounded rectangle
+        """
+        self.draw.rounded_rectangle(points, **settings)
 
 
 

@@ -16,6 +16,22 @@ import math
 # \image html Splitscreen.png
 # \image html Cap.png
 # \image html Cogs.png
+# \image html Keyboard.png
+# \image html Play.png
+# \image html Warehouse.png
+# \image html Shutdown.png
+# \image html Home.png
+# \image html Search.png
+# \image html Flag.png
+# \image html Cursor.png
+# \image html Book.png
+# \image html Circle.png
+# \image html Plus.png
+# \image html Trash.png
+# \image html Metro.png
+# \image html Babel.png
+# \image html Stopwatch.png
+# \image html Crosshair.png
 
 
 
@@ -88,13 +104,156 @@ def Cap(self, W, H, L, C, B) -> None:
     self.line((L, H*0.35), (L, H*0.6), rounded=True)
 
 def Cog(self, W, H, L, C, B) -> None:
-    self.ellipse((0.15*W, 0.15*H), (0.85*W, 0.85*H), fill=self.background)
+    self.ellipse((0.15*W, 0.15*H), (0.85*W, 0.85*H), fill=B)
     for degrees in range(0, 360, 45):
-        angle = math.radians(degrees)
-        self.line((W/2+math.cos(angle)*W*0.35, H/2+math.sin(angle)*W*0.35), (W/2+math.cos(angle)*W*0.4, H/2+math.sin(angle)*W*0.4), rounded=True)
+        sin, cos = (func(math.radians(degrees)) for func in (math.sin, math.cos))
+        self.line((W/2+cos*W*0.35, H/2+sin*W*0.35), (W/2+cos*W*0.4, H/2+sin*W*0.4), rounded=True)
 
 ## \image html Cogs.png
 @createImage()
 def Cogs(self, W, H, L, C, B) -> None:
     self.load(Cog, (W*0.55, H*0.55), (0, H*0.365))
     self.load(Cog, (W*0.55, H*0.55), (W*0.45, H*0.085))
+
+## \image html Keyboard.png
+@createImage()
+def Keyboard(self, W, H, L, C, B) -> None:
+    length = W/3-L/2
+    gap = L*3/4
+    self.roundedRectangle((length, H/2-length-gap/2), (length*2, H/2-gap/2), radius=L/2)
+    for i in range(3):
+        self.roundedRectangle((length*i+gap*i, H/2+gap/2), (length*(i+1)+gap*i, H/2+gap/2+length), radius=L/2)
+
+## \image html Play.png
+## \todo Remove circle or change icon style
+@createImage()
+def Play(self, W, H, L, C, B) -> None:
+    self.ellipse((0, 0), (W, H), fill=B)
+    height = H/2
+    length = math.sqrt(2)/2*height
+    self.line((W/2-length/2+L*2/3, H/2-height/2), (W/2-length/2+L*2/3, H/2+height/2), (W/2+length/2+L*2/3, H/2), (W/2-length/2+L*2/3, H/2-height/2), rounded=True)
+
+## \image html Warehouse.png
+@createImage()
+def Warehouse(self, W, H, L, C, B) -> None:
+    self.line((L/2, H), (L/2, H/3), (W/2, L/2), (W-L/2, H/3), (W-L/2, H))
+    self.line((L/2, H*0.4-L/2), (W-L/2, H*0.4-L/2))
+    for y in range(H-L//2, H//3+L, -L*2):
+        self.line((L*2, y), (W-L*2, y))
+
+## \image html Shutdown.png
+## \todo Make the circle ends rounded
+@createImage()
+def Shutdown(self, W, H, L, C, B) -> None:
+    self.arc((L/2, L), (W-L/2, H), start=-55, end=-125)
+    self.line((W/2, L/2), (W/2, H/2), rounded=True)
+
+## \image html Home.png
+@createImage()
+def Home(self, W, H, L, C, B) -> None:
+    self.line((W/6, H-L/2), (W*5/6, H-L/2))
+    for i in [-1, 1]:
+        self.line((W/2+i*W*0.35, H), (W/2+i*W*0.35, H*0.4))
+        self.line((W/2+i*L/2, H*3/5), (W/2+i*L/2, H))
+    self.line((L/2, H/2), (W/2, L/2), (W-L/2, H/2), rounded=True)
+
+## \image html Search.png
+@createImage()
+def Search(self, W, H, L, C, B) -> None:
+    self.ellipse((0, 0), (W*0.7, H*0.7), fill=B)
+    self.line((W*0.6, H*0.6), (W-L, H-L), rounded=True)
+    self.line((W*0.7, H*0.7), (W-L*3/4, H-L*3/4), rounded=True, width=int(L*1.5))
+
+## \image html Flag.png
+## \todo Maybe add a curve?
+@createImage()
+def Flag(self, W, H, L, C, B) -> None:
+    width = 0.35*W
+    height = 0.55*H
+    self.line((W/2-width, H), (W/2-width, L/2), (W/2, L/2), (W/2+L, L*1.5), (W/2+width, L*1.5), (W/2+width, height), (W/2+L/2, height), (W/2-L/2, height-L), (W/2-width, height-L), rounded=True)
+
+## \image html Cursor.png
+@createImage()
+def Cursor(self, W, H, L, C, B) -> None:
+    coords = ((W*0.60, H*0.87), (W*0.4, H*0.5), (W*0.7, H*0.45), (L/2, L/2), (L/2, H*0.80), (W*0.25, H*0.58), (W*0.45, H-L/2), (W*0.60, H*0.87))
+    self.line(*((x+W*0.12, y) for x, y in coords), rounded=True)
+
+## \image html Book.png
+@createImage()
+def Book(self, W, H, L, C, B) -> None:
+    for i in range(3):
+        self.line((L/2+i*(W/2-L/2), H*0.1), (L/2+i*(W/2-L/2), H*0.9))
+    for i in range(2):
+        for j in [0, 4]:
+            self.arc((-W/4+W/2*i, L*2*j+L/20), (W*3/4+W/2*i, H+L*2*j+L/20), start=-130, end=-50)
+
+## \image html Circle.png
+@createImage()
+def Circle(self, W, H, L, C, B) -> None:
+    self.ellipse((W/4, H/4), (W*3/4, H*3/4))
+
+## \image html Plus.png
+@createImage()
+def Plus(self, W, H, L, C, B) -> None:
+    self.line((W/2, L/2), (W/2, H-L/2), rounded=True)
+    self.line((L/2, H/2), (W-L/2, H/2), rounded=True)
+
+## \image html Trash.png
+@createImage()
+def Trash(self, W, H, L, C, B) -> None:
+    for i in (-1, 1):
+        self.line((W/2+i*L, L*4), (W/2+i*L, H-L*2.5), rounded=True)
+    self.line((W/2-L*3, L*2), (W/2-L*3, H-L/2), (W/2+L*3, H-L/2), (W/2+L*3, L*2), rounded=True)
+    self.line((L, L*2), (W-L, L*2), rounded=True)
+    self.line((W*1/3, L*2), (W*1/3, L/2), (W*2/3, L/2), (W*2/3, L*2), rounded=True)
+
+## \image html Metro.png
+@createImage()
+def Metro(self, W, H, L, C, B) -> None:
+    for i in range(2):
+        self.line((W/2, H*0.5), (i*W, H+L*2.5))
+    self.roundedRectangle((0, 0), (W, H*0.8+L/2), outline=B, fill=B)
+    self.roundedRectangle((W*0.15, 0), (W*0.85, H*0.8), fill=B)
+    self.roundedRectangle((W*0.15, H*0.5), (W*0.85, H*0.8))
+    for i in [-1, 1]:
+        self.ellipse((W/2+i*W/5-L/2, H*0.7-L), (W/2+i*W/5+L/2, H*0.7), outline=B)
+
+## \image html Babel.png
+# \todo Simplify code
+@createImage()
+def Babel(self, W, H, L, C, B) -> None:
+    x = L
+    y = 2*L
+    start = [L/2, H-L*0.8]
+    end = [W-L/2, H-L*0.8-y/2]
+    for i in range(3):
+        self.line((start[0], start[1]+0.85*y), start, end, (end[0], end[1]+0.85*y), rounded=True)
+        start[0] += x
+        end[0] -= x
+        for a in (start, end):
+            a[1] -= y
+    for a in (start, end):
+        self.line((a[0], a[1]+0.85*y), (a[0], L/2), rounded=True)
+    self.line((start[0], L*1.25), (end[0], L*1.25))
+    self.line((W/2, L/2), (W/2, L), rounded=True)
+
+## \image html Stopwatch.png
+@createImage()
+def Stopwatch(self, W, H, L, C, B) -> None:
+    self.line((W*0.4, L/2), (W*0.6, L/2), rounded=True)
+    self.line((W/2, 0), (W/2, H*0.15))
+    self.ellipse((W*0.075, H*0.15), (W*0.925, H), fill=B)
+    self.line((W/2, H*0.575), (W/2, H*0.35), rounded=True)
+    self.line((W/2, H*0.575), (W/2+math.cos(math.radians(30))*W*0.15, H*0.575+math.sin(math.radians(30))*H*0.15), rounded=True)
+    for i in [-45, -135]:
+        sin, cos = (function(math.radians(i)) for function in (math.sin, math.cos))
+        self.line((W/2+cos*W*0.45, H*0.575+sin*H*0.45), (W/2+cos*W*0.375, H*0.575+sin*H*0.375), rounded=True)
+
+## \image html Crosshair.png
+@createImage()
+def Crosshair(self, W, H, L, C, B) -> None:
+    self.ellipse((0.1*W, 0.1*H), (0.9*W, 0.9*H), fill=None)
+    self.ellipse((W/2-L/2, H/2-L/2), (W/2+L/2, H/2+L/2))
+    for degrees in range(0, 360, 90):
+        sin, cos = (func(math.radians(degrees)) for func in (math.sin, math.cos))
+        self.line((W/2+cos*W/4, H/2+sin*H/4), (W/2+cos*(W/2-L/2), H/2+sin*(H/2-L/2)), rounded=True)
