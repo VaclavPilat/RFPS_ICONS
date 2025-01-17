@@ -164,12 +164,14 @@ def Search(self, W, H, L, C, B) -> None:
     self.line((W*0.7, H*0.7), (W-L*3/4, H-L*3/4), rounded=True, width=int(L*1.5))
 
 ## \image html Flag.png
-## \todo Maybe add a curve?
 @createImage()
 def Flag(self, W, H, L, C, B) -> None:
-    width = 0.35*W
-    height = 0.55*H
-    self.line((W/2-width, H), (W/2-width, L/2), (W/2, L/2), (W/2+L, L*1.5), (W/2+width, L*1.5), (W/2+width, height), (W/2+L/2, height), (W/2-L/2, height-L), (W/2-width, height-L), rounded=True)
+    offsets = (0, H*0.4)
+    self.line((W-L, H*0.07+offsets[0]), (W-L, H*0.07+offsets[1]), rounded=True)
+    for offset in offsets:
+        self.arc((-L/2, offset), (W*2/3-L/2, H/2+offset), start=-130, end=-45)
+        self.arc((W/3, -L-H/5+offset), (W, H*0.3-L+offset), start=40, end=130)
+    self.line((L, L), (L, H), rounded=True)
 
 ## \image html Cursor.png
 @createImage()
