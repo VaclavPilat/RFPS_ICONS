@@ -219,23 +219,18 @@ def Metro(self, W, H, L, C, B) -> None:
         self.ellipse((W/2+i*W/5-L/2, H*0.7-L), (W/2+i*W/5+L/2, H*0.7), outline=B)
 
 ## \image html Babel.png
-# \todo Simplify code
 @createImage()
 def Babel(self, W, H, L, C, B) -> None:
-    x = L
-    y = 2*L
-    start = [L/2, H-L*0.8]
-    end = [W-L/2, H-L*0.8-y/2]
-    for i in range(3):
-        self.line((start[0], start[1]+0.85*y), start, end, (end[0], end[1]+0.85*y), rounded=True)
-        start[0] += x
-        end[0] -= x
-        for a in (start, end):
-            a[1] -= y
-    for a in (start, end):
-        self.line((a[0], a[1]+0.85*y), (a[0], L/2), rounded=True)
-    self.line((start[0], L*1.25), (end[0], L*1.25))
-    self.line((W/2, L/2), (W/2, L), rounded=True)
+    for index, (left, right) in enumerate(zip(zip(range(L//2, W, L), range(H-L//2-L//4, 0, -2*L)), zip(range(W-L//2, 0, -L), range(H-L-L//2-L//4, 0, -2*L)))):
+        self.line(left, right, rounded=True)
+        self.line(left, (left[0], left[1]+L*1.75), rounded=True)
+        self.line(right, (right[0], right[1]+L*2), rounded=True)
+        if index == 2:
+            self.line((left[0]+L, left[1]-L/2), (left[0]+L, L/2), rounded=True)
+            self.line((right[0]-L, right[1]), (right[0]-L, L/2), rounded=True)
+            self.line((left[0]+L, L*1.25), (right[0]-L, L*1.25), rounded=True)
+            self.line((W/2, L/2), (W/2, L*1.25), rounded=True)
+            break
 
 ## \image html Stopwatch.png
 @createImage()
