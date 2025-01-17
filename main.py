@@ -78,8 +78,8 @@ def Graph(self, W, H, L, C, B) -> None:
 @createImage()
 def Audio(self, W, H, L, C, B) -> None:
     self.line((L/2, H/3), (L/2, H*2/3), (W/4, H*2/3), (W/2, H-L), (W/2, L), (W/4, H/3), (L/2, H/3), rounded=True)
-    self.arc((0, 0), (W, H), start=-60, end=60)
-    self.arc((W/3, H/4), (W*6.25/8, H*3/4), start=-65, end=65)
+    self.arc((0, 0), (W, H), start=-55, end=55, rounded=True)
+    self.arc((W/3, H/4), (W*6.25/8, H*3/4), start=-60, end=60, rounded=True)
 
 ## \image html Monitor.png
 @createImage()
@@ -142,10 +142,9 @@ def Warehouse(self, W, H, L, C, B) -> None:
         self.line((L*2, y), (W-L*2, y))
 
 ## \image html Shutdown.png
-## \todo Make the circle ends rounded
 @createImage()
 def Shutdown(self, W, H, L, C, B) -> None:
-    self.arc((L/2, L), (W-L/2, H), start=-55, end=-125)
+    self.arc((L/2, L), (W-L/2, H), start=-55, end=-125, rounded=True)
     self.line((W/2, L/2), (W/2, H/2), rounded=True)
 
 ## \image html Home.png

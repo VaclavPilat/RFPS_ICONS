@@ -1,7 +1,7 @@
 ## \file
 # Functionality for generating images using simple shapes
 from PIL import Image, ImageDraw, ImageChops
-import os
+import os, math
 
 
 
@@ -98,9 +98,21 @@ class Canvas:
         self.draw.ellipse(points, **settings)
     
     @defaultSettings("start", "end", "fill", "width")
-    def arc(self, *points, **settings) -> None:
+    def arc(self, *points, rounded: bool = False, **settings) -> None:
         """Drawing an arc
+
+        Args:
+            rounded (bool, optional): Should the ends of the arc be rounded? Defaults to False.
         """
+        if rounded:
+            for degrees in (settings["start"], settings["end"]):
+                line = settings["width"]
+                color = settings["fill"]
+                sin, cos = (function(math.radians(degrees)) for function in (math.sin, math.cos))
+                center = (points[0][0]/2 + points[1][0]/2, points[0][1]/2 + points[1][1]/2)
+                width, height = (points[1][0]-points[0][0]-line, points[1][1]-points[0][1]-line)
+                point = (center[0] + cos*width/2, center[1] + sin*height/2)
+                self.ellipse((point[0]-line/2, point[1]-line/2), (point[0]+line/2, point[1]+line/2), outline=color, fill=color)
         self.draw.arc(points, **settings)
     
     @defaultSettings("fill", "outline", "width", "radius", "corners")
