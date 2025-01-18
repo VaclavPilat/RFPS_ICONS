@@ -118,6 +118,12 @@ class Canvas:
                 self.ellipse((point[0]-line/2, point[1]-line/2), (point[0]+line/2, point[1]+line/2), outline=color, fill=color)
         self.draw.arc(points, **settings)
     
+    @defaultSettings("fill", "outline", "width")
+    def rectangle(self, *points, **settings) -> None:
+        """Drawing a rectangle
+        """
+        self.draw.rectangle(points, **settings)
+    
     @defaultSettings("fill", "outline", "width", "radius", "corners")
     def roundedRectangle(self, *points, **settings) -> None:
         """Drawing a rounded rectangle
