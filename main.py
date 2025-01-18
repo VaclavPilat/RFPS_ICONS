@@ -125,13 +125,14 @@ def Keyboard(self, W, H, L, C, B) -> None:
         self.roundedRectangle((length*i+gap*i, H/2+gap/2), (length*(i+1)+gap*i, H/2+gap/2+length), radius=L/2)
 
 ## \image html Play.png
-## \todo Remove circle or change icon style
 @createImage()
 def Play(self, W, H, L, C, B) -> None:
     self.ellipse((0, 0), (W, H), fill=B)
-    height = H/2
-    length = math.sqrt(2)/2*height
-    self.line((W/2-length/2+L*2/3, H/2-height/2), (W/2-length/2+L*2/3, H/2+height/2), (W/2+length/2+L*2/3, H/2), (W/2-length/2+L*2/3, H/2-height/2), rounded=True)
+    height = H*0.35
+    length = math.sqrt(3)/2*height
+    points = [(W/2-length/2+L/2, H/2-height/2), (W/2-length/2+L/2, H/2+height/2), (W/2+length/2+L/2, H/2)]
+    self.line(*points, rounded=True, closed=True)
+    self.polygon(*points)
 
 ## \image html Warehouse.png
 @createImage()

@@ -81,12 +81,15 @@ class Canvas:
         function(loaded, *size, self.width, self.color, self.background)
     
     @defaultSettings("fill", "width", "joint")
-    def line(self, *points, rounded: bool = False, **settings) -> None:
+    def line(self, *points, closed: bool = False, rounded: bool = False, **settings) -> None:
         """Drawing a line
 
         Args:
+            closed (bool, optional): Should the line be closed? Defaults to False.
             rounded (bool, optional): Should the line ends be rounded? Defaults to False.
         """
+        if closed:
+            points = points + (points[0], )
         if rounded:
             points = (points[1], ) + points + (points[-2], )
         self.draw.line(points, **settings)
@@ -120,6 +123,12 @@ class Canvas:
         """Drawing a rounded rectangle
         """
         self.draw.rounded_rectangle(points, **settings)
+    
+    @defaultSettings("fill", "outline", "width")
+    def polygon(self, *points, **settings) -> None:
+        """Drawing a polygon
+        """
+        self.draw.polygon(points, **settings)
 
 
 
