@@ -10,10 +10,10 @@ doc:
 	doxygen Doxyfile
 
 run:
-	$(PYTHON) main.py
+	$(PYTHON) src/main.py
 
 cloc:
-	cloc . --include-lang=Python
+	cloc . --include-lang=Python --by-file
 
 clean:
 	rm -rf html/ images/
