@@ -5,9 +5,9 @@
 #---------------------------------------------------------------------------
 DOXYFILE_ENCODING      = UTF-8
 PROJECT_NAME           = "RFPS ICONS"
-PROJECT_NUMBER         = "0.2"
+PROJECT_NUMBER         = 0.2
 PROJECT_BRIEF          = "Simple tool for creating icons for the RFPS project"
-PROJECT_LOGO           = "images/Cursor.png"
+PROJECT_LOGO           = images/Cursor.png
 OUTPUT_DIRECTORY       = docs
 CREATE_SUBDIRS         = NO
 ALLOW_UNICODE_NAMES    = NO
