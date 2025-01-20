@@ -1,0 +1,25 @@
+image: python:latest
+
+stages:
+  - run
+  - docs
+
+before_script:
+  - apt-get install -y doxygen
+  - make install
+
+run:
+  stage: run
+  script:
+    - make run
+  artifacts:
+    paths:
+      - images/*
+
+docs:
+  stage: docs
+  script:
+    - make doc
+  artifacts:
+    paths:
+      - docs/html/
