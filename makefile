@@ -16,4 +16,4 @@ cloc:
 	cloc . --include-lang=Python --by-file
 
 clean:
-	rm -rf html/ images/
+	rm -rf docs/html/ images/
