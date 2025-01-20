@@ -4,15 +4,10 @@ stages:
   - run
   - docs
 
-before_script:
-  - apt-get update -y
-  - apt-get install -y doxygen
-  - make install
-
 run:
   stage: run
   script:
-    - make run
+    - make install run
   artifacts:
     paths:
       - images/*
@@ -20,6 +15,8 @@ run:
 docs:
   stage: docs
   script:
+    - apt-get update -y
+    - apt-get install -y doxygen
     - make doc
   artifacts:
     paths:
