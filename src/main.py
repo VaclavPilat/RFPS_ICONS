@@ -5,7 +5,8 @@ import math
 
 
 
-## \defgroup icons Generated icon images
+## \defgroup icons Generated icon images (inverted)
+# <div class="inverted">
 # \image html Globe.png
 # \image html User.png
 # \image html Users.png
@@ -32,6 +33,7 @@ import math
 # \image html Babel.png
 # \image html Stopwatch.png
 # \image html Crosshair.png
+# </div>
 
 
 

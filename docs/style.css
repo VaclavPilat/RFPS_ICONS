@@ -4,8 +4,11 @@
 }
 
 :is(#projectlogo, .image) img {
-    mix-blend-mode: difference;
     margin: 5px;
+}
+
+:is(#projectlogo, .inverted .image) img {
+    mix-blend-mode: difference;
 }
 
 .image {
