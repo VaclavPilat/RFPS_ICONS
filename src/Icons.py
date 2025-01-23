@@ -1,6 +1,6 @@
 ## \file
 # Functions for generating icons
-from Image import createImage
+from Utils.Files import createImage
 import math
 
 
