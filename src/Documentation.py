@@ -25,7 +25,7 @@ def BasicDots(self, W, H, L, C, B) -> None:
     self.dot((W/2-SIDES*H/2+L/2, H/2))
     self.dot((W/2+SIDES*H/2-L/2, H/2))
 
-@createImage((300, 300), color=(0, 0, 0))
+@createImage("Documentation", (300, 300), color=(0, 0, 0))
 ## \image html Strafing.png
 def Strafing(self, W, H, L, C, B) -> None:
     self.load(Axis, (W, H), (0, 0))
@@ -39,7 +39,7 @@ def Strafing(self, W, H, L, C, B) -> None:
 FRONTSIDE = (FORWARD + SIDES) / 2
 BACKSIDE = (BACKWARD + SIDES) / 2
 
-@createImage((300, 300), color=(0, 0, 0))
+@createImage("Documentation", (300, 300), color=(0, 0, 0))
 ## \image html NoStrafing.png
 def NoStrafing(self, W, H, L, C, B) -> None:
     self.load(Axis, (W, H), (0, 0))

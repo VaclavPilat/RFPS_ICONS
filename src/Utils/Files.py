@@ -6,10 +6,11 @@ import os
 
 
 
-def createImage(size: tuple = (100, 100), sampling: float = 5, line: int|float = 10, background: tuple = (0, 0, 0, 0), color: tuple = (255, 255, 255)) -> "func":
+def createImage(folder: str = ".", size: tuple = (100, 100), sampling: float = 5, line: int|float = 10, background: tuple = (0, 0, 0, 0), color: tuple = (255, 255, 255)) -> "func":
     """Decorator for creating an image and saving it to a file
 
     Args:
+        folder (str, optional): Output folder name. Defaults to ".".
         size (tuple, optional): Image size. Defaults to (100, 100).
         sampling (float, optional): Sampling multiplier. Defaults to 5.
         line (int | float, optional): Default line width. Defaults to 10.
@@ -30,10 +31,10 @@ def createImage(size: tuple = (100, 100), sampling: float = 5, line: int|float =
         function(canvas, *scaledSize, scaledLine, color, background)
         image = image.resize(size, resample=Image.LANCZOS)
         # Getting image file path
-        folder = "images"
-        filepath = f"{folder}/{function.__name__}.png"
-        if not os.path.exists(folder):
-            os.mkdir(folder)
+        folderpath = f"images/{folder}"
+        filepath = f"{folderpath}/{function.__name__}.png"
+        if not os.path.exists(folderpath):
+            os.makedirs(folderpath)
         # Comparing older image
         if os.path.exists(filepath):
             diff = ImageChops.difference(image, Image.open(filepath))
