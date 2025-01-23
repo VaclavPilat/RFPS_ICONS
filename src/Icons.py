@@ -7,39 +7,39 @@ import math
 
 ## \defgroup icons Generated icon images (inverted)
 # <div class="inverted">
-# \image html Globe.png
-# \image html User.png
-# \image html Users.png
-# \image html Sliders.png
-# \image html Graph.png
-# \image html Audio.png
-# \image html Monitor.png
-# \image html Splitscreen.png
-# \image html Cap.png
-# \image html Cogs.png
-# \image html Keyboard.png
-# \image html Play.png
-# \image html Warehouse.png
-# \image html Shutdown.png
-# \image html Home.png
-# \image html Search.png
-# \image html Flag.png
-# \image html Cursor.png
-# \image html Book.png
-# \image html Circle.png
-# \image html Plus.png
-# \image html Trash.png
-# \image html Metro.png
-# \image html Babel.png
-# \image html Stopwatch.png
-# \image html Crosshair.png
+# \image html Icons/Globe.png
+# \image html Icons/User.png
+# \image html Icons/Users.png
+# \image html Icons/Sliders.png
+# \image html Icons/Graph.png
+# \image html Icons/Audio.png
+# \image html Icons/Monitor.png
+# \image html Icons/Splitscreen.png
+# \image html Icons/Cap.png
+# \image html Icons/Cogs.png
+# \image html Icons/Keyboard.png
+# \image html Icons/Play.png
+# \image html Icons/Warehouse.png
+# \image html Icons/Shutdown.png
+# \image html Icons/Home.png
+# \image html Icons/Search.png
+# \image html Icons/Flag.png
+# \image html Icons/Cursor.png
+# \image html Icons/Book.png
+# \image html Icons/Circle.png
+# \image html Icons/Plus.png
+# \image html Icons/Trash.png
+# \image html Icons/Metro.png
+# \image html Icons/Babel.png
+# \image html Icons/Stopwatch.png
+# \image html Icons/Crosshair.png
 # </div>
 
 
 
 @createImage("Icons")
 ## <div class="inverted">
-# \image html Globe.png
+# \image html Icons/Globe.png
 # </div>
 def Globe(self, W, H, L, C, B) -> None:
     self.ellipse((0, 0), (W, H), fill=None)
@@ -49,7 +49,7 @@ def Globe(self, W, H, L, C, B) -> None:
 
 @createImage("Icons")
 ## <div class="inverted">
-# \image html User.png
+# \image html Icons/User.png
 # </div>
 def User(self, W, H, L, C, B) -> None:
     self.ellipse((0.25*W, 0), (0.75*W, H/2), fill=None)
@@ -58,7 +58,7 @@ def User(self, W, H, L, C, B) -> None:
 
 @createImage("Icons")
 ## <div class="inverted">
-# \image html Users.png
+# \image html Icons/Users.png
 # </div>
 def Users(self, W, H, L, C, B) -> None:
     self.load(User, (W*2/3, H*2/3), (W/3, 0))
@@ -68,7 +68,7 @@ def Users(self, W, H, L, C, B) -> None:
 
 @createImage("Icons")
 ## <div class="inverted">
-# \image html Sliders.png
+# \image html Icons/Sliders.png
 # </div>
 def Sliders(self, W, H, L, C, B) -> None:
     for y, x in {1: 1/2, 3: 5.1/6, 5: 1/4}.items():
@@ -77,7 +77,7 @@ def Sliders(self, W, H, L, C, B) -> None:
 
 @createImage("Icons")
 ## <div class="inverted">
-# \image html Graph.png
+# \image html Icons/Graph.png
 # </div>
 def Graph(self, W, H, L, C, B) -> None:
     self.line((L/2, L/2), (L/2, H-L/2), (W-L/2, W-L/2), rounded=True)
@@ -88,7 +88,7 @@ def Graph(self, W, H, L, C, B) -> None:
 
 @createImage("Icons")
 ## <div class="inverted">
-# \image html Audio.png
+# \image html Icons/Audio.png
 # </div>
 def Audio(self, W, H, L, C, B) -> None:
     self.line((L/2, H/3), (L/2, H*2/3), (W/4, H*2/3), (W/2, H-L), (W/2, L), (W/4, H/3), (L/2, H/3), rounded=True)
@@ -97,7 +97,7 @@ def Audio(self, W, H, L, C, B) -> None:
 
 @createImage("Icons")
 ## <div class="inverted">
-# \image html Monitor.png
+# \image html Icons/Monitor.png
 # </div>
 def Monitor(self, W, H, L, C, B) -> None:
     self.line((W/4, H-L/2), (W*3/4, H-L/2), rounded=True)
@@ -106,7 +106,7 @@ def Monitor(self, W, H, L, C, B) -> None:
 
 @createImage("Icons")
 ## <div class="inverted">
-# \image html Splitscreen.png
+# \image html Icons/Splitscreen.png
 # </div>
 def Splitscreen(self, W, H, L, C, B) -> None:
     self.load(Monitor, (W, H), (0, 0))
@@ -114,7 +114,7 @@ def Splitscreen(self, W, H, L, C, B) -> None:
 
 @createImage("Icons")
 ## <div class="inverted">
-# \image html Cap.png
+# \image html Icons/Cap.png
 # </div>
 def Cap(self, W, H, L, C, B) -> None:
     self.line((W/2, H/10+L/2), (W-L/2, H*0.35), (W/2, H*0.6), (L/2, H*0.35), (W/2, H/10+L/2), rounded=True)
@@ -131,7 +131,7 @@ def Cog(self, W, H, L, C, B) -> None:
 
 @createImage("Icons")
 ## <div class="inverted">
-# \image html Cogs.png
+# \image html Icons/Cogs.png
 # </div>
 def Cogs(self, W, H, L, C, B) -> None:
     self.load(Cog, (W*0.55, H*0.55), (0, H*0.365))
@@ -139,7 +139,7 @@ def Cogs(self, W, H, L, C, B) -> None:
 
 @createImage("Icons")
 ## <div class="inverted">
-# \image html Keyboard.png
+# \image html Icons/Keyboard.png
 # </div>
 def Keyboard(self, W, H, L, C, B) -> None:
     length = W/3-L/2
@@ -150,7 +150,7 @@ def Keyboard(self, W, H, L, C, B) -> None:
 
 @createImage("Icons")
 ## <div class="inverted">
-# \image html Play.png
+# \image html Icons/Play.png
 # </div>
 def Play(self, W, H, L, C, B) -> None:
     self.ellipse((0, 0), (W, H), fill=B)
@@ -162,7 +162,7 @@ def Play(self, W, H, L, C, B) -> None:
 
 @createImage("Icons")
 ## <div class="inverted">
-# \image html Warehouse.png
+# \image html Icons/Warehouse.png
 # </div>
 def Warehouse(self, W, H, L, C, B) -> None:
     self.line((L/2, H), (L/2, H/3), (W/2, L/2), (W-L/2, H/3), (W-L/2, H))
@@ -172,7 +172,7 @@ def Warehouse(self, W, H, L, C, B) -> None:
 
 @createImage("Icons")
 ## <div class="inverted">
-# \image html Shutdown.png
+# \image html Icons/Shutdown.png
 # </div>
 def Shutdown(self, W, H, L, C, B) -> None:
     self.arc((L/2, L), (W-L/2, H), start=-55, end=-125, rounded=True)
@@ -180,7 +180,7 @@ def Shutdown(self, W, H, L, C, B) -> None:
 
 @createImage("Icons")
 ## <div class="inverted">
-# \image html Home.png
+# \image html Icons/Home.png
 # </div>
 def Home(self, W, H, L, C, B) -> None:
     self.line((W/6, H-L/2), (W*5/6, H-L/2))
@@ -191,7 +191,7 @@ def Home(self, W, H, L, C, B) -> None:
 
 @createImage("Icons")
 ## <div class="inverted">
-# \image html Search.png
+# \image html Icons/Search.png
 # </div>
 def Search(self, W, H, L, C, B) -> None:
     self.ellipse((0, 0), (W*0.7, H*0.7), fill=B)
@@ -200,7 +200,7 @@ def Search(self, W, H, L, C, B) -> None:
 
 @createImage("Icons")
 ## <div class="inverted">
-# \image html Flag.png
+# \image html Icons/Flag.png
 # </div>
 def Flag(self, W, H, L, C, B) -> None:
     offsets = (0, H*0.4)
@@ -212,7 +212,7 @@ def Flag(self, W, H, L, C, B) -> None:
 
 @createImage("Icons")
 ## <div class="inverted">
-# \image html Cursor.png
+# \image html Icons/Cursor.png
 # </div>
 def Cursor(self, W, H, L, C, B) -> None:
     coords = ((W*0.60, H*0.87), (W*0.4, H*0.5), (W*0.7, H*0.45), (L/2, L/2), (L/2, H*0.80), (W*0.25, H*0.58), (W*0.45, H-L/2), (W*0.60, H*0.87))
@@ -220,7 +220,7 @@ def Cursor(self, W, H, L, C, B) -> None:
 
 @createImage("Icons")
 ## <div class="inverted">
-# \image html Book.png
+# \image html Icons/Book.png
 # </div>
 def Book(self, W, H, L, C, B) -> None:
     for i in range(3):
@@ -231,14 +231,14 @@ def Book(self, W, H, L, C, B) -> None:
 
 @createImage("Icons")
 ## <div class="inverted">
-# \image html Circle.png
+# \image html Icons/Circle.png
 # </div>
 def Circle(self, W, H, L, C, B) -> None:
     self.ellipse((W/4, H/4), (W*3/4, H*3/4))
 
 @createImage("Icons")
 ## <div class="inverted">
-# \image html Plus.png
+# \image html Icons/Plus.png
 # </div>
 def Plus(self, W, H, L, C, B) -> None:
     self.line((W/2, L/2), (W/2, H-L/2), rounded=True)
@@ -246,7 +246,7 @@ def Plus(self, W, H, L, C, B) -> None:
 
 @createImage("Icons")
 ## <div class="inverted">
-# \image html Trash.png
+# \image html Icons/Trash.png
 # </div>
 def Trash(self, W, H, L, C, B) -> None:
     for i in (-1, 1):
@@ -257,7 +257,7 @@ def Trash(self, W, H, L, C, B) -> None:
 
 @createImage("Icons")
 ## <div class="inverted">
-# \image html Metro.png
+# \image html Icons/Metro.png
 # </div>
 def Metro(self, W, H, L, C, B) -> None:
     for i in range(2):
@@ -270,7 +270,7 @@ def Metro(self, W, H, L, C, B) -> None:
 
 @createImage("Icons")
 ## <div class="inverted">
-# \image html Babel.png
+# \image html Icons/Babel.png
 # </div>
 def Babel(self, W, H, L, C, B) -> None:
     for index, (left, right) in enumerate(zip(zip(range(L//2, W, L), range(H-L//2-L//4, 0, -2*L)), zip(range(W-L//2, 0, -L), range(H-L-L//2-L//4, 0, -2*L)))):
@@ -286,7 +286,7 @@ def Babel(self, W, H, L, C, B) -> None:
 
 @createImage("Icons")
 ## <div class="inverted">
-# \image html Stopwatch.png
+# \image html Icons/Stopwatch.png
 # </div>
 def Stopwatch(self, W, H, L, C, B) -> None:
     self.line((W*0.4, L/2), (W*0.6, L/2), rounded=True)
@@ -300,7 +300,7 @@ def Stopwatch(self, W, H, L, C, B) -> None:
 
 @createImage("Icons")
 ## <div class="inverted">
-# \image html Crosshair.png
+# \image html Icons/Crosshair.png
 # </div>
 def Crosshair(self, W, H, L, C, B) -> None:
     self.ellipse((0.1*W, 0.1*H), (0.9*W, 0.9*H), fill=None)

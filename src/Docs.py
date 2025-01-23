@@ -6,8 +6,8 @@ import math
 
 
 ## \defgroup documentation Generated documentation images
-# \image html Strafing.png
-# \image html NoStrafing.png
+# \image html Docs/Strafing.png
+# \image html Docs/NoStrafing.png
 
 
 
@@ -25,8 +25,8 @@ def BasicDots(self, W, H, L, C, B) -> None:
     self.dot((W/2-SIDES*H/2+L/2, H/2))
     self.dot((W/2+SIDES*H/2-L/2, H/2))
 
-@createImage("Documentation", (300, 300), color=(0, 0, 0))
-## \image html Strafing.png
+@createImage("Docs", (300, 300), color=(0, 0, 0))
+## \image html Docs/Strafing.png
 def Strafing(self, W, H, L, C, B) -> None:
     self.load(Axis, (W, H), (0, 0))
     self.roundedRectangle((W/2-SIDES*H/2, (1-FORWARD)/2*H), (W/2+SIDES*H/2, (H+H*BACKWARD)/2), fill=None, outline=(150, 150, 150))
@@ -39,8 +39,8 @@ def Strafing(self, W, H, L, C, B) -> None:
 FRONTSIDE = (FORWARD + SIDES) / 2
 BACKSIDE = (BACKWARD + SIDES) / 2
 
-@createImage("Documentation", (300, 300), color=(0, 0, 0))
-## \image html NoStrafing.png
+@createImage("Docs", (300, 300), color=(0, 0, 0))
+## \image html Docs/NoStrafing.png
 def NoStrafing(self, W, H, L, C, B) -> None:
     self.load(Axis, (W, H), (0, 0))
     self.arc((W/2-FORWARD*H/2, (1-FORWARD)/2*H), (W/2+FORWARD*H/2, (H+H*FORWARD)/2), start=180, end=360, fill=(150, 150, 150), rounded=True)
