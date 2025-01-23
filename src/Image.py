@@ -114,8 +114,7 @@ class Canvas:
                 sin, cos = (function(math.radians(degrees)) for function in (math.sin, math.cos))
                 center = (points[0][0]/2 + points[1][0]/2, points[0][1]/2 + points[1][1]/2)
                 width, height = (points[1][0]-points[0][0]-line, points[1][1]-points[0][1]-line)
-                point = (center[0] + cos*width/2, center[1] + sin*height/2)
-                self.ellipse((point[0]-line/2, point[1]-line/2), (point[0]+line/2, point[1]+line/2), outline=color, fill=color)
+                self.dot((center[0] + cos*width/2, center[1] + sin*height/2), outline=color, fill=color)
         self.draw.arc(points, **settings)
     
     @defaultSettings("fill", "outline", "width")
@@ -135,6 +134,16 @@ class Canvas:
         """Drawing a polygon
         """
         self.draw.polygon(points, **settings)
+    
+    @defaultSettings("fill", "outline", "width")
+    def dot(self, point: tuple, **settings) -> None:
+        """Drawing a small circle
+
+        Args:
+            point (tuple): Point coordinates
+        """
+        radius = settings["width"] / 2
+        self.draw.ellipse(((point[0]-radius, point[1]-radius), (point[0]+radius, point[1]+radius)), **settings)
 
 
 
