@@ -1,5 +1,6 @@
 PYTHON = python3
 PIP = pip
+FILE = src/*.py
 
 all: run doc
 
@@ -7,10 +8,12 @@ install:
 	$(PIP) install -r requirements.txt
 
 doc:
-	doxygen Doxyfile
+	@doxygen Doxyfile
 
 run:
-	$(PYTHON) src/main.py
+	@for file in $(FILE); do \
+		$(PYTHON) "$$file"; \
+	done
 
 cloc:
 	cloc . --include-lang=Python --by-file
