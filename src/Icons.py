@@ -7,32 +7,84 @@ import math
 
 ## \defgroup icons Generated icon images (inverted)
 # <div class="inverted">
+# \link Globe()
 # \image html Icons/Globe.png
+# \endlink
+# \link User()
 # \image html Icons/User.png
+# \endlink
+# \link Users()
 # \image html Icons/Users.png
+# \endlink
+# \link Sliders()
 # \image html Icons/Sliders.png
+# \endlink
+# \link Graph()
 # \image html Icons/Graph.png
+# \endlink
+# \link Audio()
 # \image html Icons/Audio.png
+# \endlink
+# \link Monitor()
 # \image html Icons/Monitor.png
+# \endlink
+# \link Splitscreen()
 # \image html Icons/Splitscreen.png
+# \endlink
+# \link Cap()
 # \image html Icons/Cap.png
+# \endlink
+# \link Cogs()
 # \image html Icons/Cogs.png
+# \endlink
+# \link Keyboard()
 # \image html Icons/Keyboard.png
+# \endlink
+# \link Play()
 # \image html Icons/Play.png
+# \endlink
+# \link Warehouse()
 # \image html Icons/Warehouse.png
+# \endlink
+# \link Shutdown()
 # \image html Icons/Shutdown.png
+# \endlink
+# \link Home()
 # \image html Icons/Home.png
+# \endlink
+# \link Search()
 # \image html Icons/Search.png
+# \endlink
+# \link Flag()
 # \image html Icons/Flag.png
+# \endlink
+# \link Cursor()
 # \image html Icons/Cursor.png
+# \endlink
+# \link Book()
 # \image html Icons/Book.png
+# \endlink
+# \link Circle()
 # \image html Icons/Circle.png
+# \endlink
+# \link Plus()
 # \image html Icons/Plus.png
+# \endlink
+# \link Trash()
 # \image html Icons/Trash.png
+# \endlink
+# \link Metro()
 # \image html Icons/Metro.png
+# \endlink
+# \link Babel()
 # \image html Icons/Babel.png
+# \endlink
+# \link Stopwatch()
 # \image html Icons/Stopwatch.png
+# \endlink
+# \link Crosshair()
 # \image html Icons/Crosshair.png
+# \endlink
 # </div>
 
 

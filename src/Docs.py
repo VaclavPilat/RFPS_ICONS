@@ -6,8 +6,14 @@ import math
 
 
 ## \defgroup documentation Generated documentation images
+# <div>
+# \link Strafing()
 # \image html Docs/Strafing.png
+# \endlink
+# \link NoStrafing()
 # \image html Docs/NoStrafing.png
+# \endlink
+# </div>
 
 
 
