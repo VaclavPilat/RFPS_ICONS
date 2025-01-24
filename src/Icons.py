@@ -113,10 +113,10 @@ def User(self, W, H, L, C, B) -> None:
 # \image html Icons/Users.png
 # </div>
 def Users(self, W, H, L, C, B) -> None:
-    self.load(User, (W*2/3, H*2/3), (W/3, 0))
+    self.load(User, size=(W*2/3, H*2/3), offset=(W/3, 0))
     self.ellipse((W/6-L, H/3-L), (W/2+L, H*2/3+L), fill=B, outline=B)
     self.ellipse((-L, H*2/3-2*L), (W*2/3+L, H*4/3+L), fill=B, outline=B)
-    self.load(User, (W*2/3, H*2/3), (0, W/3))
+    self.load(User, size=(W*2/3, H*2/3), offset=(0, W/3))
 
 @createImage("Icons")
 ## <div class="inverted">
@@ -161,7 +161,7 @@ def Monitor(self, W, H, L, C, B) -> None:
 # \image html Icons/Splitscreen.png
 # </div>
 def Splitscreen(self, W, H, L, C, B) -> None:
-    self.load(Monitor, (W, H), (0, 0))
+    self.load(Monitor)
     self.line((W/2, 0), (W/2, H))
 
 @createImage("Icons")
@@ -186,8 +186,8 @@ def Cog(self, W, H, L, C, B) -> None:
 # \image html Icons/Cogs.png
 # </div>
 def Cogs(self, W, H, L, C, B) -> None:
-    self.load(Cog, (W*0.55, H*0.55), (0, H*0.365))
-    self.load(Cog, (W*0.55, H*0.55), (W*0.45, H*0.085))
+    self.load(Cog, size=(W*0.55, H*0.55), offset=(0, H*0.365))
+    self.load(Cog, size=(W*0.55, H*0.55), offset=(W*0.45, H*0.085))
 
 @createImage("Icons")
 ## <div class="inverted">

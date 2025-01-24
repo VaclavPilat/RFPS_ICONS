@@ -30,6 +30,29 @@ def defaultSettings(*names) -> "func":
 
 
 
+def defaultLoadSettings(method: "func") -> "func":
+    """Decorator for providing default settings for loaded image functions
+
+    Args:
+        method (func): Method being wrapped
+
+    Returns:
+        func: Wrapped method
+    """
+    def wrapped(self, function: "func", **settings) -> None:
+        values = {
+            "size": self.size,
+            "offset": (0, 0),
+            "color": self.color,
+            "background": self.background,
+            "width": self.width,
+        }
+        values.update(settings)
+        method(self, function, **values)
+    return wrapped
+
+
+
 class Canvas:
     """Class for wrapping the functionality of the Pillow library
     """
@@ -69,16 +92,15 @@ class Canvas:
         """
         return [(point[0] + self.offset[0], point[1] + self.offset[1]) for point in points]
     
-    def load(self, function: "func", size: tuple, offset: tuple) -> None:
+    @defaultLoadSettings
+    def load(self, function: "func", **settings) -> None:
         """Loading another image into this one
 
         Args:
             function (func): Function to load
-            size (tuple): Canvas size constraint of the loaded image
-            offset (tuple): Offset values of the loaded image inside this one
         """
-        loaded = Canvas(self.draw, size, offset, self.color, self.background, self.width)
-        function(loaded, *size, self.width, self.color, self.background)
+        loaded = Canvas(self.draw, **settings)
+        function(loaded, *settings["size"], settings["width"], settings["color"], settings["background"])
     
     @defaultSettings("fill", "width", "joint")
     def line(self, *points, closed: bool = False, rounded: bool = False, **settings) -> None:
