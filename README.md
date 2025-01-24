@@ -2,9 +2,9 @@
 
 This repository is used for creating simple icons and other images using Python's *Pillow* library. 
 
-All icons are generated as white-on-transparent PNG images.
+All icons are by default generated as white-on-transparent PNG images.
 
-Images are generated in high resolution and then downscaled to 100x100 pixels.
+Images are generated in high resolution and then downscaled.
 
 ## How to run
 1. **Install requirements** : `make install`
@@ -33,7 +33,7 @@ Run Doxygen after image generation to see them in HTML documentation.
 The following is a code sample of one of the draw functions. Running this code will create and save the image (if it doesn't exist already).
 
 ```py
-from Image import createImage
+from Utils.Files import createImage
 
 @createImage() # The image will be saved to "images/Globe.png"
 def Globe(self, W, H, L, C, B) -> None:

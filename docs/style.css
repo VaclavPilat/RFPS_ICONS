@@ -1,6 +1,10 @@
+#projectlogo {
+    vertical-align: middle;
+}
+
 #projectlogo img {
     aspect-ratio: 1/1;
-    height: 60px;
+    height: 45px;
 }
 
 :is(#projectlogo, .image) img {
