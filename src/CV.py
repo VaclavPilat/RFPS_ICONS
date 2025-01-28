@@ -32,6 +32,9 @@ from Icons import Cap, Home
 # \link Dot()
 # \image html CV/Dot.png
 # \endlink
+# \link Bag()
+# \image html CV/Bag.png
+# \endlink
 # </div>
 
 
@@ -99,3 +102,14 @@ def Star(self, W, H, L, C, B) -> None:
 ## \image html CV/Dot.png
 def Dot(self, W, H, L, C, B) -> None:
     self.dot((W/2, H/2), width=2*L)
+
+@createImage("CV", color=(0, 0, 0))
+## \image html CV/Bag.png
+def Bag(self, W, H, L, C, B) -> None:
+    R = W*0.2
+    self.roundedRectangle((0, H*0.25), (W, H), fill=B)
+    self.arc((W/2-R, 0), (W/2+R, R*2), start=180, end=360)
+    for i in (-1, 1):
+        self.line((W/2+i*(R-L/2), R), (W/2+i*(R-L/2), R+R/2))
+    self.line((0, H*0.55), (W, H*0.55))
+    self.line((W/2, H*0.5), (W/2, H*0.6), width=L+L//2, rounded=True)
