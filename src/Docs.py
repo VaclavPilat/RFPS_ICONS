@@ -1,7 +1,7 @@
 ## \file
 # Functions for generating charts and other documentation sketches
 from Utils.Files import createImage
-import math
+from Utils.Functions import sin, cos
 
 
 
@@ -64,5 +64,4 @@ def NoStrafing(self, W, H, L, C, B) -> None:
     self.arc((W/2-BS*H/2, (1-BS)/2*H), (W/2+BS*H/2, (H+H*BS)/2), start=0, end=180, rounded=True)
     self.load(BasicDots, color=(0, 0, 0))
     for speed, angle in ((FS, -45), (FS, -135), (BS, 45), (BS, 135)):
-        sin, cos = (function(math.radians(angle)) for function in [math.sin, math.cos])
-        self.dot((W/2+cos*(speed*H/2-L/2), H/2+sin*(speed*H/2-L/2)), outline=(0, 0, 0))
+        self.dot((W/2+cos(angle)*(speed*H/2-L/2), H/2+sin(angle)*(speed*H/2-L/2)), outline=(0, 0, 0))

@@ -1,7 +1,8 @@
 ## \file
 # Functions for generating icons
 from Utils.Files import createImage
-import math
+from Utils.Functions import sin, cos
+from math import sqrt
 
 
 
@@ -177,9 +178,8 @@ def Cap(self, W, H, L, C, B) -> None:
 
 def Cog(self, W, H, L, C, B) -> None:
     self.ellipse((0.15*W, 0.15*H), (0.85*W, 0.85*H), fill=B)
-    for degrees in range(0, 360, 45):
-        sin, cos = (func(math.radians(degrees)) for func in (math.sin, math.cos))
-        self.line((W/2+cos*W*0.35, H/2+sin*W*0.35), (W/2+cos*W*0.4, H/2+sin*W*0.4), rounded=True)
+    for i in range(0, 360, 45):
+        self.line((W/2+cos(i)*W*0.35, H/2+sin(i)*W*0.35), (W/2+cos(i)*W*0.4, H/2+sin(i)*W*0.4), rounded=True)
 
 @createImage("Icons")
 ## <div class="inverted">
@@ -207,7 +207,7 @@ def Keyboard(self, W, H, L, C, B) -> None:
 def Play(self, W, H, L, C, B) -> None:
     self.ellipse((0, 0), (W, H), fill=B)
     height = H*0.35
-    length = math.sqrt(3)/2*height
+    length = sqrt(3)/2*height
     points = [(W/2-length/2+L/2, H/2-height/2), (W/2-length/2+L/2, H/2+height/2), (W/2+length/2+L/2, H/2)]
     self.line(*points, rounded=True, closed=True)
     self.polygon(*points)
@@ -345,10 +345,9 @@ def Stopwatch(self, W, H, L, C, B) -> None:
     self.line((W/2, 0), (W/2, H*0.15))
     self.ellipse((W*0.075, H*0.15), (W*0.925, H), fill=B)
     self.line((W/2, H*0.575), (W/2, H*0.35), rounded=True)
-    self.line((W/2, H*0.575), (W/2+math.cos(math.radians(30))*W*0.15, H*0.575+math.sin(math.radians(30))*H*0.15), rounded=True)
+    self.line((W/2, H*0.575), (W/2+cos(30)*W*0.15, H*0.575+sin(30)*H*0.15), rounded=True)
     for i in [-45, -135]:
-        sin, cos = (function(math.radians(i)) for function in (math.sin, math.cos))
-        self.line((W/2+cos*W*0.45, H*0.575+sin*H*0.45), (W/2+cos*W*0.375, H*0.575+sin*H*0.375), rounded=True)
+        self.line((W/2+cos(i)*W*0.45, H*0.575+sin(i)*H*0.45), (W/2+cos(i)*W*0.375, H*0.575+sin(i)*H*0.375), rounded=True)
 
 @createImage("Icons")
 ## <div class="inverted">
@@ -357,6 +356,5 @@ def Stopwatch(self, W, H, L, C, B) -> None:
 def Crosshair(self, W, H, L, C, B) -> None:
     self.ellipse((0.1*W, 0.1*H), (0.9*W, 0.9*H), fill=None)
     self.ellipse((W/2-L/2, H/2-L/2), (W/2+L/2, H/2+L/2))
-    for degrees in range(0, 360, 90):
-        sin, cos = (func(math.radians(degrees)) for func in (math.sin, math.cos))
-        self.line((W/2+cos*W/4, H/2+sin*H/4), (W/2+cos*(W/2-L/2), H/2+sin*(H/2-L/2)), rounded=True)
+    for i in range(0, 360, 90):
+        self.line((W/2+cos(i)*W/4, H/2+sin(i)*H/4), (W/2+cos(i)*(W/2-L/2), H/2+sin(i)*(H/2-L/2)), rounded=True)

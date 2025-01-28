@@ -1,8 +1,8 @@
 ## \file
 # Functions for generating images for my CV
 from Utils.Files import createImage
+from Utils.Functions import sin, cos
 from Icons import Cap, Home
-import math
 
 
 
@@ -43,9 +43,8 @@ def Pin(self, W, H, L, C, B) -> None:
     self.arc((W/2-R, 0), (W/2+R, R*2), rounded=True, start=180-A, end=360+A)
     self.ellipse((W/2-R/3, R-R/3), (W/2+R/3, R+R/3))
     points = []
-    for angle in [180-A, 360+A]:
-        sin, cos = (function(math.radians(angle)) for function in (math.sin, math.cos))
-        points.append((W/2+cos*(R-L/2), R+sin*(R-L/2)))
+    for i in [180-A, 360+A]:
+        points.append((W/2+cos(i)*(R-L/2), R+sin(i)*(R-L/2)))
     points.insert(1, (W/2, H-L/2))
     self.line(*points, rounded=True)
 
@@ -75,16 +74,10 @@ def Phone(self, W, H, L, C, B) -> None:
     R = W*0.35
     self.arc((0, 0), (R*2, R*2), start=135, end=225, rounded=True)
     self.arc((W-R*2, H-R*2), (W, H), start=45, end=135, rounded=True)
+    self.line((R+cos(135)*(R-L/2), R+sin(135)*(R-L/2)), (W-R+cos(135)*(R-L/2), H-R+sin(135)*(R-L/2)))
     self.line(
-        (R+math.cos(math.radians(135))*(R-L/2), R+math.sin(math.radians(135))*(R-L/2)),
-        (W-R+math.cos(math.radians(135))*(R-L/2), H-R+math.sin(math.radians(135))*(R-L/2))
-    )
-    self.line(
-        (R+math.cos(math.radians(225))*(R-L/2), R+math.sin(math.radians(225))*(R-L/2)),
-        (R+math.cos(math.radians(225))*(R-L/2)+W/5, R+math.sin(math.radians(225))*(R-L/2)+H/5),
-        (R+math.cos(math.radians(225))*(R-L/2)+W/10, R+math.sin(math.radians(225))*(R-L/2)+H*0.3),
-        (W-R+math.cos(math.radians(45))*(R-L/2)-W*0.3, H-R+math.sin(math.radians(45))*(R-L/2)-H/10),
-        (W-R+math.cos(math.radians(45))*(R-L/2)-W/5, H-R+math.sin(math.radians(45))*(R-L/2)-H/5),
-        (W-R+math.cos(math.radians(45))*(R-L/2), H-R+math.sin(math.radians(45))*(R-L/2)),
+        (R+cos(225)*(R-L/2), R+sin(225)*(R-L/2)), (R+cos(225)*(R-L/2)+W/5, R+sin(225)*(R-L/2)+H/5),
+        (R+cos(225)*(R-L/2)+W/10, R+sin(225)*(R-L/2)+H*0.3), (W-R+cos(45)*(R-L/2)-W*0.3, H-R+sin(45)*(R-L/2)-H/10),
+        (W-R+cos(45)*(R-L/2)-W/5, H-R+sin(45)*(R-L/2)-H/5), (W-R+cos(45)*(R-L/2), H-R+sin(45)*(R-L/2)),
         rounded=True
     )
