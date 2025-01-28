@@ -14,6 +14,9 @@ import math
 # \link Pin()
 # \image html CV/Pin.png
 # \endlink
+# \link Code()
+# \image html CV/Code.png
+# \endlink
 # </div>
 
 
@@ -22,8 +25,6 @@ import math
 ## \image html CV/Education.png
 def Education(self, W, H, L, C, B) -> None:
     self.load(Cap)
-
-
 
 @createImage("CV", color=(0, 0, 0))
 ## \image html CV/Pin.png
@@ -38,3 +39,10 @@ def Pin(self, W, H, L, C, B) -> None:
         points.append((W/2+cos*(R-L/2), R+sin*(R-L/2)))
     points.insert(1, (W/2, H-L/2))
     self.line(*points, rounded=True)
+
+@createImage("CV", color=(0, 0, 0))
+## \image html CV/Code.png
+def Code(self, W, H, L, C, B) -> None:
+    for i in [-1, 1]:
+        self.line((W/2+i*W*0.2, H*0.35), (W/2+i*(W/2-L/2), H/2), (W/2+i*W*0.2, H*0.65), rounded=True)
+    self.line((W*0.4, H*0.85), (W*0.6, H*0.15), rounded=True)
