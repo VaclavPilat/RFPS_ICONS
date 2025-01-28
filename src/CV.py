@@ -1,7 +1,7 @@
 ## \file
 # Functions for generating images for my CV
 from Utils.Files import createImage
-from Icons import Cap
+from Icons import Cap, Home
 import math
 
 
@@ -19,6 +19,9 @@ import math
 # \endlink
 # \link Email()
 # \image html CV/Email.png
+# \endlink
+# \link Residence()
+# \image html CV/Residence.png
 # \endlink
 # </div>
 
@@ -55,5 +58,10 @@ def Code(self, W, H, L, C, B) -> None:
 def Email(self, W, H, L, C, B) -> None:
     self.arc((0, 0), (W, H), start=60, end=360, rounded=True)
     self.arc((W*0.275, H*0.275), (W*0.725, H*0.725), start=0, end=360)
-    self.line((W*0.725-L/2, H*0.275+L), (W*0.725-L/2, H/2), rounded=True)
+    self.line((W*0.725-L/2, H*0.275+L/2), (W*0.725-L/2, H/2), rounded=True)
     self.arc((W*0.725-L, H*0.275+L/2), (W, H*0.725), rounded=True)
+
+@createImage("CV", color=(0, 0, 0))
+## \image html CV/Residence.png
+def Residence(self, W, H, L, C, B) -> None:
+    self.load(Home)
