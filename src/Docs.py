@@ -25,41 +25,47 @@ def Arrows(self, W, H, L, C, B) -> None:
     self.line((L*2, H/2-L*1.5), (L/2, H/2), (L*2, H/2+L*1.5), rounded=True)
     self.line((W-L*2, H/2-L*1.5), (W-L/2, H/2), (W-L*2, H/2+L*1.5), rounded=True)
 
-FORWARD = 1
-SIDES = 0.6 * FORWARD
-BACKWARD = 0.4 * FORWARD
+## Forward speed
+FO = 1
+## Side speed
+SI = 0.6 * FO
+## BA speed
+BA = 0.4 * FO
+## Diagonal forward speed
+FS = (FO + SI) / 2
+## Diagonal backward speed
+BS = (BA + SI) / 2
 
 def BasicDots(self, W, H, L, C, B) -> None:
-    self.dot((W/2, (1-FORWARD)/2*H+L/2))
-    self.dot((W/2, (H+H*BACKWARD)/2-L/2))
-    self.dot((W/2-SIDES*H/2+L/2, H/2))
-    self.dot((W/2+SIDES*H/2-L/2, H/2))
+    self.dot((W/2, (1-FO)/2*H+L/2))
+    self.dot((W/2, (H+H*BA)/2-L/2))
+    self.dot((W/2-SI*H/2+L/2, H/2))
+    self.dot((W/2+SI*H/2-L/2, H/2))
 
 @createImage("Docs", (300, 300), color=(0, 0, 0))
 ## \image html Docs/Strafing.png
 def Strafing(self, W, H, L, C, B) -> None:
     self.load(Arrows, color=(200, 200, 200))
-    self.roundedRectangle((W/2-SIDES*H/2, (1-FORWARD)/2*H), (W/2+SIDES*H/2, (H+H*BACKWARD)/2), fill=None, outline=(150, 150, 150))
+    self.roundedRectangle((W/2-SI*H/2, (1-FO)/2*H), (W/2+SI*H/2, (H+H*BA)/2), fill=None, outline=(150, 150, 150))
     self.load(BasicDots)
-    self.dot((W/2-SIDES*H/2+L/2, (1-FORWARD)/2*H+L/2))
-    self.dot((W/2+SIDES*H/2-L/2, (1-FORWARD)/2*H+L/2))
-    self.dot((W/2-SIDES*H/2+L/2, (H+H*BACKWARD)/2-L/2))
-    self.dot((W/2+SIDES*H/2-L/2, (H+H*BACKWARD)/2-L/2))
-
-FRONTSIDE = (FORWARD + SIDES) / 2
-BACKSIDE = (BACKWARD + SIDES) / 2
+    self.dot((W/2-SI*H/2+L/2, (1-FO)/2*H+L/2))
+    self.dot((W/2+SI*H/2-L/2, (1-FO)/2*H+L/2))
+    self.dot((W/2-SI*H/2+L/2, (H+H*BA)/2-L/2))
+    self.dot((W/2+SI*H/2-L/2, (H+H*BA)/2-L/2))
 
 @createImage("Docs", (300, 300), color=(0, 0, 0))
 ## \image html Docs/NoStrafing.png
 def NoStrafing(self, W, H, L, C, B) -> None:
     self.load(Arrows, color=(200, 200, 200))
-    self.arc((W/2-FORWARD*H/2, (1-FORWARD)/2*H), (W/2+FORWARD*H/2, (H+H*FORWARD)/2), start=180, end=360, fill=(150, 150, 150), rounded=True)
-    self.arc((W/2-SIDES*H/2, (1-SIDES)/2*H), (W/2+SIDES*H/2, (H+H*SIDES)/2), start=0, end=360, fill=(150, 150, 150))
-    self.arc((W/2-BACKWARD*H/2, (1-BACKWARD)/2*H), (W/2+BACKWARD*H/2, (H+H*BACKWARD)/2), start=0, end=180, fill=(150, 150, 150), rounded=True)
-    self.arc((W/2-FRONTSIDE*H/2, (1-FRONTSIDE)/2*H), (W/2+FRONTSIDE*H/2, (H+H*FRONTSIDE)/2), start=180, end=360, fill=(150, 150, 150), rounded=True)
-    self.arc((W/2-BACKSIDE*H/2, (1-BACKSIDE)/2*H), (W/2+BACKSIDE*H/2, (H+H*BACKSIDE)/2), start=0, end=180, fill=(150, 150, 150), rounded=True)
+    self.arc((W/2-FO*H/2, (1-FO)/2*H), (W/2+FO*H/2, (H+H*FO)/2), start=180, end=360, fill=(150, 150, 150), rounded=True)
+    self.arc((W/2-SI*H/2, (1-SI)/2*H), (W/2+SI*H/2, (H+H*SI)/2), start=0, end=360, fill=(150, 150, 150))
+    self.arc((W/2-BA*H/2, (1-BA)/2*H), (W/2+BA*H/2, (H+H*BA)/2), start=0, end=180, fill=(150, 150, 150), rounded=True)
+    self.arc((W/2-FS*H/2, (1-FS)/2*H), (W/2+FS*H/2, (H+H*FS)/2), start=180, end=360, fill=(150, 150, 150), rounded=True)
+    self.arc((W/2-BS*H/2, (1-BS)/2*H), (W/2+BS*H/2, (H+H*BS)/2), start=0, end=180, fill=(150, 150, 150), rounded=True)
     self.load(BasicDots)
     for angle in [-45, -135]:
-        self.dot((W/2+math.cos(math.radians(angle))*(FRONTSIDE*H/2-L/2), H/2+math.sin(math.radians(angle))*(FRONTSIDE*H/2-L/2)))
+        sin, cos = (function(math.radians(angle)) for function in [math.sin, math.cos])
+        self.dot((W/2+cos*(FS*H/2-L/2), H/2+sin*(FS*H/2-L/2)))
     for angle in [45, 135]:
-        self.dot((W/2+math.cos(math.radians(angle))*(BACKSIDE*H/2-L/2), H/2+math.sin(math.radians(angle))*(BACKSIDE*H/2-L/2)))
+        sin, cos = (function(math.radians(angle)) for function in [math.sin, math.cos])
+        self.dot((W/2+cos*(BS*H/2-L/2), H/2+sin*(BS*H/2-L/2)))
