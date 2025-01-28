@@ -35,6 +35,9 @@ from Icons import Cap, Home
 # \link Bag()
 # \image html CV/Bag.png
 # \endlink
+# \link Certificate()
+# \image html CV/Certificate.png
+# \endlink
 # </div>
 
 
@@ -113,3 +116,9 @@ def Bag(self, W, H, L, C, B) -> None:
         self.line((W/2+i*(R-L/2), R), (W/2+i*(R-L/2), R+R/2))
     self.line((0, H*0.55), (W, H*0.55))
     self.line((W/2, H*0.5), (W/2, H*0.6), width=L+L//2, rounded=True)
+
+@createImage("CV", color=(0, 0, 0))
+## \image html CV/Certificate.png
+def Certificate(self, W, H, L, C, B) -> None:
+    self.roundedRectangle((0, H*0.1), (W, H*0.9), fill=B)
+    self.load(Star, size=(W*0.5, H*0.5), offset=(W/2-W*0.25, H/2-H*0.25))
