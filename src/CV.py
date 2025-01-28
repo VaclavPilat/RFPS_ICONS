@@ -23,6 +23,9 @@ import math
 # \link Residence()
 # \image html CV/Residence.png
 # \endlink
+# \link Phone()
+# \image html CV/Phone.png
+# \endlink
 # </div>
 
 
@@ -65,3 +68,23 @@ def Email(self, W, H, L, C, B) -> None:
 ## \image html CV/Residence.png
 def Residence(self, W, H, L, C, B) -> None:
     self.load(Home)
+
+@createImage("CV", color=(0, 0, 0))
+## \image html CV/Phone.png
+def Phone(self, W, H, L, C, B) -> None:
+    R = W*0.35
+    self.arc((0, 0), (R*2, R*2), start=135, end=225, rounded=True)
+    self.arc((W-R*2, H-R*2), (W, H), start=45, end=135, rounded=True)
+    self.line(
+        (R+math.cos(math.radians(135))*(R-L/2), R+math.sin(math.radians(135))*(R-L/2)),
+        (W-R+math.cos(math.radians(135))*(R-L/2), H-R+math.sin(math.radians(135))*(R-L/2))
+    )
+    self.line(
+        (R+math.cos(math.radians(225))*(R-L/2), R+math.sin(math.radians(225))*(R-L/2)),
+        (R+math.cos(math.radians(225))*(R-L/2)+W/5, R+math.sin(math.radians(225))*(R-L/2)+H/5),
+        (R+math.cos(math.radians(225))*(R-L/2)+W/10, R+math.sin(math.radians(225))*(R-L/2)+H*0.3),
+        (W-R+math.cos(math.radians(45))*(R-L/2)-W*0.3, H-R+math.sin(math.radians(45))*(R-L/2)-H/10),
+        (W-R+math.cos(math.radians(45))*(R-L/2)-W/5, H-R+math.sin(math.radians(45))*(R-L/2)-H/5),
+        (W-R+math.cos(math.radians(45))*(R-L/2), H-R+math.sin(math.radians(45))*(R-L/2)),
+        rounded=True
+    )
