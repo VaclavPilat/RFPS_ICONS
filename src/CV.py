@@ -17,6 +17,9 @@ import math
 # \link Code()
 # \image html CV/Code.png
 # \endlink
+# \link Email()
+# \image html CV/Email.png
+# \endlink
 # </div>
 
 
@@ -46,3 +49,11 @@ def Code(self, W, H, L, C, B) -> None:
     for i in [-1, 1]:
         self.line((W/2+i*W*0.2, H*0.35), (W/2+i*(W/2-L/2), H/2), (W/2+i*W*0.2, H*0.65), rounded=True)
     self.line((W*0.4, H*0.85), (W*0.6, H*0.15), rounded=True)
+
+@createImage("CV", color=(0, 0, 0))
+## \image html CV/Email.png
+def Email(self, W, H, L, C, B) -> None:
+    self.arc((0, 0), (W, H), start=60, end=360, rounded=True)
+    self.arc((W*0.275, H*0.275), (W*0.725, H*0.725), start=0, end=360)
+    self.line((W*0.725-L/2, H*0.275+L), (W*0.725-L/2, H/2), rounded=True)
+    self.arc((W*0.725-L, H*0.275+L/2), (W, H*0.725), rounded=True)
