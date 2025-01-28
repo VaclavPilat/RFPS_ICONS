@@ -1,0 +1,40 @@
+## \file
+# Functions for generating images for my CV
+from Utils.Files import createImage
+from Icons import Cap
+import math
+
+
+
+## \defgroup cv Generated CV icons
+# <div>
+# \link Education()
+# \image html CV/Education.png
+# \endlink
+# \link Pin()
+# \image html CV/Pin.png
+# \endlink
+# </div>
+
+
+
+@createImage("CV", color=(0, 0, 0))
+## \image html CV/Education.png
+def Education(self, W, H, L, C, B) -> None:
+    self.load(Cap)
+
+
+
+@createImage("CV", color=(0, 0, 0))
+## \image html CV/Pin.png
+def Pin(self, W, H, L, C, B) -> None:
+    R = W*0.35
+    A = 30
+    self.arc((W/2-R, 0), (W/2+R, R*2), rounded=True, start=180-A, end=360+A)
+    self.ellipse((W/2-R/3, R-R/3), (W/2+R/3, R+R/3))
+    points = []
+    for angle in [180-A, 360+A]:
+        sin, cos = (function(math.radians(angle)) for function in (math.sin, math.cos))
+        points.append((W/2+cos*(R-L/2), R+sin*(R-L/2)))
+    points.insert(1, (W/2, H-L/2))
+    self.line(*points, rounded=True)
