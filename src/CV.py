@@ -26,6 +26,9 @@ from Icons import Cap, Home
 # \link Phone()
 # \image html CV/Phone.png
 # \endlink
+# \link Star()
+# \image html CV/Star.png
+# \endlink
 # </div>
 
 
@@ -81,3 +84,10 @@ def Phone(self, W, H, L, C, B) -> None:
         (W-R+cos(45)*(R-L/2)-W/5, H-R+sin(45)*(R-L/2)-H/5), (W-R+cos(45)*(R-L/2), H-R+sin(45)*(R-L/2)),
         rounded=True
     )
+
+@createImage("CV", color=(0, 0, 0))
+## \image html CV/Star.png
+def Star(self, W, H, L, C, B) -> None:
+    R = W/5
+    for a, b, c in ((18, 54, 90), (90, 126, 162), (162, 198, 234), (234, 270, 306), (306, 342, 18)):
+        self.line((W/2+cos(a)*R, H/2+sin(a)*R), (W/2+cos(b)*(W/2-L/2), H/2+sin(b)*(H/2-L/2)), (W/2+cos(c)*R, H/2+sin(c)*R), rounded=True)
