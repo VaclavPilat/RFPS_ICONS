@@ -38,6 +38,9 @@ from Icons import Cap, Home
 # \link Certificate()
 # \image html CV/Certificate.png
 # \endlink
+# \link Speech()
+# \image html CV/Speech.png
+# \endlink
 # </div>
 
 
@@ -122,3 +125,9 @@ def Bag(self, W, H, L, C, B) -> None:
 def Certificate(self, W, H, L, C, B) -> None:
     self.roundedRectangle((0, H*0.1), (W, H*0.9), fill=B)
     self.load(Star, size=(W*0.5, H*0.5), offset=(W/2-W*0.25, H/2-H*0.25))
+
+@createImage("CV", color=(0, 0, 0))
+## \image html CV/Speech.png
+def Speech(self, W, H, L, C, B) -> None:
+    self.arc((0, H*0.2), (W, H*0.8), start=140, end=360+100, rounded=True)
+    self.line((W/2+cos(140)*(W/2-L/2), H/2+sin(140)*(H*0.3-L/2)), (L, H-L), (W/2+cos(360+100)*(W/2-L/2), H/2+sin(360+100)*(H*0.3-L/2)), rounded=True)
