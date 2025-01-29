@@ -87,13 +87,13 @@ def Residence(self, W, H, L, C, B) -> None:
 ## \image html CV/Phone.png
 def Phone(self, W, H, L, C, B) -> None:
     R = W*0.35
-    self.arc((0, 0), (R*2, R*2), start=135, end=225, rounded=True)
-    self.arc((W-R*2, H-R*2), (W, H), start=45, end=135, rounded=True)
-    self.line((R+cos(135)*(R-L/2), R+sin(135)*(R-L/2)), (W-R+cos(135)*(R-L/2), H-R+sin(135)*(R-L/2)))
+    self.arc((0, -L), (R*2, R*2-L), start=135, end=225, rounded=True)
+    self.arc((W-R*2+L, H-R*2), (W+L, H), start=45, end=135, rounded=True)
+    self.line((R+cos(135)*(R-L/2), R+sin(135)*(R-L/2)-L), (W-R+cos(135)*(R-L/2)+L, H-R+sin(135)*(R-L/2)))
     self.line(
-        (R+cos(225)*(R-L/2), R+sin(225)*(R-L/2)), (R+cos(225)*(R-L/2)+W/5, R+sin(225)*(R-L/2)+H/5),
-        (R+cos(225)*(R-L/2)+W/10, R+sin(225)*(R-L/2)+H*0.3), (W-R+cos(45)*(R-L/2)-W*0.3, H-R+sin(45)*(R-L/2)-H/10),
-        (W-R+cos(45)*(R-L/2)-W/5, H-R+sin(45)*(R-L/2)-H/5), (W-R+cos(45)*(R-L/2), H-R+sin(45)*(R-L/2)),
+        (R+cos(225)*(R-L/2), R+sin(225)*(R-L/2)-L), (R+cos(225)*(R-L/2)+W/5, R+sin(225)*(R-L/2)+H/5-L),
+        (R+cos(225)*(R-L/2)+W/10, R+sin(225)*(R-L/2)+H*0.3-L), (W-R+cos(45)*(R-L/2)-W*0.3+L, H-R+sin(45)*(R-L/2)-H/10),
+        (W-R+cos(45)*(R-L/2)-W/5+L, H-R+sin(45)*(R-L/2)-H/5), (W-R+cos(45)*(R-L/2)+L, H-R+sin(45)*(R-L/2)),
         rounded=True
     )
 
