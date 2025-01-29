@@ -41,6 +41,9 @@ from Icons import Cap, Home
 # \link Speech()
 # \image html CV/Speech.png
 # \endlink
+# \link Birth()
+# \image html CV/Birth.png
+# \endlink
 # </div>
 
 
@@ -131,3 +134,10 @@ def Certificate(self, W, H, L, C, B) -> None:
 def Speech(self, W, H, L, C, B) -> None:
     self.arc((0, H*0.2), (W, H*0.8), start=140, end=360+100, rounded=True)
     self.line((W/2+cos(140)*(W/2-L/2), H/2+sin(140)*(H*0.3-L/2)), (L, H-L), (W/2+cos(360+100)*(W/2-L/2), H/2+sin(360+100)*(H*0.3-L/2)), rounded=True)
+
+@createImage("CV", color=(0, 0, 0))
+## \image html CV/Birth.png
+def Birth(self, W, H, L, C, B) -> None:
+    R = W/5
+    for i in range(-90, 270, 360//5):
+        self.line((W/2, H/2), (W/2+cos(i)*W/3, H/2+sin(i)*H/3), rounded=True)
