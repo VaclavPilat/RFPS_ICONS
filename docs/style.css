@@ -11,10 +11,10 @@
     margin: 5px;
 }
 
-:is(#projectlogo, .inverted .image) img {
-    mix-blend-mode: difference;
-}
-
 .image {
     display: inline-block;
+}
+
+.inverted .image img {
+    mix-blend-mode: difference;
 }
