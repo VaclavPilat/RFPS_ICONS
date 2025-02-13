@@ -2,11 +2,15 @@
 # Functions for generating charts and other documentation sketches
 from Utils.Files import createImage
 from Utils.Functions import sin, cos
+from Icons import Home, Cursor, Audio, Flag, Search, Globe, Monitor, Cogs, Metro, Stopwatch, Cap
 
 
 
 ## \defgroup documentation Generated documentation images
 # <div>
+# \link Icons()
+# \image html Docs/Icons.png
+# \endlink
 # \link Strafing()
 # \image html Docs/Strafing.png
 # \endlink
@@ -16,6 +20,14 @@ from Utils.Functions import sin, cos
 # </div>
 
 
+
+@createImage("Docs", (550, 50), color=(128, 128, 128), line=5)
+## \image html Docs/Icons.png
+def Icons(self, W, H, L, C, B) -> None:
+    icons = (Home, Cogs, Cursor, Globe, Flag, Audio, Metro, Search, Cap, Stopwatch, Monitor)
+    size = self.size[1]
+    for i, func in enumerate(icons):
+        self.load(func, size=(size, size), offset=(i*size, 0))
 
 def Arrows(self, W, H, L, C, B) -> None:
     self.line((W/2, L/2), (W/2, H-L/2), rounded=True)
