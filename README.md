@@ -1,6 +1,6 @@
 # About RFPS ICONS
 
-![Icon examples](examples.png)
+![Icon examples](docs/Examples.png)
 
 This repository is used for creating simple icons and other images using Python's *Pillow* library. 
 

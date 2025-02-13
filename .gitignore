@@ -1,5 +1,4 @@
 *.png
-!docs/Icon.png
-!examples.png
+!docs/*.png
 __pycache__
 html/
