@@ -1,5 +1,7 @@
 # About RFPS Icons
 
+![Icon examples](examples.png "Title")
+
 This repository is used for creating simple icons and other images using Python's *Pillow* library. 
 
 All icons are by default generated as white-on-transparent PNG images.
