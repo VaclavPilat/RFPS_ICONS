@@ -46,13 +46,14 @@ class Canvas:
         return [(point[0] + self.offset[0], point[1] + self.offset[1]) for point in points]
     
     @defaultLoadSettings
-    def load(self, function: "func", **settings) -> None:
+    def load(self, function: "func", offset: tuple, **settings) -> None:
         """Loading another image into this one
 
         Args:
             function (func): Function to load
         """
-        loaded = Canvas(self.draw, **settings)
+        offset = tuple(a + b for a, b in zip(self.offset, offset))
+        loaded = Canvas(self.draw, offset=offset, **settings)
         function(loaded, *settings["size"], settings["width"], settings["color"], settings["background"])
     
     @defaultSettings("fill", "width", "joint")
@@ -89,7 +90,7 @@ class Canvas:
                 sin, cos = (function(math.radians(degrees)) for function in (math.sin, math.cos))
                 center = (points[0][0]/2 + points[1][0]/2, points[0][1]/2 + points[1][1]/2)
                 width, height = (points[1][0]-points[0][0]-line, points[1][1]-points[0][1]-line)
-                self.dot((center[0] + cos*width/2, center[1] + sin*height/2), outline=color, fill=color)
+                self.dot((center[0] + cos*width/2, center[1] + sin*height/2), outline=color, fill=color, transform=False)
         self.draw.arc(points, **settings)
     
     @defaultSettings("fill", "outline", "width")

@@ -10,7 +10,7 @@ def defaultSettings(*names) -> "func":
         func: Wrapper for a drawing method
     """
     def wrapper(method: "func") -> "func":
-        def wrapped(self, *points, **settings) -> None:
+        def wrapped(self, *points, transform: bool = True, **settings) -> None:
             values = {k: v for k, v in {
                 "width": self.width,
                 "outline": self.color,
@@ -22,7 +22,9 @@ def defaultSettings(*names) -> "func":
                 "corners": (True, True, True, True),
             }.items() if k in names}
             values.update(settings)
-            method(self, *self.transform(points), **values)
+            if transform:
+                points = self.transform(points)
+            method(self, *points, **values)
         return wrapped
     return wrapper
 
