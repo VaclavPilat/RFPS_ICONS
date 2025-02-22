@@ -29,7 +29,7 @@ def Arrows(self, W, H, L, C, B) -> None:
 FO = 1
 ## Side speed
 SI = 0.6 * FO
-## BA speed
+## Backward speed
 BA = 0.4 * FO
 ## Diagonal forward speed
 FS = (FO + SI) / 2

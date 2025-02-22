@@ -1,7 +1,7 @@
 ## \file
 # Functions for creating variations and remixes of already created icons
 from Utils.Files import createImage
-from Icons import Home, Cursor, Audio, Flag, Search, Globe, Monitor, Cogs, Metro, Stopwatch, Cap
+from Icons import Home, Cursor, Audio, Flag, Search, Globe, Monitor, Cogs, Metro, Stopwatch, Cap, Crosshair
 
 
 
@@ -10,8 +10,11 @@ from Icons import Home, Cursor, Audio, Flag, Search, Globe, Monitor, Cogs, Metro
 # \link Icons()
 # \image html Variations/Icons.png
 # \endlink
+# \link Miniature()
 # \image html Variations/CursorIcon.png
 # \image html Variations/AudioIcon.png
+# \image html Variations/CrosshairIcon.png
+# \endlink
 # </div>
 
 
@@ -39,10 +42,11 @@ def rename(name: str) -> "func":
         return func
     return decorator
 
-for func in (Cursor, Audio):
+for func in (Cursor, Audio, Crosshair):
     @createImage("Variations", (50, 50), color=(0, 0, 0), line=5)
     @rename(f"{func.__name__}Icon")
     ## \image html Variations/CursorIcon.png
     # \image html Variations/AudioIcon.png
-    def variant(self, W, H, L, C, B) -> None:
+    # \image html Variations/CrosshairIcon.png
+    def Miniature(self, W, H, L, C, B) -> None:
         self.load(func)
