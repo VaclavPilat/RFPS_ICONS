@@ -16,7 +16,7 @@ run:
 	done
 
 cloc:
-	cloc . --include-lang=Python --by-file
+	@cloc . --include-lang=Python --by-file
 
 clean:
-	rm -rf docs/html/ images/
+	@rm -rf docs/html/ images/
