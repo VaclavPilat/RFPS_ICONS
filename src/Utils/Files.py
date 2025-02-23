@@ -6,14 +6,14 @@ import os
 
 
 
-def createImage(folder: str = ".", size: tuple = (100, 100), sampling: float = 5, line: int|float = 10, background: tuple = (0, 0, 0, 0), color: tuple = (255, 255, 255)) -> "func":
+def createImage(folder: str = ".", size: tuple = (100, 100), sampling: float = 5, width: int|float = 10, background: tuple = (0, 0, 0, 0), color: tuple = (255, 255, 255)) -> "func":
     """Decorator for creating an image and saving it to a file
 
     Args:
         folder (str, optional): Output folder name. Defaults to ".".
         size (tuple, optional): Image size. Defaults to (100, 100).
         sampling (float, optional): Sampling multiplier. Defaults to 5.
-        line (int | float, optional): Default line width. Defaults to 10.
+        width (int | float, optional): Default line width. Defaults to 10.
         background (tuple, optional): Background color. Defaults to (0, 0, 0, 0).
         color (tuple, optional): Default foreground color. Defaults to (255, 255, 255).
 
@@ -23,12 +23,12 @@ def createImage(folder: str = ".", size: tuple = (100, 100), sampling: float = 5
     def wrapper(function: "func") -> "func":
         # Calculating sampled sizes
         scaledSize = (size[0] * sampling, size[1] * sampling)
-        scaledLine = line * sampling
+        scaledWidth = width * sampling
         # Creating an image
         image = Image.new("RGBA", scaledSize, background)
-        canvas = Canvas(ImageDraw.Draw(image), scaledSize, (0, 0), color, background, scaledLine)
+        canvas = Canvas(ImageDraw.Draw(image), scaledSize, (0, 0), color, background, scaledWidth)
         # Calling the function
-        function(canvas, *scaledSize, scaledLine, color, background)
+        function(canvas, *scaledSize, scaledWidth, color, background)
         image = image.resize(size, resample=Image.LANCZOS)
         # Getting image file path
         folderpath = f"images/{folder}"

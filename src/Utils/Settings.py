@@ -3,8 +3,8 @@
 
 
 
-def defaultSettings(*names) -> "func":
-    """Decorator for passing some default settings through and allowing their updates
+def defaultDrawSettings(*names) -> "func":
+    """Decorator for passing default settings to draw methods
 
     Returns:
         func: Wrapper for a drawing method
@@ -31,7 +31,7 @@ def defaultSettings(*names) -> "func":
 
 
 def defaultLoadSettings(method: "func") -> "func":
-    """Decorator for providing default settings for loaded image functions
+    """Decorator for providing default settings to an image loading method
 
     Args:
         method (func): Method being wrapped

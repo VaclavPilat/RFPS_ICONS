@@ -56,7 +56,7 @@ class Canvas:
         loaded = Canvas(self.draw, offset=offset, **settings)
         function(loaded, *settings["size"], settings["width"], settings["color"], settings["background"])
     
-    @defaultSettings("fill", "width", "joint")
+    @defaultDrawSettings("fill", "width", "joint")
     def line(self, *points, closed: bool = False, rounded: bool = False, **settings) -> None:
         """Drawing a line
 
@@ -70,13 +70,13 @@ class Canvas:
             points = (points[1], ) + points + (points[-2], )
         self.draw.line(points, **settings)
     
-    @defaultSettings("fill", "outline", "width")
+    @defaultDrawSettings("fill", "outline", "width")
     def ellipse(self, *points, **settings) -> None:
         """Drawing an ellipse
         """
         self.draw.ellipse(points, **settings)
     
-    @defaultSettings("start", "end", "fill", "width")
+    @defaultDrawSettings("start", "end", "fill", "width")
     def arc(self, *points, rounded: bool = False, **settings) -> None:
         """Drawing an arc
 
@@ -93,25 +93,25 @@ class Canvas:
                 self.dot((center[0] + cos*width/2, center[1] + sin*height/2), outline=color, fill=color, transform=False)
         self.draw.arc(points, **settings)
     
-    @defaultSettings("fill", "outline", "width")
+    @defaultDrawSettings("fill", "outline", "width")
     def rectangle(self, *points, **settings) -> None:
         """Drawing a rectangle
         """
         self.draw.rectangle(points, **settings)
     
-    @defaultSettings("fill", "outline", "width", "radius", "corners")
+    @defaultDrawSettings("fill", "outline", "width", "radius", "corners")
     def roundedRectangle(self, *points, **settings) -> None:
         """Drawing a rounded rectangle
         """
         self.draw.rounded_rectangle(points, **settings)
     
-    @defaultSettings("fill", "outline", "width")
+    @defaultDrawSettings("fill", "outline", "width")
     def polygon(self, *points, **settings) -> None:
         """Drawing a polygon
         """
         self.draw.polygon(points, **settings)
     
-    @defaultSettings("fill", "outline", "width")
+    @defaultDrawSettings("fill", "outline", "width")
     def dot(self, point: tuple, **settings) -> None:
         """Drawing a small circle
 

@@ -37,7 +37,7 @@ def Globe(self, W, H, L, C, B) -> None:
     - `folder` - output folder path, defaults to `"images/"`,
     - `size` - output image size in pixels, defaults to `(100, 100)`,
     - `sampling` - sampling multiplier (images are generated in high resolution and then downscaled), defaults to `5`,
-    - `line` - line width in pixels, defaults to `10`,
+    - `width` - line width in pixels, defaults to `10`,
     - `background` - background color, defaults to `(0, 0, 0, 0)` (transparent),
     - `color` - foreground color, defaluts to `(255, 255, 255)` (solid white).
 

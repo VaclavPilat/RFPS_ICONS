@@ -20,7 +20,7 @@ from Icons import Home, Cursor, Audio, Flag, Search, Globe, Monitor, Cogs, Metro
 
 
 
-@createImage("Variations", (550, 50), color=(128, 128, 128), line=5)
+@createImage("Variations", (550, 50), color=(128, 128, 128), width=5)
 ## \image html Variations/Icons.png
 def Icons(self, W, H, L, C, B) -> None:
     icons = (Home, Cogs, Cursor, Globe, Flag, Audio, Metro, Search, Cap, Stopwatch, Monitor)
@@ -44,7 +44,7 @@ def rename(name: str) -> "func":
     return decorator
 
 for func in (Cursor, Audio, Crosshair, Home):
-    @createImage("Variations", (50, 50), color=(0, 0, 0), line=5)
+    @createImage("Variations", (50, 50), color=(0, 0, 0), width=5)
     @rename(f"Mini{func.__name__}")
     ## \image html Variations/MiniCursor.png
     # \image html Variations/MiniAudio.png
