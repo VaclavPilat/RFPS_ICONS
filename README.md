@@ -57,20 +57,20 @@ def Globe(self, W, H, L, C, B) -> None:
     - `polygon(*points, fill, outline, width)` - drawing a closed polygon between the specified points,
     - `dot(point, fill, outline, width)` - drawing a small circle from the specified center point.
 
-- Each draw method has points (tuples of x-y coordinates in pixels) as args and some of the following optional kwarg arguments:
-    - `width` - line width in pixels, defaults to self width,
-    - `outline` - outline width in pixels, defaults to self color,
-    - `fill` - fill color, defaults to self color,
+- Each draw method has points (tuples of x-y coordinates in pixels) as *args and some of the following optional kwarg arguments:
+    - `width` - line width in pixels, defaults to image line width,
+    - `outline` - outline width in pixels, defaults to image foreground color,
+    - `fill` - fill color, defaults to image foreground color,
     - `start` - start angle, defaults to `0`,
     - `end` - end angle, defaults to `180`,
     - `joint` - line joint type, defaults to `"curve"`,
-    - `radius` - curve radius, defaults to self width,
+    - `radius` - curve radius, defaults to image line width,
     - `corners` - corner curve settings, defaults to `(True, True, True, True)`.
 
 - You can also load another image inside an image function by calling `self.load()` with the following arguments:
     - `function` - name of an already defined image function to load,
-    - `size` - size of the loaded image in pixels, defaults to self size,
+    - `size` - size of the loaded image in pixels, defaults to parent image size,
     - `offset` - offset of the loaded image inside self, defaults to `(0, 0)`,
-    - `color` - foreground color of the loaded image, defaults to self color,
-    - `background` - background color of the loaded image, defaults to self background,
-    - `width` - line width, defaults to self line width.
+    - `color` - foreground color of the loaded image, defaults to parent foreground color,
+    - `background` - background color of the loaded image, defaults to parent background color,
+    - `width` - line width, defaults to parent line width.

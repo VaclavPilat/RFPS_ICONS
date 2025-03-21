@@ -88,9 +88,8 @@ def Residence(self, W, H, L, C, B) -> None:
 
 @createImage("CV", color=(0, 0, 0))
 ## \image html CV/Phone.png
-# \todo Make all icon parts a bit thicker
 def Phone(self, W, H, L, C, B) -> None:
-    R = W*0.35
+    R = W*0.375
     self.arc((0, -L), (R*2, R*2-L), start=135, end=225, rounded=True)
     self.arc((W-R*2+L, H-R*2), (W+L, H), start=45, end=135, rounded=True)
     self.line((R+cos(135)*(R-L/2), R+sin(135)*(R-L/2)-L), (W-R+cos(135)*(R-L/2)+L, H-R+sin(135)*(R-L/2)))

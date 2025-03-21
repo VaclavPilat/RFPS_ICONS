@@ -93,14 +93,14 @@ class Canvas:
     
     @defaultDrawSettings("start", "end", "fill", "width")
     def arc(self, *points, rounded: bool = False, **settings) -> None:
-        """Drawing a partial ellipse
+        """Drawing an arc
 
         Args:
             *points (tuple): Top left and bottom right corner positions
             rounded (bool, optional): Should the ends of the arc be rounded? Defaults to False.
             start (float, optional): Start angle in degrees. Defaults to 0.
             end (float, optional): Stop angle in degrees. Defaults to 180.
-            fill (tuple, optional): Arc fill color. Defaults to image foreground color.
+            fill (tuple, optional): Arc border color. Defaults to image foreground color.
             width (float, optional): Arc border width. Defaults to image line width.
         """
         if rounded:
@@ -134,6 +134,7 @@ class Canvas:
             fill (tuple, optional): Rectangle fill color. Defaults to image foreground color.
             outline (tuple, optional): Rectangle border color. Defaults to image foreground color.
             width (float, optional): Rectangle border width. Defaults to image line width.
+            radius (float, optional): Rectangle border radius. Defaults to image line width.
             corners (tuple, optional): Rectangle corner settings. Defaults to image corner settings.
         """
         self.draw.rounded_rectangle(points, **settings)
