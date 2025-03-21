@@ -6,14 +6,14 @@ import os
 
 
 
-def createImage(folder: str = ".", size: tuple = (100, 100), sampling: float = 5, width: int|float = 10, background: tuple = (0, 0, 0, 0), color: tuple = (255, 255, 255)) -> "func":
+def createImage(folder: str = ".", size: tuple = (100, 100), sampling: float = 5, width: float = 10, background: tuple = (0, 0, 0, 0), color: tuple = (255, 255, 255)) -> "func":
     """Decorator for creating an image and saving it to a file
 
     Args:
         folder (str, optional): Output folder name. Defaults to ".".
         size (tuple, optional): Image size. Defaults to (100, 100).
         sampling (float, optional): Sampling multiplier. Defaults to 5.
-        width (int | float, optional): Default line width. Defaults to 10.
+        width (float, optional): Default line width. Defaults to 10.
         background (tuple, optional): Background color. Defaults to (0, 0, 0, 0).
         color (tuple, optional): Default foreground color. Defaults to (255, 255, 255).
 

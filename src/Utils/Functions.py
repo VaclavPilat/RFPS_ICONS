@@ -4,11 +4,11 @@ import math
 
 
 
-def sin(degrees: int|float) -> float:
+def sin(degrees: float) -> float:
     """A shorter syntax for calculating sinus
 
     Args:
-        degrees (int | float): Amount of degrees
+        degrees (float): Angle size in degrees
 
     Returns:
         float: Value between 0 and 1
@@ -17,11 +17,11 @@ def sin(degrees: int|float) -> float:
 
 
 
-def cos(degrees: int|float) -> float:
+def cos(degrees: float) -> float:
     """A shorter syntax for calculating cosinus
 
     Args:
-        degrees (int | float): Amount of degrees
+        degrees (float): Angle size in degrees
 
     Returns:
         float: Value between 0 and 1

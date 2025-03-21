@@ -55,7 +55,7 @@ def Globe(self, W, H, L, C, B) -> None:
     - `rectangle(*points, fill, outline, width)` - drawing a rectangle with two points as the bounding box,
     - `roundedRectangle(*points, fill, outline, width, radius, corners)` - drawing a rectangle with rounded corners,
     - `polygon(*points, fill, outline, width)` - drawing a closed polygon between the specified points,
-    - `dot(*points, fill, outline, width)` - drawing a small circle from the specified center point.
+    - `dot(point, fill, outline, width)` - drawing a small circle from the specified center point.
 
 - Each draw method has points (tuples of x-y coordinates in pixels) as args and some of the following optional kwarg arguments:
     - `width` - line width in pixels, defaults to self width,
