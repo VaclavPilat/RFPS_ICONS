@@ -104,6 +104,7 @@ def Globe(self, W, H, L, C, B) -> None:
 ## <div class="inverted">
 # \image html Icons/User.png
 # </div>
+# \todo Change icon style
 def User(self, W, H, L, C, B) -> None:
     self.ellipse((0.25*W, 0), (0.75*W, H/2), fill=None)
     self.arc((0, H/2-L), (W, 1.5*H), start=-180, end=0)
@@ -113,6 +114,7 @@ def User(self, W, H, L, C, B) -> None:
 ## <div class="inverted">
 # \image html Icons/Users.png
 # </div>
+# \todo Change cutoff style
 def Users(self, W, H, L, C, B) -> None:
     self.load(User, size=(W*2/3, H*2/3), offset=(W/3, 0))
     self.ellipse((W/6-L, H/3-L), (W/2+L, H*2/3+L), fill=B, outline=B)
@@ -204,6 +206,7 @@ def Keyboard(self, W, H, L, C, B) -> None:
 ## <div class="inverted">
 # \image html Icons/Play.png
 # </div>
+# \todo Change icon style or replace it
 def Play(self, W, H, L, C, B) -> None:
     self.ellipse((0, 0), (W, H), fill=B)
     height = H*0.35
@@ -286,7 +289,7 @@ def Book(self, W, H, L, C, B) -> None:
 # \image html Icons/Circle.png
 # </div>
 def Circle(self, W, H, L, C, B) -> None:
-    self.ellipse((W/4, H/4), (W*3/4, H*3/4))
+    self.dot((W/2, H/2), width=W/3)
 
 @createImage("Icons")
 ## <div class="inverted">
