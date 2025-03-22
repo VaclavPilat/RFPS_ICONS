@@ -104,17 +104,15 @@ def Globe(self, W, H, L, C, B) -> None:
 ## <div class="inverted">
 # \image html Icons/User.png
 # </div>
-# \todo Change icon style
 def User(self, W, H, L, C, B) -> None:
     self.ellipse((0.25*W, 0), (0.75*W, H/2), fill=None)
-    self.arc((0, H/2-L), (W, 1.5*H), start=-180, end=0)
-    self.line((0, H-L/2), (W, H-L/2))
+    self.arc((0, H/2-L), (W, 1.5*H), start=-180, end=0, rounded=True)
+    self.line((L/2, H-L/2), (W-L/2, H-L/2), rounded=True)
 
 @createImage("Icons")
 ## <div class="inverted">
 # \image html Icons/Users.png
 # </div>
-# \todo Change cutoff style
 def Users(self, W, H, L, C, B) -> None:
     self.load(User, size=(W*2/3, H*2/3), offset=(W/3, 0))
     self.ellipse((W/6-L, H/3-L), (W/2+L, H*2/3+L), fill=B, outline=B)
@@ -126,7 +124,7 @@ def Users(self, W, H, L, C, B) -> None:
 # \image html Icons/Sliders.png
 # </div>
 def Sliders(self, W, H, L, C, B) -> None:
-    for y, x in {1: 1/2, 3: 5.1/6, 5: 1/4}.items():
+    for y, x in {1: 1/2, 3: 5.35/6, 5: 1/4}.items():
         self.line((L/2, H*y/6), (W-L/2, H*y/6), rounded=True)
         self.ellipse((W*x-1.5*L, H*y/6-1.5*L), (W*x+1.5*L, H*y/6+1.5*L), outline=B, width=L//2)
 
@@ -136,9 +134,9 @@ def Sliders(self, W, H, L, C, B) -> None:
 # </div>
 def Graph(self, W, H, L, C, B) -> None:
     self.line((L/2, L/2), (L/2, H-L/2), (W-L/2, W-L/2), rounded=True)
-    points = ((0.25*W, 0.75*H), (0.45*W, 0.35*H), (0.7*W, 0.6*H), (0.9*W, 0.1*H))
-    self.line(*points)
-    for x, y in points:
+    P = ((0.25*W, 0.75*H), (0.45*W, 0.35*H), (0.7*W, 0.6*H), (0.9*W, 0.1*H))
+    self.line(*P)
+    for x, y in P:
         self.ellipse((x-L*0.8, y-L*0.8), (x+L*0.8, y+L*0.8))
 
 @createImage("Icons")
@@ -196,24 +194,22 @@ def Cogs(self, W, H, L, C, B) -> None:
 # \image html Icons/Keyboard.png
 # </div>
 def Keyboard(self, W, H, L, C, B) -> None:
-    length = W/3-L/2
-    gap = L*3/4
-    self.roundedRectangle((length, H/2-length-gap/2), (length*2, H/2-gap/2), radius=L/2)
+    S = W/3-L/2
+    G = L*3/4
+    self.roundedRectangle((S, H/2-S-G/2), (S*2, H/2-G/2), radius=L/2)
     for i in range(3):
-        self.roundedRectangle((length*i+gap*i, H/2+gap/2), (length*(i+1)+gap*i, H/2+gap/2+length), radius=L/2)
+        self.roundedRectangle((S*i+G*i, H/2+G/2), (S*(i+1)+G*i, H/2+G/2+S), radius=L/2)
 
 @createImage("Icons")
 ## <div class="inverted">
 # \image html Icons/Play.png
 # </div>
-# \todo Change icon style or replace it
 def Play(self, W, H, L, C, B) -> None:
     self.ellipse((0, 0), (W, H), fill=B)
-    height = H*0.35
-    length = sqrt(3)/2*height
-    points = [(W/2-length/2+L/2, H/2-height/2), (W/2-length/2+L/2, H/2+height/2), (W/2+length/2+L/2, H/2)]
-    self.line(*points, rounded=True, closed=True)
-    self.polygon(*points)
+    R = 0.25*W
+    A = (0, 120, 240)
+    for a, b in ((A[i-1], A[i]) for i in range(3)):
+        self.line((W/2+cos(a)*R, H/2+sin(a)*R), (W/2+cos(b)*R, H/2+sin(b)*R), rounded=True)
 
 @createImage("Icons")
 ## <div class="inverted">
@@ -258,11 +254,11 @@ def Search(self, W, H, L, C, B) -> None:
 # \image html Icons/Flag.png
 # </div>
 def Flag(self, W, H, L, C, B) -> None:
-    offsets = (0, H*0.4)
-    self.line((W-L*1.5, H*0.1+offsets[0]), (W-L*1.5, H*0.1+offsets[1]), rounded=True)
-    for offset in offsets:
-        self.arc((-L/2, offset), (W*2/3-L/2, H/2+offset), start=-120, end=-45)
-        self.arc((W/3, -L-H/5+offset), (W, H*0.3-L+offset), start=50, end=130)
+    O = (0, H*0.4)
+    self.line((W-L*1.5, H*0.1+O[0]), (W-L*1.5, H*0.1+O[1]), rounded=True)
+    for o in O:
+        self.arc((-L/2, o), (W*2/3-L/2, H/2+o), start=-120, end=-45)
+        self.arc((W/3, -L-H/5+o), (W, H*0.3-L+o), start=50, end=130)
     self.line((L*1.5, L*0.7), (L*1.5, H), rounded=True)
 
 @createImage("Icons")
@@ -270,8 +266,8 @@ def Flag(self, W, H, L, C, B) -> None:
 # \image html Icons/Cursor.png
 # </div>
 def Cursor(self, W, H, L, C, B) -> None:
-    coords = ((W*0.60, H*0.87), (W*0.4, H*0.5), (W*0.7, H*0.45), (L/2, L/2), (L/2, H*0.80), (W*0.25, H*0.58), (W*0.45, H-L/2), (W*0.60, H*0.87))
-    self.line(*((x+W*0.12, y) for x, y in coords), rounded=True)
+    C = ((W*0.60, H*0.87), (W*0.4, H*0.5), (W*0.7, H*0.45), (L/2, L/2), (L/2, H*0.80), (W*0.25, H*0.58), (W*0.45, H-L/2), (W*0.60, H*0.87))
+    self.line(*((x+W*0.12, y) for x, y in C), rounded=True)
 
 @createImage("Icons")
 ## <div class="inverted">
