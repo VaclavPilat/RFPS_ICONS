@@ -16,7 +16,7 @@ This repository is used for creating simple icons and other images using Python'
 
 ## How to reuse
 
-1. Import the `createImage` decorator from the Image module.
+1. Import the `createImage` decorator from the Files module.
 2. Declare an image function, decorated by `createImage`.
 3. Call draw methods inside the function, like this:
 ```py
@@ -49,9 +49,9 @@ def Globe(self, W, H, L, C, B) -> None:
     - `B` - background color.
 
 - Inside an image function you can use the following draw methods:
-    - `line(*points, fill, width, joint)` - drawing straight lines between the specified points,
+    - `line(*points, fill, width, joint, rounded)` - drawing straight lines between the specified points,
     - `ellipse(*points, fill, outline, width)` - drawing an ellipse with two points for the bounding box,
-    - `arc(*points, start, end, fill, width)` - drawing a part of an ellipse with start and stop angles,
+    - `arc(*points, start, end, fill, width, rounded)` - drawing a part of an ellipse with start and stop angles,
     - `rectangle(*points, fill, outline, width)` - drawing a rectangle with two points as the bounding box,
     - `roundedRectangle(*points, fill, outline, width, radius, corners)` - drawing a rectangle with rounded corners,
     - `polygon(*points, fill, outline, width)` - drawing a closed polygon between the specified points,
@@ -65,7 +65,8 @@ def Globe(self, W, H, L, C, B) -> None:
     - `end` - end angle, defaults to `180`,
     - `joint` - line joint type, defaults to `"curve"`,
     - `radius` - curve radius, defaults to image line width,
-    - `corners` - corner curve settings, defaults to `(True, True, True, True)`.
+    - `corners` - corner curve settings, defaults to `(True, True, True, True)`,
+    - `rounded` - custom setting for rounding edges/ends, defaults to `False`.
 
 - You can also load another image inside an image function by calling `self.load()` with the following arguments:
     - `function` - name of an already defined image function to load,

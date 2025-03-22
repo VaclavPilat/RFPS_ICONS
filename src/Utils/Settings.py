@@ -20,6 +20,7 @@ def defaultDrawSettings(*names) -> "func":
                 "joint": "curve",
                 "radius": self.width,
                 "corners": (True, True, True, True),
+                "rounded": False,
             }.items() if k in names}
             values.update(settings)
             if transform:

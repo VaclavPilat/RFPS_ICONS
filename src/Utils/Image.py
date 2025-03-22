@@ -10,7 +10,8 @@ class Canvas:
     """Class for wrapping the functionality of the Pillow library
     """
 
-    def __init__(self, draw: ImageDraw, size: tuple = (100, 100), offset: tuple = (0, 0), color: tuple = (255, 255, 255), background: tuple = (0, 0, 0, 0), width: float = 10) -> None:
+    def __init__(self, draw: ImageDraw, size: tuple = (100, 100), offset: tuple = (0, 0),
+        color: tuple = (255, 255, 255), background: tuple = (0, 0, 0, 0), width: float = 10) -> None:
         """Initialising and Image instance
 
         Args:
@@ -61,20 +62,17 @@ class Canvas:
         loaded = Canvas(self.draw, offset=offset, **settings)
         function(loaded, *settings["size"], settings["width"], settings["color"], settings["background"])
     
-    @defaultDrawSettings("fill", "width", "joint")
-    def line(self, *points, closed: bool = False, rounded: bool = False, **settings) -> None:
+    @defaultDrawSettings("fill", "width", "joint", "rounded")
+    def line(self, *points, rounded: bool, **settings) -> None:
         """Drawing a line
 
         Args:
             *points (tuple): Points representing a line
-            closed (bool, optional): Should the line be closed? Defaults to False.
-            rounded (bool, optional): Should the line ends be rounded? Defaults to False.
             fill (tuple, optional): Line color. Defaults to image foreground color.
             width (float, optional): Line width. Defaults to image line color.
             joint (str, optional): Line joint type. Defaults to "curve".
+            rounded (bool, optional): Should the line ends be rounded? Defaults to False.
         """
-        if closed:
-            points = points + (points[0], )
         if rounded:
             points = (points[1], ) + points + (points[-2], )
         self.draw.line(points, **settings)
@@ -91,17 +89,17 @@ class Canvas:
         """
         self.draw.ellipse(points, **settings)
     
-    @defaultDrawSettings("start", "end", "fill", "width")
-    def arc(self, *points, rounded: bool = False, **settings) -> None:
+    @defaultDrawSettings("start", "end", "fill", "width", "rounded")
+    def arc(self, *points, rounded: bool, **settings) -> None:
         """Drawing an arc
 
         Args:
             *points (tuple): Top left and bottom right corner positions
-            rounded (bool, optional): Should the ends of the arc be rounded? Defaults to False.
             start (float, optional): Start angle in degrees. Defaults to 0.
             end (float, optional): Stop angle in degrees. Defaults to 180.
             fill (tuple, optional): Arc border color. Defaults to image foreground color.
             width (float, optional): Arc border width. Defaults to image line width.
+            rounded (bool, optional): Should the ends of the arc be rounded? Defaults to False.
         """
         if rounded:
             for degrees in (settings["start"], settings["end"]):
