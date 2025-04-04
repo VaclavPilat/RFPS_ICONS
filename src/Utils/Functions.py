@@ -3,7 +3,6 @@
 import math
 
 
-
 def sin(degrees: float) -> float:
     """A shorter syntax for calculating sinus
 
@@ -14,7 +13,6 @@ def sin(degrees: float) -> float:
         float: Value between 0 and 1
     """
     return math.sin(math.radians(degrees))
-
 
 
 def cos(degrees: float) -> float:

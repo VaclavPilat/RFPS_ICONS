@@ -1,9 +1,9 @@
 ## \file
 # Functionality for creating and saving generated images into files
-from Utils.Image import Canvas
 from PIL import Image, ImageDraw, ImageChops
+# noinspection PyPackages
+from .Image import Canvas
 import os
-
 
 
 def createImage(folder: str = ".", size: tuple = (100, 100), sampling: float = 5, width: float = 10, background: tuple = (0, 0, 0, 0), color: tuple = (255, 255, 255)) -> "func":

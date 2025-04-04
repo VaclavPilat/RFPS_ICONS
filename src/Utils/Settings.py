@@ -2,7 +2,6 @@
 # Decorators for wrapping Canvas methods and providing default setting values
 
 
-
 def defaultDrawSettings(*names) -> "func":
     """Decorator for passing default settings to draw methods
 
@@ -28,7 +27,6 @@ def defaultDrawSettings(*names) -> "func":
             method(self, *points, **values)
         return wrapped
     return wrapper
-
 
 
 def defaultLoadSettings(method: "func") -> "func":

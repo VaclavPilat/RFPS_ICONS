@@ -1,11 +1,12 @@
 ## \file
 # Functionality for generating images using simple shapes
-from Utils.Settings import *
 from PIL import ImageDraw
+# noinspection PyPackages
+from .Settings import *
 import math
 
 
-
+# noinspection PyIncorrectDocstring
 class Canvas:
     """Class for wrapping the functionality of the Pillow library
     """
