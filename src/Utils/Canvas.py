@@ -3,6 +3,7 @@
 from PIL import ImageDraw
 # noinspection PyPackages
 from .Settings import *
+from types import FunctionType
 import math
 
 
@@ -48,11 +49,11 @@ class Canvas:
         return [(point[0] + self.offset[0], point[1] + self.offset[1]) for point in points]
     
     @defaultLoadSettings
-    def load(self, function: "func", offset: tuple, **settings) -> None:
+    def load(self, function: FunctionType, offset: tuple, **settings) -> None:
         """Loading another image into this one
 
         Args:
-            function (func): Function to load
+            function (FunctionType): Function to load
             offset (tuple, optional): Image offset. Defaults to (0, 0).
             size (tuple, optional): Image size. Defaults to parent image size.
             color (tuple, optional): Image foreground color. Defaults to parent image foreground color.

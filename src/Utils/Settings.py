@@ -1,14 +1,17 @@
 ## \file
 # Decorators for wrapping Canvas methods and providing default setting values
+from types import FunctionType
 
 
-def defaultDrawSettings(*names) -> "func":
+# noinspection PyTypeChecker
+def defaultDrawSettings(*names) -> FunctionType:
     """Decorator for passing default settings to draw methods
 
     Returns:
-        func: Wrapper for a drawing method
+        FunctionType: Wrapper for a drawing method
     """
-    def wrapper(method: "func") -> "func":
+    # noinspection PyTypeChecker
+    def wrapper(method: FunctionType) -> FunctionType:
         def wrapped(self, *points, transform: bool = True, **settings) -> None:
             values = {k: v for k, v in {
                 "width": self.width,
@@ -29,16 +32,17 @@ def defaultDrawSettings(*names) -> "func":
     return wrapper
 
 
-def defaultLoadSettings(method: "func") -> "func":
+# noinspection PyTypeChecker
+def defaultLoadSettings(method: FunctionType) -> FunctionType:
     """Decorator for providing default settings to an image loading method
 
     Args:
-        method (func): Method being wrapped
+        method (FunctionType): Method being wrapped
 
     Returns:
-        func: Wrapped method
+        FunctionType: Wrapped method
     """
-    def wrapped(self, function: "func", **settings) -> None:
+    def wrapped(self, function: FunctionType, **settings) -> None:
         values = {
             "size": self.size,
             "offset": (0, 0),

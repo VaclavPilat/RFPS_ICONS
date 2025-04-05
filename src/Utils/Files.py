@@ -2,11 +2,14 @@
 # Functionality for creating and saving generated images into files
 from PIL import Image, ImageDraw, ImageChops
 # noinspection PyPackages
-from .Image import Canvas
+from .Canvas import Canvas
+from types import FunctionType
+from typing import Callable
 import os
 
 
-def createImage(folder: str = ".", size: tuple = (100, 100), sampling: float = 5, width: float = 10, background: tuple = (0, 0, 0, 0), color: tuple = (255, 255, 255)) -> "func":
+def createImage(folder: str = ".", size: tuple = (100, 100), sampling: float = 5, width: float = 10, background:
+        tuple = (0, 0, 0, 0), color: tuple = (255, 255, 255)) -> Callable[[FunctionType], FunctionType]:
     """Decorator for creating an image and saving it to a file
 
     Args:
@@ -18,17 +21,18 @@ def createImage(folder: str = ".", size: tuple = (100, 100), sampling: float = 5
         color (tuple, optional): Default foreground color. Defaults to (255, 255, 255).
 
     Returns:
-        func: Wrapper for image creation
+        Callable[[FunctionType], FunctionType]: Wrapper for image creation
     """
-    def wrapper(function: "func") -> "func":
+    def wrapper(function: FunctionType) -> FunctionType:
         # Calculating sampled sizes
-        scaledSize = (size[0] * sampling, size[1] * sampling)
-        scaledWidth = width * sampling
+        scaled_size = (size[0] * sampling, size[1] * sampling)
+        scaled_width = width * sampling
         # Creating an image
-        image = Image.new("RGBA", scaledSize, background)
-        canvas = Canvas(ImageDraw.Draw(image), scaledSize, (0, 0), color, background, scaledWidth)
+        image = Image.new("RGBA", scaled_size, background)
+        canvas = Canvas(ImageDraw.Draw(image), scaled_size, (0, 0), color, background, scaled_width)
         # Calling the function
-        function(canvas, *scaledSize, scaledWidth, color, background)
+        function(canvas, *scaled_size, scaled_width, color, background)
+        # noinspection PyTypeChecker,PyUnresolvedReferences
         image = image.resize(size, resample=Image.LANCZOS)
         # Getting image file path
         folderpath = f"images/{folder}"

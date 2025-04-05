@@ -2,7 +2,6 @@
 # Functions for generating icons
 from Utils.Files import createImage
 from Utils.Functions import sin, cos
-from math import sqrt
 
 
 
