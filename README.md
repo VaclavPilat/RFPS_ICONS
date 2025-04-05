@@ -2,7 +2,7 @@
 
 ![Icon examples](docs/Examples.png)
 
-This repository is used for creating simple icons and other images using Python's Pillow library.
+This repository is used for creating simple icons and other images using Python's Pillow library. Python 3.10 was used in development.
 
 ## How to run
 

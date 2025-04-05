@@ -1,4 +1,4 @@
-image: python:3.13.1-bookworm
+image: python:3.10-alpine
 
 stages:
   - run
