@@ -3,8 +3,6 @@
 from Utils.Files import createImage
 from Utils.Functions import sin, cos
 
-
-
 ## \defgroup icons Generated icon images (inverted)
 # <div class="inverted">
 # \link Globe()
@@ -86,8 +84,6 @@ from Utils.Functions import sin, cos
 # \image html Icons/Crosshair.png
 # \endlink
 # </div>
-
-
 
 @createImage("Icons")
 ## <div class="inverted">

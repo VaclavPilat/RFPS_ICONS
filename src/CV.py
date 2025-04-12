@@ -4,8 +4,6 @@ from Utils.Files import createImage
 from Utils.Functions import sin, cos
 from Icons import Cap, Home
 
-
-
 ## \defgroup cv Generated CV icons
 # <div>
 # \link Education()
@@ -45,8 +43,6 @@ from Icons import Cap, Home
 # \image html CV/Birth.png
 # \endlink
 # </div>
-
-
 
 @createImage("CV", color=(0, 0, 0))
 ## \image html CV/Education.png

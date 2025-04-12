@@ -3,8 +3,6 @@
 from Utils.Files import createImage
 from Utils.Functions import sin, cos
 
-
-
 ## \defgroup documentation Generated documentation images
 # <div>
 # \link Strafing()
@@ -14,8 +12,6 @@ from Utils.Functions import sin, cos
 # \image html Docs/NoStrafing.png
 # \endlink
 # </div>
-
-
 
 def Arrows(self, W, H, L, C, B) -> None:
     self.line((W/2, L/2), (W/2, H-L/2), rounded=True)
