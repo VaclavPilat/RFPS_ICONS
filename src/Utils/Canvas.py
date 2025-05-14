@@ -1,10 +1,8 @@
 ## \file
 # Functionality for generating images using simple shapes
-from PIL import ImageDraw
-# noinspection PyPackages
-from .Settings import *
-from types import FunctionType
+from . import Settings
 import math
+from PIL import ImageDraw
 
 
 # noinspection PyIncorrectDocstring
@@ -17,7 +15,7 @@ class Canvas:
         """Initialising and Image instance
 
         Args:
-            draw (ImageDraw): ImageDraw instance
+            draw (PIL.ImageDraw): ImageDraw instance
             size (tuple, optional): Image size. Defaults to (100, 100).
             offset (tuple, optional): Image offset point. Defaults to (0, 0).
             color (tuple, optional): Foreground color. Defaults to (255, 255, 255).
@@ -48,12 +46,12 @@ class Canvas:
         """
         return [(point[0] + self.offset[0], point[1] + self.offset[1]) for point in points]
     
-    @defaultLoadSettings
-    def load(self, function: FunctionType, offset: tuple, **settings) -> None:
+    @Settings.defaultLoadSettings
+    def load(self, function, offset: tuple, **settings) -> None:
         """Loading another image into this one
 
         Args:
-            function (FunctionType): Function to load
+            function: Function to load
             offset (tuple, optional): Image offset. Defaults to (0, 0).
             size (tuple, optional): Image size. Defaults to parent image size.
             color (tuple, optional): Image foreground color. Defaults to parent image foreground color.
@@ -64,7 +62,7 @@ class Canvas:
         loaded = Canvas(self.draw, offset=offset, **settings)
         function(loaded, *settings["size"], settings["width"], settings["color"], settings["background"])
     
-    @defaultDrawSettings("fill", "width", "joint", "rounded")
+    @Settings.defaultDrawSettings("fill", "width", "joint", "rounded")
     def line(self, *points, rounded: bool, **settings) -> None:
         """Drawing a line
 
@@ -79,7 +77,7 @@ class Canvas:
             points = (points[1], ) + points + (points[-2], )
         self.draw.line(points, **settings)
     
-    @defaultDrawSettings("fill", "outline", "width")
+    @Settings.defaultDrawSettings("fill", "outline", "width")
     def ellipse(self, *points, **settings) -> None:
         """Drawing a full ellipse
 
@@ -91,7 +89,7 @@ class Canvas:
         """
         self.draw.ellipse(points, **settings)
     
-    @defaultDrawSettings("start", "end", "fill", "width", "rounded")
+    @Settings.defaultDrawSettings("start", "end", "fill", "width", "rounded")
     def arc(self, *points, rounded: bool, **settings) -> None:
         """Drawing an arc
 
@@ -113,7 +111,7 @@ class Canvas:
                 self.dot((center[0] + cos*width/2, center[1] + sin*height/2), outline=color, fill=color, transform=False)
         self.draw.arc(points, **settings)
     
-    @defaultDrawSettings("fill", "outline", "width")
+    @Settings.defaultDrawSettings("fill", "outline", "width")
     def rectangle(self, *points, **settings) -> None:
         """Drawing a rectangle
 
@@ -125,7 +123,7 @@ class Canvas:
         """
         self.draw.rectangle(points, **settings)
     
-    @defaultDrawSettings("fill", "outline", "width", "radius", "corners")
+    @Settings.defaultDrawSettings("fill", "outline", "width", "radius", "corners")
     def roundedRectangle(self, *points, **settings) -> None:
         """Drawing a rounded rectangle
 
@@ -139,7 +137,7 @@ class Canvas:
         """
         self.draw.rounded_rectangle(points, **settings)
     
-    @defaultDrawSettings("fill", "outline", "width")
+    @Settings.defaultDrawSettings("fill", "outline", "width")
     def polygon(self, *points, **settings) -> None:
         """Drawing a polygon
 
@@ -151,7 +149,7 @@ class Canvas:
         """
         self.draw.polygon(points, **settings)
     
-    @defaultDrawSettings("fill", "outline", "width")
+    @Settings.defaultDrawSettings("fill", "outline", "width")
     def dot(self, point: tuple, **settings) -> None:
         """Drawing a small circle
 

@@ -1,7 +1,7 @@
 ## \file
 # Functions for generating charts and other documentation sketches
-from Utils.Files import createImage
-from Utils.Functions import sin, cos
+from Utils import Files, Math
+
 
 ## \defgroup documentation Generated documentation images
 # <div>
@@ -12,6 +12,7 @@ from Utils.Functions import sin, cos
 # \image html Docs/NoStrafing.png
 # \endlink
 # </div>
+
 
 def Arrows(self, W, H, L, C, B) -> None:
     self.line((W/2, L/2), (W/2, H-L/2), rounded=True)
@@ -38,7 +39,7 @@ def BasicDots(self, W, H, L, C, B) -> None:
     self.dot((W/2-SI*H/2+L/2, H/2))
     self.dot((W/2+SI*H/2-L/2, H/2))
 
-@createImage("Docs", (300, 300), color=(150, 150, 150))
+@Files.createImage("Docs", (300, 300), color=(150, 150, 150))
 ## \image html Docs/Strafing.png
 def Strafing(self, W, H, L, C, B) -> None:
     self.load(Arrows, color=(200, 200, 200))
@@ -49,7 +50,7 @@ def Strafing(self, W, H, L, C, B) -> None:
     self.dot((W/2-SI*H/2+L/2, (H+H*BA)/2-L/2), outline=(0, 0, 0))
     self.dot((W/2+SI*H/2-L/2, (H+H*BA)/2-L/2), outline=(0, 0, 0))
 
-@createImage("Docs", (300, 300), color=(150, 150, 150))
+@Files.createImage("Docs", (300, 300), color=(150, 150, 150))
 ## \image html Docs/NoStrafing.png
 def NoStrafing(self, W, H, L, C, B) -> None:
     self.load(Arrows, color=(200, 200, 200))
@@ -60,4 +61,4 @@ def NoStrafing(self, W, H, L, C, B) -> None:
     self.arc((W/2-BS*H/2, (1-BS)/2*H), (W/2+BS*H/2, (H+H*BS)/2), start=0, end=180, rounded=True)
     self.load(BasicDots, color=(0, 0, 0))
     for speed, angle in ((FS, -45), (FS, -135), (BS, 45), (BS, 135)):
-        self.dot((W/2+cos(angle)*(speed*H/2-L/2), H/2+sin(angle)*(speed*H/2-L/2)), outline=(0, 0, 0))
+        self.dot((W/2+Math.cos(angle)*(speed*H/2-L/2), H/2+Math.sin(angle)*(speed*H/2-L/2)), outline=(0, 0, 0))

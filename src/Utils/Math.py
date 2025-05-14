@@ -1,5 +1,5 @@
 ## \file
-# Various math function
+# Various math functions
 import math
 
 
