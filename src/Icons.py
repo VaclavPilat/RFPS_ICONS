@@ -111,8 +111,8 @@ def User(self, W, H, L, C, B) -> None:
 # </div>
 def Users(self, W, H, L, C, B) -> None:
     self.load(User, size=(W*2/3, H*2/3), offset=(W/3, 0))
-    self.ellipse((W/6-L, H/3-L), (W/2+L, H*2/3+L), fill=B, outline=B)
-    self.ellipse((-L, H*2/3-2*L), (W*2/3+L, H*4/3+L), fill=B, outline=B)
+    self.ellipse((W/6-L/2, H/3-L/2), (W/2+L/2, H*2/3+L/2), fill=B, outline=B)
+    self.ellipse((0, H*2/3-1.5*L), (W*2/3+L/2, H*4/3+L/2), fill=B, outline=B)
     self.load(User, size=(W*2/3, H*2/3), offset=(0, W/3))
 
 @Files.createImage("Icons")
@@ -120,9 +120,10 @@ def Users(self, W, H, L, C, B) -> None:
 # \image html Icons/Sliders.png
 # </div>
 def Sliders(self, W, H, L, C, B) -> None:
-    for y, x in {1: 1/2, 3: 5.35/6, 5: 1/4}.items():
-        self.line((L/2, H*y/6), (W-L/2, H*y/6), rounded=True)
-        self.ellipse((W*x-1.5*L, H*y/6-1.5*L), (W*x+1.5*L, H*y/6+1.5*L), outline=B, width=L//2)
+    for y, x in {H/6: W/2, H/2: W-L/2, 5/6*H: W/4}.items():
+        self.line((L/2, y), (W-L/2, y), rounded=True)
+        self.rectangle((x-L, y-L), (x+L, y+L), outline=B, fill=B)
+        self.line((x, y-L*3/4), (x, y+L*3/4), rounded=True)
 
 @Files.createImage("Icons")
 ## <div class="inverted">
@@ -130,10 +131,8 @@ def Sliders(self, W, H, L, C, B) -> None:
 # </div>
 def Graph(self, W, H, L, C, B) -> None:
     self.line((L/2, L/2), (L/2, H-L/2), (W-L/2, W-L/2), rounded=True)
-    P = ((0.25*W, 0.75*H), (0.45*W, 0.35*H), (0.7*W, 0.6*H), (0.9*W, 0.1*H))
-    self.line(*P)
-    for x, y in P:
-        self.ellipse((x-L*0.8, y-L*0.8), (x+L*0.8, y+L*0.8))
+    P = ((0.2*W, 0.8*H), (0.45*W, 0.35*H), (0.7*W, 0.6*H), (W-L/2, L/2))
+    self.line(*P, rounded=True)
 
 @Files.createImage("Icons")
 ## <div class="inverted">
@@ -142,16 +141,16 @@ def Graph(self, W, H, L, C, B) -> None:
 def Audio(self, W, H, L, C, B) -> None:
     self.line((L/2, H/3), (L/2, H*2/3), (W/4, H*2/3), (W/2, H-L), (W/2, L), (W/4, H/3), (L/2, H/3), rounded=True)
     self.arc((0, 0), (W, H), start=-55, end=55, rounded=True)
-    self.arc((W/3, H/4), (W*6.25/8, H*3/4), start=-60, end=60, rounded=True)
+    self.arc((W/3+L/3, H/4), (W*6.25/8+L/3, H*3/4), start=-60, end=60, rounded=True)
 
 @Files.createImage("Icons")
 ## <div class="inverted">
 # \image html Icons/Monitor.png
 # </div>
 def Monitor(self, W, H, L, C, B) -> None:
-    self.line((W/4, H-L/2), (W*3/4, H-L/2), rounded=True)
-    self.line((L/2, H*3.6/5), (L/2, L/2), (W-L/2, L/2), (W-L/2, H*3.2/5), (L/2, H*3.2/5), (L/2, H*3.6/5), (W-L/2, H*3.6/5), (W-L/2, H/2), rounded=True)
-    self.line((W/2-L/2, H-L/2), (W/2-L/2, H*3.6/5), (W/2+L/2, H*3.6/5), (W/2+L/2, H-L/2), rounded=True)
+    self.roundedRectangle((0, L/2), (W, H*3/4), fill=None)
+    self.line((W*0.3, H-L), (W*0.7, H-L), rounded=True)
+    self.line((W/2, H*3/4), (W/2, H-L))
 
 @Files.createImage("Icons")
 ## <div class="inverted">
@@ -159,7 +158,7 @@ def Monitor(self, W, H, L, C, B) -> None:
 # </div>
 def Splitscreen(self, W, H, L, C, B) -> None:
     self.load(Monitor)
-    self.line((W/2, 0), (W/2, H))
+    self.line((W/2, L), (W/2, H-L))
 
 @Files.createImage("Icons")
 ## <div class="inverted">
@@ -167,7 +166,7 @@ def Splitscreen(self, W, H, L, C, B) -> None:
 # </div>
 def Cap(self, W, H, L, C, B) -> None:
     self.line((W/2, H/10+L/2), (W-L/2, H*0.35), (W/2, H*0.6), (L/2, H*0.35), (W/2, H/10+L/2), rounded=True)
-    for i in [-1, 1]:
+    for i in (-1, 1):
         self.line((W/2+i*W/4, H/2), (W/2+i*W/4, H*0.7), rounded=True)
     self.arc((W/4-L/2, H/2), (W*3/4+L/2, H*0.9), start=0, end=180)
     self.line((L, H*0.35), (L, H*0.6), rounded=True)
@@ -192,9 +191,9 @@ def Cogs(self, W, H, L, C, B) -> None:
 def Keyboard(self, W, H, L, C, B) -> None:
     S = W/3-L/2
     G = L*3/4
-    self.roundedRectangle((S, H/2-S-G/2), (S*2, H/2-G/2), radius=L/2)
+    self.roundedRectangle((S, H/2-S-G/2), (S*2, H/2-G/2), radius=L/2, fill=None)
     for i in range(3):
-        self.roundedRectangle((S*i+G*i, H/2+G/2), (S*(i+1)+G*i, H/2+G/2+S), radius=L/2)
+        self.roundedRectangle((S*i+G*i, H/2+G/2), (S*(i+1)+G*i, H/2+G/2+S), radius=L/2, fill=None)
 
 @Files.createImage("Icons")
 ## <div class="inverted">
@@ -231,10 +230,10 @@ def Shutdown(self, W, H, L, C, B) -> None:
 # </div>
 def Home(self, W, H, L, C, B) -> None:
     self.line((W/6, H-L/2), (W*5/6, H-L/2))
-    for i in [-1, 1]:
+    for i in (-1, 1):
         self.line((W/2+i*W*0.35, H), (W/2+i*W*0.35, H*0.4))
-        self.line((W/2+i*L/2, H*3/5), (W/2+i*L/2, H))
     self.line((L/2, H/2), (W/2, L/2), (W-L/2, H/2), rounded=True)
+    self.rectangle((W/2-L*1.5, H*3/5), (W/2+L*1.5, H), fill=None)
 
 @Files.createImage("Icons")
 ## <div class="inverted">
@@ -243,7 +242,6 @@ def Home(self, W, H, L, C, B) -> None:
 def Search(self, W, H, L, C, B) -> None:
     self.ellipse((0, 0), (W*0.7, H*0.7), fill=B)
     self.line((W*0.6, H*0.6), (W-L, H-L), rounded=True)
-    self.line((W*0.7, H*0.7), (W-L*3/4, H-L*3/4), rounded=True, width=int(L*1.5))
 
 @Files.createImage("Icons")
 ## <div class="inverted">
@@ -273,7 +271,7 @@ def Book(self, W, H, L, C, B) -> None:
     for i in range(3):
         self.line((L/2+i*(W/2-L/2), H*0.1), (L/2+i*(W/2-L/2), H*0.9))
     for i in range(2):
-        for j in [0, 4]:
+        for j in (0, 4):
             self.arc((-W/4+W/2*i, L*2*j+L/20), (W*3/4+W/2*i, H+L*2*j+L/20), start=-130, end=-50)
 
 @Files.createImage("Icons")
@@ -281,7 +279,8 @@ def Book(self, W, H, L, C, B) -> None:
 # \image html Icons/Circle.png
 # </div>
 def Circle(self, W, H, L, C, B) -> None:
-    self.dot((W/2, H/2), width=W/3)
+    self.dot((W/2, H/2), width=L*3)
+    self.dot((W/2, H/2), outline=B)
 
 @Files.createImage("Icons")
 ## <div class="inverted">
@@ -308,12 +307,12 @@ def Trash(self, W, H, L, C, B) -> None:
 # </div>
 def Metro(self, W, H, L, C, B) -> None:
     for i in range(2):
-        self.line((W/2, H*0.5), (i*W, H+L*2.5))
-    self.roundedRectangle((0, 0), (W, H*0.8+L/2), outline=B, fill=B)
+        self.line((W/2, H/2), (i*W, H+L*2.5))
+    self.line((0, H*0.8), (W, H*0.8), fill=B)
     self.roundedRectangle((W*0.15, 0), (W*0.85, H*0.8), fill=B)
-    self.roundedRectangle((W*0.15, H*0.5), (W*0.85, H*0.8))
-    for i in [-1, 1]:
-        self.ellipse((W/2+i*W/5-L/2, H*0.7-L), (W/2+i*W/5+L/2, H*0.7), outline=B)
+    for i in (-1, 1):
+        self.dot((W/2+i*W/6, H*0.6))
+    self.line((W*0.15, H*0.45), (W*0.85, H*0.45))
 
 @Files.createImage("Icons")
 ## <div class="inverted">
@@ -341,7 +340,7 @@ def Stopwatch(self, W, H, L, C, B) -> None:
     self.ellipse((W*0.075, H*0.15), (W*0.925, H), fill=B)
     self.line((W/2, H*0.575), (W/2, H*0.35), rounded=True)
     self.line((W/2, H*0.575), (W/2+Math.cos(30)*W*0.15, H*0.575+Math.sin(30)*H*0.15), rounded=True)
-    for i in [-45, -135]:
+    for i in (-45, -135):
         self.line((W/2+Math.cos(i)*W*0.45, H*0.575+Math.sin(i)*H*0.45), (W/2+Math.cos(i)*W*0.375, H*0.575+Math.sin(i)*H*0.375), rounded=True)
 
 @Files.createImage("Icons")
