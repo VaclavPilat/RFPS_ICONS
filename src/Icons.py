@@ -83,6 +83,33 @@ from Utils import Files, Math
 # \link Crosshair()
 # \image html Icons/Crosshair.png
 # \endlink
+# \link Pin()
+# \image html Icons/Pin.png
+# \endlink
+# \link Code()
+# \image html Icons/Code.png
+# \endlink
+# \link Email()
+# \image html Icons/Email.png
+# \endlink
+# \link Phone()
+# \image html Icons/Phone.png
+# \endlink
+# \link Star()
+# \image html Icons/Star.png
+# \endlink
+# \link Bag()
+# \image html Icons/Bag.png
+# \endlink
+# \link Certificate()
+# \image html Icons/Certificate.png
+# \endlink
+# \link Speech()
+# \image html Icons/Speech.png
+# \endlink
+# \link Birth()
+# \image html Icons/Birth.png
+# \endlink
 # </div>
 
 
@@ -352,3 +379,83 @@ def Crosshair(self, W, H, L, C, B) -> None:
     self.ellipse((W/2-L/2, H/2-L/2), (W/2+L/2, H/2+L/2))
     for i in range(0, 360, 90):
         self.line((W/2+Math.cos(i)*W/4, H/2+Math.sin(i)*H/4), (W/2+Math.cos(i)*(W/2-L/2), H/2+Math.sin(i)*(H/2-L/2)), rounded=True)
+
+@Files.createImage("Icons")
+## \image html Icons/Pin.png
+def Pin(self, W, H, L, C, B) -> None:
+    R = W*0.35
+    A = 30
+    self.arc((W/2-R, 0), (W/2+R, R*2), rounded=True, start=180-A, end=360+A)
+    self.dot((W/2, R), width=L*3)
+    self.dot((W/2, R), outline=B)
+    points = []
+    for i in [180-A, 360+A]:
+        points.append((W/2+Math.cos(i)*(R-L/2), R+Math.sin(i)*(R-L/2)))
+    points.insert(1, (W/2, H-L/2))
+    self.line(*points, rounded=True)
+
+@Files.createImage("Icons")
+## \image html Icons/Code.png
+def Code(self, W, H, L, C, B) -> None:
+    for i in [-1, 1]:
+        self.line((W/2+i*W*0.2, H*0.35), (W/2+i*(W/2-L/2), H/2), (W/2+i*W*0.2, H*0.65), rounded=True)
+    self.line((W*0.4, H*0.85), (W*0.6, H*0.15), rounded=True)
+
+@Files.createImage("Icons")
+## \image html Icons/Email.png
+def Email(self, W, H, L, C, B) -> None:
+    self.arc((0, 0), (W, H), start=60, end=360, rounded=True)
+    self.arc((W*0.275, H*0.275), (W*0.725, H*0.725), start=0, end=360)
+    self.line((W*0.725-L/2, H*0.275+L/2), (W*0.725-L/2, H/2), rounded=True)
+    self.arc((W*0.725-L, H*0.275+L/2), (W, H*0.725), rounded=True)
+
+@Files.createImage("Icons")
+## \image html Icons/Phone.png
+def Phone(self, W, H, L, C, B) -> None:
+    R = W*0.375
+    self.arc((0, -L), (R*2, R*2-L), start=135, end=225, rounded=True)
+    self.arc((W-R*2+L, H-R*2), (W+L, H), start=45, end=135, rounded=True)
+    self.line((R+Math.cos(135)*(R-L/2), R+Math.sin(135)*(R-L/2)-L), (W-R+Math.cos(135)*(R-L/2)+L, H-R+Math.sin(135)*(R-L/2)))
+    self.line(
+        (R+Math.cos(225)*(R-L/2), R+Math.sin(225)*(R-L/2)-L), (R+Math.cos(225)*(R-L/2)+W/5, R+Math.sin(225)*(R-L/2)+H/5-L),
+        (R+Math.cos(225)*(R-L/2)+W/10, R+Math.sin(225)*(R-L/2)+H*0.3-L), (W-R+Math.cos(45)*(R-L/2)-W*0.3+L, H-R+Math.sin(45)*(R-L/2)-H/10),
+        (W-R+Math.cos(45)*(R-L/2)-W/5+L, H-R+Math.sin(45)*(R-L/2)-H/5), (W-R+Math.cos(45)*(R-L/2)+L, H-R+Math.sin(45)*(R-L/2)),
+        rounded=True
+    )
+
+@Files.createImage("Icons")
+## \image html Icons/Star.png
+def Star(self, W, H, L, C, B) -> None:
+    R = W/5
+    for a, b, c in ((18, 54, 90), (90, 126, 162), (162, 198, 234), (234, 270, 306), (306, 342, 18)):
+        self.line((W/2+Math.cos(a)*R, H/2+Math.sin(a)*R), (W/2+Math.cos(b)*(W/2-L/2), H/2+Math.sin(b)*(H/2-L/2)), (W/2+Math.cos(c)*R, H/2+Math.sin(c)*R), rounded=True)
+
+@Files.createImage("Icons")
+## \image html Icons/Bag.png
+def Bag(self, W, H, L, C, B) -> None:
+    R = W*0.2
+    self.roundedRectangle((0, H*0.25), (W, H), fill=B)
+    self.arc((W/2-R, 0), (W/2+R, R*2), start=180, end=360)
+    for i in (-1, 1):
+        self.line((W/2+i*(R-L/2), R), (W/2+i*(R-L/2), R+R/2))
+    self.line((0, H*0.55), (W, H*0.55))
+    self.line((W/2, H*0.5), (W/2, H*0.6), width=L+L//2, rounded=True)
+
+@Files.createImage("Icons")
+## \image html Icons/Certificate.png
+def Certificate(self, W, H, L, C, B) -> None:
+    self.roundedRectangle((0, H*0.1), (W, H*0.9), fill=B)
+    self.load(Star, size=(W*0.5, H*0.5), offset=(W/2-W*0.25, H/2-H*0.25))
+
+@Files.createImage("Icons")
+## \image html Icons/Speech.png
+def Speech(self, W, H, L, C, B) -> None:
+    self.arc((0, H*0.2), (W, H*0.8), start=140, end=360+100, rounded=True)
+    self.line((W/2+Math.cos(140)*(W/2-L/2), H/2+Math.sin(140)*(H*0.3-L/2)), (L, H-L), (W/2+Math.cos(360+100)*(W/2-L/2), H/2+Math.sin(360+100)*(H*0.3-L/2)), rounded=True)
+
+@Files.createImage("Icons")
+## \image html Icons/Birth.png
+def Birth(self, W, H, L, C, B) -> None:
+    R = W/5
+    for i in range(-90, 270, 360//5):
+        self.line((W/2, H/2), (W/2+Math.cos(i)*W/3, H/2+Math.sin(i)*H/3), rounded=True)
