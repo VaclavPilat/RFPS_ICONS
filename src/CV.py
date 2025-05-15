@@ -1,14 +1,10 @@
 ## \file
 # Functions for generating images for my CV
 from Utils import Files, Math
-from Icons import Cap, Home
 
 
 ## \defgroup cv Generated CV icons
 # <div>
-# \link Education()
-# \image html CV/Education.png
-# \endlink
 # \link Pin()
 # \image html CV/Pin.png
 # \endlink
@@ -18,17 +14,11 @@ from Icons import Cap, Home
 # \link Email()
 # \image html CV/Email.png
 # \endlink
-# \link Residence()
-# \image html CV/Residence.png
-# \endlink
 # \link Phone()
 # \image html CV/Phone.png
 # \endlink
 # \link Star()
 # \image html CV/Star.png
-# \endlink
-# \link Dot()
-# \image html CV/Dot.png
 # \endlink
 # \link Bag()
 # \image html CV/Bag.png
@@ -46,17 +36,13 @@ from Icons import Cap, Home
 
 
 @Files.createImage("CV", color=(0, 0, 0))
-## \image html CV/Education.png
-def Education(self, W, H, L, C, B) -> None:
-    self.load(Cap)
-
-@Files.createImage("CV", color=(0, 0, 0))
 ## \image html CV/Pin.png
 def Pin(self, W, H, L, C, B) -> None:
     R = W*0.35
     A = 30
     self.arc((W/2-R, 0), (W/2+R, R*2), rounded=True, start=180-A, end=360+A)
-    self.ellipse((W/2-R/3, R-R/3), (W/2+R/3, R+R/3))
+    self.dot((W/2, R), width=L*3)
+    self.dot((W/2, R), outline=B)
     points = []
     for i in [180-A, 360+A]:
         points.append((W/2+Math.cos(i)*(R-L/2), R+Math.sin(i)*(R-L/2)))
@@ -79,11 +65,6 @@ def Email(self, W, H, L, C, B) -> None:
     self.arc((W*0.725-L, H*0.275+L/2), (W, H*0.725), rounded=True)
 
 @Files.createImage("CV", color=(0, 0, 0))
-## \image html CV/Residence.png
-def Residence(self, W, H, L, C, B) -> None:
-    self.load(Home)
-
-@Files.createImage("CV", color=(0, 0, 0))
 ## \image html CV/Phone.png
 def Phone(self, W, H, L, C, B) -> None:
     R = W*0.375
@@ -103,11 +84,6 @@ def Star(self, W, H, L, C, B) -> None:
     R = W/5
     for a, b, c in ((18, 54, 90), (90, 126, 162), (162, 198, 234), (234, 270, 306), (306, 342, 18)):
         self.line((W/2+Math.cos(a)*R, H/2+Math.sin(a)*R), (W/2+Math.cos(b)*(W/2-L/2), H/2+Math.sin(b)*(H/2-L/2)), (W/2+Math.cos(c)*R, H/2+Math.sin(c)*R), rounded=True)
-
-@Files.createImage("CV", color=(0, 0, 0))
-## \image html CV/Dot.png
-def Dot(self, W, H, L, C, B) -> None:
-    self.dot((W/2, H/2), width=2*L)
 
 @Files.createImage("CV", color=(0, 0, 0))
 ## \image html CV/Bag.png
