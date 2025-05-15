@@ -381,7 +381,9 @@ def Crosshair(self, W, H, L, C, B) -> None:
         self.line((W/2+Math.cos(i)*W/4, H/2+Math.sin(i)*H/4), (W/2+Math.cos(i)*(W/2-L/2), H/2+Math.sin(i)*(H/2-L/2)), rounded=True)
 
 @Files.createImage("Icons")
-## \image html Icons/Pin.png
+## <div class="inverted">
+# \image html Icons/Pin.png
+# </div>
 def Pin(self, W, H, L, C, B) -> None:
     R = W*0.35
     A = 30
@@ -395,14 +397,18 @@ def Pin(self, W, H, L, C, B) -> None:
     self.line(*points, rounded=True)
 
 @Files.createImage("Icons")
-## \image html Icons/Code.png
+## <div class="inverted">
+# \image html Icons/Code.png
+# </div>
 def Code(self, W, H, L, C, B) -> None:
     for i in [-1, 1]:
         self.line((W/2+i*W*0.2, H*0.35), (W/2+i*(W/2-L/2), H/2), (W/2+i*W*0.2, H*0.65), rounded=True)
     self.line((W*0.4, H*0.85), (W*0.6, H*0.15), rounded=True)
 
 @Files.createImage("Icons")
-## \image html Icons/Email.png
+## <div class="inverted">
+# \image html Icons/Email.png
+# </div>
 def Email(self, W, H, L, C, B) -> None:
     self.arc((0, 0), (W, H), start=60, end=360, rounded=True)
     self.arc((W*0.275, H*0.275), (W*0.725, H*0.725), start=0, end=360)
@@ -410,7 +416,9 @@ def Email(self, W, H, L, C, B) -> None:
     self.arc((W*0.725-L, H*0.275+L/2), (W, H*0.725), rounded=True)
 
 @Files.createImage("Icons")
-## \image html Icons/Phone.png
+## <div class="inverted">
+# \image html Icons/Phone.png
+# </div>
 def Phone(self, W, H, L, C, B) -> None:
     R = W*0.375
     self.arc((0, -L), (R*2, R*2-L), start=135, end=225, rounded=True)
@@ -424,14 +432,18 @@ def Phone(self, W, H, L, C, B) -> None:
     )
 
 @Files.createImage("Icons")
-## \image html Icons/Star.png
+## <div class="inverted">
+# \image html Icons/Star.png
+# </div>
 def Star(self, W, H, L, C, B) -> None:
     R = W/5
     for a, b, c in ((18, 54, 90), (90, 126, 162), (162, 198, 234), (234, 270, 306), (306, 342, 18)):
         self.line((W/2+Math.cos(a)*R, H/2+Math.sin(a)*R), (W/2+Math.cos(b)*(W/2-L/2), H/2+Math.sin(b)*(H/2-L/2)), (W/2+Math.cos(c)*R, H/2+Math.sin(c)*R), rounded=True)
 
 @Files.createImage("Icons")
-## \image html Icons/Bag.png
+## <div class="inverted">
+# \image html Icons/Bag.png
+# </div>
 def Bag(self, W, H, L, C, B) -> None:
     R = W*0.2
     self.roundedRectangle((0, H*0.25), (W, H), fill=B)
@@ -442,19 +454,25 @@ def Bag(self, W, H, L, C, B) -> None:
     self.line((W/2, H*0.5), (W/2, H*0.6), width=L+L//2, rounded=True)
 
 @Files.createImage("Icons")
-## \image html Icons/Certificate.png
+## <div class="inverted">
+# \image html Icons/Certificate.png
+# </div>
 def Certificate(self, W, H, L, C, B) -> None:
     self.roundedRectangle((0, H*0.1), (W, H*0.9), fill=B)
     self.load(Star, size=(W*0.5, H*0.5), offset=(W/2-W*0.25, H/2-H*0.25))
 
 @Files.createImage("Icons")
-## \image html Icons/Speech.png
+## <div class="inverted">
+# \image html Icons/Speech.png
+# </div>
 def Speech(self, W, H, L, C, B) -> None:
     self.arc((0, H*0.2), (W, H*0.8), start=140, end=360+100, rounded=True)
     self.line((W/2+Math.cos(140)*(W/2-L/2), H/2+Math.sin(140)*(H*0.3-L/2)), (L, H-L), (W/2+Math.cos(360+100)*(W/2-L/2), H/2+Math.sin(360+100)*(H*0.3-L/2)), rounded=True)
 
 @Files.createImage("Icons")
-## \image html Icons/Birth.png
+## <div class="inverted">
+# \image html Icons/Birth.png
+# </div>
 def Birth(self, W, H, L, C, B) -> None:
     R = W/5
     for i in range(-90, 270, 360//5):
