@@ -1,6 +1,6 @@
 PYTHON = python3
 PIP = pip
-FILE = src/*.py
+FILE = *.py
 
 all: run doc
 
@@ -11,12 +11,10 @@ doc:
 	@doxygen Doxyfile
 
 run:
-	@for file in $(FILE); do \
-		$(PYTHON) "$$file"; \
-	done
+	@PYTHONPATH=$(CURDIR) find scripts -type f -name $(FILE) -exec $(PYTHON) {} \;
 
 cloc:
-	@cloc . --include-lang=Python --by-file
+	@cloc icons/ --by-file
 
 clean:
 	@rm -rf docs/html/ images/

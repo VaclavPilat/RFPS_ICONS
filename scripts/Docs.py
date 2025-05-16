@@ -1,6 +1,6 @@
 ## \file
 # Functions for generating charts and other documentation sketches
-from Utils import Files, Math
+from icons import Files, Math
 
 
 ## \defgroup documentation Generated documentation images

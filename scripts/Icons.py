@@ -1,6 +1,6 @@
 ## \file
 # Functions for generating icons
-from Utils import Files, Math
+from icons import Files, Math
 
 
 ## \defgroup icons Generated icon images (inverted)
