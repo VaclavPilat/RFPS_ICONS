@@ -486,12 +486,13 @@ def Birth(self, W, H, L, C, B) -> None:
 # \image html Icons/Server.png
 # </div>
 def Server(self, W, H, L, C, B) -> None:
-    self.roundedRectangle((L/2, 0), (W-L/2, H), fill=None)
+    P = L
+    self.roundedRectangle((P, 0), (W-P, H), fill=None)
     S = [L/2, H-L/2]
     for i in range(1, 3):
         Y = L/2+(H-L)*i/3
         self.line((L, Y), (W-L, Y))
         S.insert(len(S)-1, Y)
     for y in ((y1+y2)/2 for y1, y2 in zip(S, S[1:])):
-        self.dot((2.5*L, y))
-        self.line((4*L, y), (6*L, y), rounded=True)
+        for i in range(2):
+            self.dot((P+2*L+1.5*L*i, y))
