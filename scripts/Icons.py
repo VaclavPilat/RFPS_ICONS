@@ -110,6 +110,9 @@ from icons import Files, Math
 # \link Birth()
 # \image html Icons/Birth.png
 # \endlink
+# \link Server()
+# \image html Icons/Server.png
+# \endlink
 # </div>
 
 
@@ -477,3 +480,18 @@ def Birth(self, W, H, L, C, B) -> None:
     R = W/5
     for i in range(-90, 270, 360//5):
         self.line((W/2, H/2), (W/2+Math.cos(i)*W/3, H/2+Math.sin(i)*H/3), rounded=True)
+
+@Files.createImage("Icons")
+## <div class="inverted">
+# \image html Icons/Server.png
+# </div>
+def Server(self, W, H, L, C, B) -> None:
+    self.roundedRectangle((L/2, 0), (W-L/2, H), fill=None)
+    S = [L/2, H-L/2]
+    for i in range(1, 3):
+        Y = L/2+(H-L)*i/3
+        self.line((L, Y), (W-L, Y))
+        S.insert(len(S)-1, Y)
+    for y in ((y1+y2)/2 for y1, y2 in zip(S, S[1:])):
+        self.dot((2.5*L, y))
+        self.line((4*L, y), (6*L, y), rounded=True)
