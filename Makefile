@@ -18,3 +18,4 @@ cloc:
 
 clean:
 	@rm -rf docs/html/ images/
+	@find . -type d -name "__pycache__" -exec rm -rf {} +
