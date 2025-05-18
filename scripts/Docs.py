@@ -3,14 +3,10 @@
 from icons import Files, Math
 
 
-## \defgroup documentation Generated documentation images
+## \defgroup documentation Generated Docs.py images
 # <div>
-# \link Strafing()
 # \image html Docs/Strafing.png
-# \endlink
-# \link NoStrafing()
 # \image html Docs/NoStrafing.png
-# \endlink
 # </div>
 
 

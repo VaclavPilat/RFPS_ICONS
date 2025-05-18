@@ -4,18 +4,14 @@ from icons import Files
 from Icons import Home, Cursor, Audio, Flag, Search, Globe, Monitor, Cogs, Stopwatch, Cap, Crosshair, Star, Book
 
 
-## \defgroup variations Generated icon variations and remixes
+## \defgroup variations Generated Variations.py images
 # <div>
-# \link Icons()
 # \image html Variations/Icons.png
-# \endlink
-# \link Miniature()
 # \image html Variations/MiniCursor.png
 # \image html Variations/MiniAudio.png
 # \image html Variations/MiniCrosshair.png
 # \image html Variations/MiniHome.png
 # \image html Variations/MiniBook.png
-# \endlink
 # </div>
 
 
