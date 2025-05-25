@@ -41,6 +41,7 @@ from icons import Files, Math
 # \image html Icons/Speech.png
 # \image html Icons/Birth.png
 # \image html Icons/Server.png
+# \image html Icons/Network.png
 # </div>
 
 
@@ -424,3 +425,16 @@ def Server(self, W, H, L, C, B) -> None:
     for y in ((y1+y2)/2 for y1, y2 in zip(S, S[1:])):
         for i in range(2):
             self.dot((P+2*L+1.5*L*i, y))
+
+@Files.createImage("Icons")
+## <div class="inverted">
+# \image html Icons/Network.png
+# </div>
+def Network(self, W, H, L, C, B) -> None:
+    self.line((L/2, H/2), (W-L/2, H/2), rounded=True)
+    self.line((W/2, H/2), (W/2, L*3))
+    self.roundedRectangle((W/2-L*2, 0), (W/2+L*2, L*3), fill=None)
+    for i in (-1, 1):
+        x = W/2+i*W/4
+        self.line((x, H/2), (x, H-3*L))
+        self.roundedRectangle((x-L*2, H-L*3), (x+L*2, H), fill=None)
