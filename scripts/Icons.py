@@ -42,6 +42,7 @@ from icons import Files, Math
 # \image html Icons/Birth.png
 # \image html Icons/Server.png
 # \image html Icons/Network.png
+# \image html Icons/Cube.png
 # </div>
 
 
@@ -438,3 +439,12 @@ def Network(self, W, H, L, C, B) -> None:
         x = W/2+i*W/4
         self.line((x, H/2), (x, H-3*L))
         self.roundedRectangle((x-L*2, H-L*3), (x+L*2, H), fill=None)
+
+@Files.createImage("Icons")
+## <div class="inverted">
+# \image html Icons/Cube.png
+# </div>
+def Cube(self, W, H, L, C, B) -> None:
+    for a in range(30, 390, 60):
+        self.line((W/2, H/2), (W/2+Math.cos(a)*(W/2-L/2), H/2+Math.sin(a)*(H/2-L/2)), rounded=True)
+        self.line((W/2+Math.cos(a)*(W/2-L/2), H/2+Math.sin(a)*(H/2-L/2)), (W/2+Math.cos(a+60)*(W/2-L/2), H/2+Math.sin(a+60)*(H/2-L/2)), rounded=True)
