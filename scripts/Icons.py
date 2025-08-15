@@ -384,7 +384,7 @@ def Bag(self, W, H, L, C, B) -> None:
     for i in (-1, 1):
         self.line((W/2+i*(R-L/2), R), (W/2+i*(R-L/2), R+R/2))
     self.line((0, H*0.55), (W, H*0.55))
-    self.line((W/2, H*0.5), (W/2, H*0.6), width=L+L//2, rounded=True)
+    self.line((W/2, H*0.5-L/3), (W/2, H*0.6+L/3), rounded=True)
 
 @Files.createImage("Icons")
 ## <div class="inverted">
