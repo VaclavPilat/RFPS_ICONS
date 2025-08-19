@@ -40,13 +40,9 @@ def rename(name: str):
         return function
     return decorator
 
-for function in (Cursor, Audio, Crosshair, Home, Book):
+import Icons, inspect
+for name, function in inspect.getmembers(Icons, inspect.isfunction):
     @Files.createImage("Variations", (50, 50), color=(0, 0, 0), width=5)
-    @rename(f"Mini{function.__name__}")
-    ## \image html Variations/MiniCursor.png
-    # \image html Variations/MiniAudio.png
-    # \image html Variations/MiniCrosshair.png
-    # \image html Variations/MiniHome.png
-    # \image html Variations/MiniBook.png
-    def Miniature(self, W, H, L, C, B) -> None:
+    @rename(f"Mini{name}")
+    def Miniature(self, *args) -> None:
         self.load(function)
