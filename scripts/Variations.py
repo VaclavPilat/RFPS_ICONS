@@ -1,6 +1,6 @@
 ## \file
 # Functions for creating variations and remixes of already created icons
-from icons import Files
+from src import Files
 from Icons import Home, Cursor, Audio, Flag, Search, Globe, Monitor, Cogs, Stopwatch, Cap, Crosshair, Star, Book
 
 

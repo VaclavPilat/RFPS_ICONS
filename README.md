@@ -20,7 +20,7 @@ This repository is used for creating simple icons and other images using Python'
 2. Declare an image function, decorated by `createImage`.
 3. Call draw methods inside the function, like this:
 ```py
-from icons.Files import createImage
+from src.Files import createImage
 
 @createImage()
 def Globe(self, W, H, L, C, B) -> None:

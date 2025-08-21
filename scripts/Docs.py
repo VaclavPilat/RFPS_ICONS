@@ -1,6 +1,6 @@
 ## \file
 # Functions for generating charts and other documentation sketches
-from icons import Files, Math
+from src import Files, Math
 
 
 ## \defgroup documentation Generated Docs.py images

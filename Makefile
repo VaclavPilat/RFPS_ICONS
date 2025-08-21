@@ -1,20 +1,18 @@
-PYTHON = python3
-PIP = pip
 FILE = *.py
 
 all: run doc
 
 install:
-	$(PIP) install -r requirements.txt
+	@pip install -r requirements.txt
 
 doc:
 	@doxygen Doxyfile
 
 run:
-	@PYTHONPATH=$(CURDIR) find scripts -type f -name $(FILE) -exec $(PYTHON) {} \;
+	@PYTHONPATH=$(CURDIR) find scripts -type f -name $(FILE) -exec python3 {} \;
 
 cloc:
-	@cloc icons/ --by-file
+	@cloc src/ --by-file
 
 clean:
 	@rm -rf docs/html/ images/

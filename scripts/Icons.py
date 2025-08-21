@@ -1,6 +1,6 @@
 ## \file
 # Functions for generating icons
-from icons import Files, Math
+from src import Files, Math
 
 
 ## \defgroup icons Generated Icons.py images (inverted)
