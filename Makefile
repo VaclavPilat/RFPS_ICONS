@@ -6,7 +6,7 @@ install:
 	@pip install -r requirements.txt
 
 doc:
-	@doxygen Doxyfile
+	@doxygen docs/Doxyfile
 
 run:
 	@PYTHONPATH=$(CURDIR) find scripts -type f -name $(FILE) -exec python3 {} \;
