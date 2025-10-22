@@ -1,24 +1,32 @@
-# About RFPS ICONS
+# RFPS_ICONS v1.0
 
 ![Icon examples](docs/Examples.png)
 
-This repository is used for creating simple icons and other images using Python's Pillow library. Python 3.10 was used in development.
+This repository is a part of the *RFPS* project.
+It is used for creating icons and other simple PNG images. Images are constructed using simple shapes, such as lines, circles and curves. Icons produced by this codebase are then used in the *RFPS* repository and diagrams are used in *RFPS_THESIS*.
+
+This project is a wrapper to the python's Pillow library. Each image definition is meant to be stored in a function which, when decorated, behave like instance methods. These functions can then be loaded into one another. Each function has 5 arguments - bounding box width and height, line width and foreground and background colors. Images are generated in high resolution and then downscaled to their desired size.
+
+The codebase could be improved by adding features such as image rotation or by ensuring that anything created beyond the bounding box of a single image does not out when imported to another image. SVG support could be added as well if needed.
 
 ## How to run
 
-1. **Install requirements** : `make install`
-2. **Generate images** : `make run`
+Make sure that you have Python3 on your device (version 3.10 was used in development). Then install all dependencies:
 
-## Documentation
+```shell
+make install
+```
 
-- **Create documentation** : `make doc`
-- **Count lines of code** : `make cloc`
+To generate the images, use:
 
-## How to reuse
+```shell
+make run
+```
 
-1. Import the `createImage` decorator from the Files module.
-2. Declare an image function, decorated by `createImage`.
-3. Call draw methods inside the function, like this:
+## Usage examples
+
+If you want to make your own images, start by creating a new script. Declare an image function, decorated by the `createImage` decorator imported from the `Files` module. Then call draw methods from within the function, like this:
+
 ```py
 from src.Files import createImage
 
@@ -29,49 +37,5 @@ def Globe(self, W, H, L, C, B) -> None:
     for i in (-1, 1):
         self.line((L, H/2 + i*H*0.15), (W-L, H/2 + i*H*0.15))
 ```
-4. Run the script.
 
-## How it works
-
-- The `createImage` decorator renders and writes image data into a file (if it doesn't exist already). It has the following kwarg arguments, all of which are optional:
-    - `folder` - output folder path, defaults to `"images/"`,
-    - `size` - output image size in pixels, defaults to `(100, 100)`,
-    - `sampling` - sampling multiplier (images are generated in high resolution and then downscaled), defaults to `5`,
-    - `width` - line width in pixels, defaults to `10`,
-    - `background` - background color, defaults to `(0, 0, 0, 0)` (transparent),
-    - `color` - foreground color, defaluts to `(255, 255, 255)` (solid white).
-
-- Each image function represents a single image or an icon. It has the following positional arguments (to avoid unnecessarily long `self.*` calls):
-    - `W` - sampled image width in pixels,
-    - `H` - sampled image height in pixels,
-    - `L` - sampled line width in pixels,
-    - `C` - foreground color,
-    - `B` - background color.
-
-- Inside an image function you can use the following draw methods:
-    - `line(*points, fill, width, joint, rounded)` - drawing straight lines between the specified points,
-    - `ellipse(*points, fill, outline, width)` - drawing an ellipse with two points for the bounding box,
-    - `arc(*points, start, end, fill, width, rounded)` - drawing a part of an ellipse with start and stop angles,
-    - `rectangle(*points, fill, outline, width)` - drawing a rectangle with two points as the bounding box,
-    - `roundedRectangle(*points, fill, outline, width, radius, corners)` - drawing a rectangle with rounded corners,
-    - `polygon(*points, fill, outline, width)` - drawing a closed polygon between the specified points,
-    - `dot(point, fill, outline, width)` - drawing a small circle from the specified center point.
-
-- Each draw method has points (tuples of x-y coordinates in pixels) as *args and some of the following optional kwarg arguments:
-    - `width` - line width in pixels, defaults to image line width,
-    - `outline` - outline width in pixels, defaults to image foreground color,
-    - `fill` - fill color, defaults to image foreground color,
-    - `start` - start angle, defaults to `0`,
-    - `end` - end angle, defaults to `180`,
-    - `joint` - line joint type, defaults to `"curve"`,
-    - `radius` - curve radius, defaults to image line width,
-    - `corners` - corner curve settings, defaults to `(True, True, True, True)`,
-    - `rounded` - custom setting for rounding edges/ends, defaults to `False`.
-
-- You can also load another image inside an image function by calling `self.load()` with the following arguments:
-    - `function` - name of an already defined image function to load,
-    - `size` - size of the loaded image in pixels, defaults to parent image size,
-    - `offset` - offset of the loaded image inside self, defaults to `(0, 0)`,
-    - `color` - foreground color of the loaded image, defaults to parent foreground color,
-    - `background` - background color of the loaded image, defaults to parent background color,
-    - `width` - line width, defaults to parent line width.
+Run the script. The decorator automatically creates image files that match the name of the function it decorates.
