@@ -290,3 +290,7 @@ def Cube(self, W, H, L, C, B) -> None:
     for a in range(30, 390, 60):
         self.line((W/2, H/2), (W/2+Math.cos(a)*(W/2-L/2), H/2+Math.sin(a)*(H/2-L/2)), rounded=True)
         self.line((W/2+Math.cos(a)*(W/2-L/2), H/2+Math.sin(a)*(H/2-L/2)), (W/2+Math.cos(a+60)*(W/2-L/2), H/2+Math.sin(a+60)*(H/2-L/2)), rounded=True)
+
+@Files.createImage("Icons")
+def Folder(self, W, H, L, C, B) -> None:
+    self.line((L/2, H-L*1.5), (W/4, H/2), (W-L/2, H/2), (W-W/4, H-L*1.5), (L/2, H-L*1.5), (L/2, L*1.5), (W/3, L*1.5), (W/3+L, L*2.5), (W-W/4, L*2.5), (W-W/4, H/2-L))
