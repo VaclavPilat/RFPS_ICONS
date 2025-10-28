@@ -1,13 +1,7 @@
 ## \file
 # Functions for generating charts and other documentation sketches
 from src import Files, Math
-
-
-## \defgroup documentation Generated Docs.py images
-# <div>
-# \image html Docs/Strafing.png
-# \image html Docs/NoStrafing.png
-# </div>
+import math
 
 
 ## Light gray color
@@ -17,14 +11,17 @@ MEDIUM = (150, 150, 150)
 ## Black color
 BLACK = (0, 0, 0)
 
+def Arrow(self, W, H, L, C, B) -> None:
+    self.line((0, 0), (W, H), rounded=True)
+    degrees = math.degrees(math.atan2(-H, -W))
+    for i in (-45, +45):
+        radians = math.radians(degrees + i)
+        self.line((W, H), (W+math.cos(radians)*3*L, H+math.sin(radians)*3*L), rounded=True)
 
 def Arrows(self, W, H, L, C, B) -> None:
-    self.line((W/2, L/2), (W/2, H-L/2), rounded=True)
-    self.line((L/2, H/2), (W-L/2, H/2), rounded=True)
-    self.line((W/2-L*1.5, L*2), (W/2, L/2), (W/2+L*1.5, L*2), rounded=True)
-    self.line((W/2-L*1.5, H-L*2), (W/2, H-L/2), (W/2+L*1.5, H-L*2), rounded=True)
-    self.line((L*2, H/2-L*1.5), (L/2, H/2), (L*2, H/2+L*1.5), rounded=True)
-    self.line((W-L*2, H/2-L*1.5), (W-L/2, H/2), (W-L*2, H/2+L*1.5), rounded=True)
+    for i in (-1, 1):
+        self.load(Arrow, offset=(W/2, H/2), size=(i*(W/2-L/2), 0))
+        self.load(Arrow, offset=(W/2, H/2), size=(0, i*(H/2-L/2)))
 
 ## Forward speed
 FO = 1
@@ -44,7 +41,6 @@ def BasicDots(self, W, H, L, C, B) -> None:
     self.dot((W/2+SI*H/2-L/2, H/2))
 
 @Files.createImage("Docs", (300, 300), color=MEDIUM)
-## \image html Docs/Strafing.png
 def Strafing(self, W, H, L, C, B) -> None:
     self.load(Arrows, color=LIGHT)
     self.roundedRectangle((W/2-SI*H/2, (1-FO)/2*H), (W/2+SI*H/2, (H+H*BA)/2), fill=None)
@@ -55,7 +51,6 @@ def Strafing(self, W, H, L, C, B) -> None:
     self.dot((W/2+SI*H/2-L/2, (H+H*BA)/2-L/2), outline=BLACK)
 
 @Files.createImage("Docs", (300, 300), color=MEDIUM)
-## \image html Docs/NoStrafing.png
 def NoStrafing(self, W, H, L, C, B) -> None:
     self.load(Arrows, color=LIGHT)
     self.arc((W/2-FO*H/2, (1-FO)/2*H), (W/2+FO*H/2, (H+H*FO)/2), start=180, end=360, rounded=True)
