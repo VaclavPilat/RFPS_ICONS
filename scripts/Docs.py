@@ -1,5 +1,5 @@
 # Functions for generating charts and other documentation sketches
-from src import Files, Math
+from src import Files
 import math
 
 
@@ -12,7 +12,7 @@ def Arrow(self, W, H, L, C, B) -> None:
     degrees = math.degrees(math.atan2(-H, -W))
     for i in (-45, +45):
         radians = math.radians(degrees + i)
-        self.line((W, H), (W+math.cos(radians)*3*L, H+math.sin(radians)*3*L), rounded=True)
+        self.line((W, H), (W+math.cos(radians)*2*L, H+math.sin(radians)*2*L), rounded=True)
 
 def Arrows(self, W, H, L, C, B) -> None:
     for i in (-1, 1):
@@ -51,4 +51,13 @@ def NoStrafing(self, W, H, L, C, B) -> None:
     self.arc((W/2-BS*H/2, (1-BS)/2*H), (W/2+BS*H/2, (H+H*BS)/2), start=0, end=180, rounded=True)
     self.load(BasicDots, color=BLACK)
     for speed, angle in ((FS, -45), (FS, -135), (BS, 45), (BS, 135)):
-        self.dot((W/2+Math.cos(angle)*(speed*H/2-L/2), H/2+Math.sin(angle)*(speed*H/2-L/2)), outline=BLACK)
+        radians = math.radians(angle)
+        self.dot((W/2+math.cos(radians)*(speed*H/2-L/2), H/2+math.sin(radians)*(speed*H/2-L/2)), outline=BLACK)
+
+def CurlyBracket(self, W, H, L, C, B) -> None:
+    self.arc((-W/2+L/2, 0), (W/2+L/2, W), start=-90, end=0, rounded=True)
+    self.line((W/2, W/2), (W/2, H/2-W/2+L))
+    self.arc((W/2-L/2, H/2-W+L/2), (W*1.5-L/2, H/2+L/2), start=90, end=180, rounded=True)
+    self.arc((W/2-L/2, H/2-L/2), (W*1.5-L/2, H/2+W-L/2), start=180, end=270, rounded=True)
+    self.line((W/2, H-W/2), (W/2, H/2+W/2-L))
+    self.arc((-W/2+L/2, H-W), (W/2+L/2, H), start=0, end=90, rounded=True)
