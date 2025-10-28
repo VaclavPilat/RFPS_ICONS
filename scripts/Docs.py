@@ -1,15 +1,11 @@
-## \file
 # Functions for generating charts and other documentation sketches
 from src import Files, Math
 import math
 
 
-## Light gray color
-LIGHT = (200, 200, 200)
-## Medium gray color
-MEDIUM = (150, 150, 150)
-## Black color
-BLACK = (0, 0, 0)
+LIGHT = (200, 200, 200) # Light gray color
+MEDIUM = (150, 150, 150) # Medium gray color
+BLACK = (0, 0, 0) # Black color
 
 def Arrow(self, W, H, L, C, B) -> None:
     self.line((0, 0), (W, H), rounded=True)
@@ -23,16 +19,11 @@ def Arrows(self, W, H, L, C, B) -> None:
         self.load(Arrow, offset=(W/2, H/2), size=(i*(W/2-L/2), 0))
         self.load(Arrow, offset=(W/2, H/2), size=(0, i*(H/2-L/2)))
 
-## Forward speed
-FO = 1
-## Side speed
-SI = 0.6 * FO
-## Backward speed
-BA = 0.4 * FO
-## Diagonal forward speed
-FS = (FO + SI) / 2
-## Diagonal backward speed
-BS = (BA + SI) / 2
+FO = 1 # Forward speed
+SI = 0.6 * FO # Side speed
+BA = 0.4 * FO # Backward speed
+FS = (FO + SI) / 2 # Diagonal forward speed
+BS = (BA + SI) / 2 # Diagonal backward speed
 
 def BasicDots(self, W, H, L, C, B) -> None:
     self.dot((W/2, (1-FO)/2*H+L/2))
