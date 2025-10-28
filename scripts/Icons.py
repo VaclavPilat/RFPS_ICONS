@@ -193,11 +193,10 @@ def Crosshair(self, W, H, L, C, B) -> None:
 
 @Files.createImage("Icons")
 def Pin(self, W, H, L, C, B) -> None:
-    R = W*0.35
-    A = 30
+    R = W*0.3
+    A = 20
     self.arc((W/2-R, 0), (W/2+R, R*2), rounded=True, start=180-A, end=360+A)
-    self.dot((W/2, R), width=L*3)
-    self.dot((W/2, R), outline=B)
+    self.dot((W/2, R), width=L*1.5)
     points = []
     for i in [180-A, 360+A]:
         points.append((W/2+Math.cos(i)*(R-L/2), R+Math.sin(i)*(R-L/2)))
@@ -219,7 +218,7 @@ def Email(self, W, H, L, C, B) -> None:
 
 @Files.createImage("Icons")
 def Phone(self, W, H, L, C, B) -> None:
-    R = W*0.375
+    R = W*0.4
     self.arc((0, -L), (R*2, R*2-L), start=135, end=225, rounded=True)
     self.arc((W-R*2+L, H-R*2), (W+L, H), start=45, end=135, rounded=True)
     self.line((R+Math.cos(135)*(R-L/2), R+Math.sin(135)*(R-L/2)-L), (W-R+Math.cos(135)*(R-L/2)+L, H-R+Math.sin(135)*(R-L/2)))
@@ -277,7 +276,7 @@ def Server(self, W, H, L, C, B) -> None:
 
 @Files.createImage("Icons")
 def Network(self, W, H, L, C, B) -> None:
-    self.line((L/2, H/2), (W-L/2, H/2), rounded=True)
+    self.line((0, H/2), (W, H/2))
     self.line((W/2, H/2), (W/2, L*3))
     self.roundedRectangle((W/2-L*1.75, 0), (W/2+L*1.75, L*3.5), fill=None)
     for i in (-1, 1):
