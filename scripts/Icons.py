@@ -285,7 +285,7 @@ def Network(self, W, H, L, C, B) -> None:
         self.roundedRectangle((x-L*1.75, H-L*3.5), (x+L*1.75, H), fill=None)
 
 @Files.createImage("Icons")
-def Cube(self, W, H, L, C, B) -> None:
+def Logo(self, W, H, L, C, B) -> None:
     for a in range(30, 390, 60):
         self.line((W/2, H/2), (W/2+Math.cos(a)*(W/2-L/2), H/2+Math.sin(a)*(H/2-L/2)), rounded=True)
         self.line((W/2+Math.cos(a)*(W/2-L/2), H/2+Math.sin(a)*(H/2-L/2)), (W/2+Math.cos(a+60)*(W/2-L/2), H/2+Math.sin(a+60)*(H/2-L/2)), rounded=True)
@@ -293,3 +293,8 @@ def Cube(self, W, H, L, C, B) -> None:
 @Files.createImage("Icons")
 def Folder(self, W, H, L, C, B) -> None:
     self.line((L/2, H-L*1.5), (W/4, H/2), (W-L/2, H/2), (W-W/4, H-L*1.5), (L/2, H-L*1.5), (L/2, L*1.5), (W/3, L*1.5), (W/3+L, L*2.5), (W-W/4, L*2.5), (W-W/4, H/2-L))
+
+@Files.createImage("Icons")
+def Cube(self, W, H, L, C, B) -> None:
+    self.line((W*0.6, H-L/2), (L/2, H*0.85), (L/2, H*0.3), (W*0.6, H*0.4), (W*0.6, H-L/2), (W-L/2, H*0.7), (W-L/2, H*0.15), (W*0.6, H*0.4), rounded=True)
+    self.line((L/2, H*0.3), (W*0.4, L/2), (W-L/2, H*0.15), rounded=True)
