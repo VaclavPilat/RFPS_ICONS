@@ -11,7 +11,7 @@ class Canvas:
     """
 
     def __init__(self, draw: ImageDraw, size: tuple = (100, 100), offset: tuple = (0, 0),
-        color: tuple = (255, 255, 255), background: tuple = (0, 0, 0, 0), width: float = 10) -> None:
+        color: tuple = (255, 255, 255), background: tuple = (0, 0, 0, 0), width: float = 10, args: tuple = tuple()) -> None:
         """Initialising and Image instance
 
         Args:
@@ -21,6 +21,7 @@ class Canvas:
             color (tuple, optional): Foreground color. Defaults to (255, 255, 255).
             background (tuple, optional): Background color. Defaults to (0, 0, 0, 0).
             width (float, optional): Line width. Defaults to 10.
+            args (tuple, optional): Tuple of additional positional arguments. Defaults to tuple().
         """
         ## ImageDraw instance
         self.draw = draw
@@ -57,10 +58,11 @@ class Canvas:
             color (tuple, optional): Image foreground color. Defaults to parent image foreground color.
             background (tuple, optional): Image background color. Defaults to parent image background color.
             width (float, optional): Image line width. Defaults to parent image line width.
+            args (tuple, optional): Tuple of additional arguments. Defaults to an empty tuple.
         """
         offset = tuple(a + b for a, b in zip(self.offset, offset))
         loaded = Canvas(self.draw, offset=offset, **settings)
-        function(loaded, *settings["size"], settings["width"], settings["color"], settings["background"])
+        function(loaded, *settings["size"], settings["width"], settings["color"], settings["background"], *settings["args"])
     
     @Settings.defaultDrawSettings("fill", "width", "joint", "rounded")
     def line(self, *points, rounded: bool, **settings) -> None:

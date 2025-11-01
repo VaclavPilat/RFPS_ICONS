@@ -52,6 +52,7 @@ def defaultLoadSettings(method):
             "color": self.color,
             "background": self.background,
             "width": self.width,
+            "args": tuple(),
         }
         values.update(settings)
         method(self, function, **values)
