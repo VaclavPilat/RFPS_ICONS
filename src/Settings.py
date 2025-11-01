@@ -1,5 +1,6 @@
 ## \file
 # Decorators for wrapping Canvas methods and providing default setting values
+from PIL import ImageFont
 
 
 # noinspection PyTypeChecker
@@ -22,6 +23,9 @@ def defaultDrawSettings(*names):
                 "radius": self.width,
                 "corners": (True, True, True, True),
                 "rounded": False,
+                "text": "Hello world",
+                "font": ImageFont.load_default(self.width*2),
+                "anchor": "mt",
             }.items() if k in names}
             values.update(settings)
             if transform:
