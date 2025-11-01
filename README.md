@@ -1,4 +1,4 @@
-# RFPS_ICONS v1.0
+# RFPS_ICONS v1.1
 
 ![Icon examples](docs/Examples.png)
 
