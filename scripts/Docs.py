@@ -6,7 +6,7 @@ from PIL import ImageFont
 
 
 LIGHT = (200, 200, 200) # Light gray color
-MEDIUM = (150, 150, 150) # Medium gray color
+MEDIUM = (120, 120, 120) # Medium gray color
 BLACK = (0, 0, 0) # Black color
 
 def Arrow(self, W, H, L, C, B) -> None:
@@ -56,7 +56,7 @@ def NoStrafing(self, W, H, L, C, B) -> None:
         radians = math.radians(angle)
         self.dot((W/2+math.cos(radians)*(speed*H/2-L/2), H/2+math.sin(radians)*(speed*H/2-L/2)), outline=BLACK)
 
-def CurlyBracket(self, W, H, L, C, B) -> None:
+def HorizontalCurlyBracket(self, W, H, L, C, B) -> None:
     self.arc((-W/2+L/2, 0), (W/2+L/2, W), start=-90, end=0, rounded=True)
     self.line((W/2, W/2), (W/2, H/2-W/2+L))
     self.arc((W/2-L/2, H/2-W+L/2), (W*1.5-L/2, H/2+L/2), start=90, end=180, rounded=True)
@@ -64,19 +64,30 @@ def CurlyBracket(self, W, H, L, C, B) -> None:
     self.line((W/2, H-W/2), (W/2, H/2+W/2-L))
     self.arc((-W/2+L/2, H-W), (W/2+L/2, H), start=0, end=90, rounded=True)
 
+def VerticalCurlyBracket(self, W, H, L, C, B) -> None:
+    self.arc((0, -H/2+L/2), (H, H/2+L/2), start=90, end=180, rounded=True)
+    self.line((H/2, H/2), (W/2-H/2+L, H/2))
+    self.arc((W/2-H+L/2, H/2-L/2), (W/2+L/2, H*1.5-L/2), start=-90, end=0, rounded=True)
+    self.arc((W/2-L/2, H/2-L/2), (W/2+H-L/2, H*1.5-L/2), start=180, end=270, rounded=True)
+    self.line((W-H/2, H/2), (W/2+H/2-L, H/2))
+    self.arc((W-H, -H/2+L/2), (W, H/2+L/2), start=0, end=90, rounded=True)
+
 def DescribedIcon(self, W, H, L, C, B, I, T) -> None:
     self.load(I, size=(W, W))
     self.text((W/2, W+L), text=T, font=ImageFont.truetype("/usr/share/fonts/truetype/freefont/FreeSansBold.ttf", 2*L))
 
 def ProjectPipeline(self, W, H, L, C, B, D1, *D2) -> None:
-    self.load(DescribedIcon, size=(W//3, 0), color=BLACK, args=(Icons.Folder, D1))
-    self.load(Arrow, offset=(W/3+L*1.5, W/6), size=(W/3-3*L, 0), color=LIGHT)
-    self.load(DescribedIcon, size=(W//3, 0), offset=(W/3*2, 0), color=MEDIUM, args=D2)
+    X = W//2.7
+    self.load(DescribedIcon, size=(X, 0), color=BLACK, args=(Icons.Folder, D1))
+    self.load(Arrow, offset=(X+L*1.5, X/2), size=(X/2-L, 0), color=LIGHT)
+    self.load(DescribedIcon, size=(X, 0), offset=(W-X, 0), color=MEDIUM, args=D2)
 
-@Files.createImage("Docs", (700, 280), color=MEDIUM)
+@Files.createImage("Docs", (630, 480), color=MEDIUM)
 def Project(self, W, H, L, C, B) -> None:
-    X = W/7
-    self.load(ProjectPipeline, size=(X*3, 0), offset=(L*2, 0), args=("RFPS_MAPS/", Icons.Cube, ".BLEND"))
-    self.load(ProjectPipeline, size=(X*3, 0), offset=(L*2, X*1.5), args=("RFPS_ICONS/", Icons.Cursor, ".PNG"))
-    self.load(CurlyBracket, size=(X-4*L, H), offset=(X*3+L*3, 0), color=LIGHT)
-    self.load(ProjectPipeline, size=(X*3, H/2), offset=(X*4, H/2-X/2), args=("RFPS/", Icons.Logo, ".EXE"))
+    X = W/6.3
+    self.load(ProjectPipeline, size=(X*2.7, 0), offset=(X*0.2, 0), args=("RFPS_MAPS/", Icons.Cube, ".BLEND"))
+    self.load(ProjectPipeline, size=(X*2.7, 0), offset=(X*0.2, X*1.5), args=("RFPS_ICONS/", Icons.Cursor, ".PNG"))
+    self.load(HorizontalCurlyBracket, size=(X/2, X*2.8), offset=(X*3, 0), color=LIGHT)
+    self.load(ProjectPipeline, size=(X*2.7, 0), offset=(X*3.6, X*0.9), args=("RFPS/", Icons.Logo, ".EXE"))
+    self.load(VerticalCurlyBracket, size=(X, X/2), offset=(X*1.9, X*2.9), color=LIGHT)
+    self.load(ProjectPipeline, size=(X*2.7, 0), offset=(X*1.9, X*3.5), args=("RFPS_THESIS/", Icons.Book, ".PDF"))
