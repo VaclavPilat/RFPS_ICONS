@@ -128,10 +128,10 @@ def Cursor(self, W, H, L, C, B) -> None:
 @Files.createImage("Icons")
 def Book(self, W, H, L, C, B) -> None:
     for i in range(3):
-        self.line((L/2+i*(W/2-L/2), H*0.1), (L/2+i*(W/2-L/2), H*0.9))
+        self.line((L/2+i*(W/2-L/2), H*0.1), (L/2+i*(W/2-L/2), H-L))
     for i in range(2):
         for j in (0, 4):
-            self.arc((-W/4+W/2*i, L*2*j+L/20), (W*3/4+W/2*i, H+L*2*j+L/20), start=-130, end=-50)
+            self.arc((-W/4+W/2*i, L*2*j+L/20), (W*3/4+W/2*i, H+L*2*j+L/20), start=-123 if i else -116, end=-64 if i else -57, rounded=True)
 
 @Files.createImage("Icons")
 def Circle(self, W, H, L, C, B) -> None:

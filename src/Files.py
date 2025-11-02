@@ -21,6 +21,7 @@ def createImage(folder: str = ".", size: tuple = (100, 100), sampling: float = 5
          Wrapper for image creation
     """
     def wrapper(function):
+        function.decorated = True
         # Calculating sampled sizes
         scaledSize = (size[0] * sampling, size[1] * sampling)
         scaledWidth = width * sampling
