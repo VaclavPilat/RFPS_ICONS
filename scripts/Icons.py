@@ -4,28 +4,31 @@ from src import Files, Math
 
 @Files.createImage("Icons")
 def Globe(self, W, H, L, C, B) -> None:
-    self.ellipse((0, 0), (W, H), fill=None)
-    self.ellipse((W*0.275, 0), (W*0.725, H), fill=None)
+    self.arc((0, 0), (W, H))
+    self.arc((W*0.275, 0), (W*0.725, H))
     for i in (-1, 1):
         self.line((L, H/2 + i*H*0.15), (W-L, H/2 + i*H*0.15))
 
 @Files.createImage("Icons")
 def User(self, W, H, L, C, B) -> None:
-    self.ellipse((0.25*W, 0), (0.75*W, H/2), fill=None)
+    self.arc((0.25*W, 0), (0.75*W, H/2))
     self.arc((0, H/2-L), (W, 1.5*H), start=-180, end=0, rounded=True)
     self.line((L/2, H-L/2), (W-L/2, H-L/2), rounded=True)
 
+def User2(self, W, H, L, C, B) -> None:
+    self.arc((0.25*W, 0), (0.75*W, H/2))
+    self.arc((0, H/2-L), (W, 1.5*H), start=-180, end=-57)
+    self.line((W/2+L/2, H-L/2), (L/2, H-L/2), (W/2+L/2, H-L/2))
+
 @Files.createImage("Icons")
 def Users(self, W, H, L, C, B) -> None:
-    self.load(User, size=(W*2/3, H*2/3), offset=(W/3, 0))
-    self.ellipse((W/6-L/2, H/3-L/2), (W/2+L/2, H*2/3+L/2), fill=B, outline=B)
-    self.ellipse((0, H*2/3-1.5*L), (W*2/3+L/2, H*4/3+L/2), fill=B, outline=B)
-    self.load(User, size=(W*2/3, H*2/3), offset=(0, W/3))
+    self.load(User, size=(W*3/5, H*3/5), offset=(W*2/5, H/5))
+    self.load(User2, size=(W*3/5, H*3/5), offset=(0, H/5))
 
 @Files.createImage("Icons")
 def Sliders(self, W, H, L, C, B) -> None:
     for y, x in {H/6: W/2, H/2: W-L/2, 5/6*H: W/4}.items():
-        self.line((L/2, y), (W-L/2, y), rounded=True)
+        self.line((L/2, y), (W-L/2, y))
         self.rectangle((x-L, y-L), (x+L, y+L), outline=B, fill=B)
         self.line((x, y-L*3/4), (x, y+L*3/4), rounded=True)
 
@@ -61,7 +64,7 @@ def Cap(self, W, H, L, C, B) -> None:
     self.line((L, H*0.35), (L, H*0.6), rounded=True)
 
 def Cog(self, W, H, L, C, B) -> None:
-    self.ellipse((0.15*W, 0.15*H), (0.85*W, 0.85*H), fill=B)
+    self.arc((0.15*W, 0.15*H), (0.85*W, 0.85*H))
     for i in range(0, 360, 45):
         self.line((W/2+Math.cos(i)*W*0.35, H/2+Math.sin(i)*W*0.35), (W/2+Math.cos(i)*W*0.4, H/2+Math.sin(i)*W*0.4), rounded=True)
 
@@ -80,7 +83,7 @@ def Keyboard(self, W, H, L, C, B) -> None:
 
 @Files.createImage("Icons")
 def Play(self, W, H, L, C, B) -> None:
-    self.ellipse((0, 0), (W, H), fill=B)
+    self.arc((0, 0), (W, H))
     R = 0.25*W
     A = (0, 120, 240)
     for a, b in ((A[i-1], A[i]) for i in range(3)):
@@ -108,7 +111,7 @@ def Home(self, W, H, L, C, B) -> None:
 
 @Files.createImage("Icons")
 def Search(self, W, H, L, C, B) -> None:
-    self.ellipse((0, 0), (W*0.7, H*0.7), fill=B)
+    self.arc((0, 0), (W*0.7, H*0.7))
     self.line((W*0.6, H*0.6), (W-L/2, H-L/2), rounded=True)
 
 @Files.createImage("Icons")
@@ -118,7 +121,7 @@ def Flag(self, W, H, L, C, B) -> None:
     for o in O:
         self.arc((-L/2, o), (W*2/3-L/2, H/2+o), start=-120, end=-45)
         self.arc((W/3, -L-H/5+o), (W, H*0.3-L+o), start=50, end=130)
-    self.line((L*1.5, L*0.7), (L*1.5, H), rounded=True)
+    self.line((L*1.5, H), (L*1.5, L*0.7), (L*1.5, H))
 
 @Files.createImage("Icons")
 def Cursor(self, W, H, L, C, B) -> None:
@@ -135,8 +138,7 @@ def Book(self, W, H, L, C, B) -> None:
 
 @Files.createImage("Icons")
 def Circle(self, W, H, L, C, B) -> None:
-    self.dot((W/2, H/2), width=L*3)
-    self.dot((W/2, H/2), outline=B)
+    self.arc((W/2-L*1.5, H/2-L*1.5), (W/2+L*1.5, H/2+L*1.5))
 
 @Files.createImage("Icons")
 def Plus(self, W, H, L, C, B) -> None:
@@ -164,9 +166,7 @@ def Metro(self, W, H, L, C, B) -> None:
 @Files.createImage("Icons")
 def Babel(self, W, H, L, C, B) -> None:
     for index, (left, right) in enumerate(zip(zip(range(L//2, W, L), range(H-L//2-L//4, 0, -2*L)), zip(range(W-L//2, 0, -L), range(H-L-L//2-L//4, 0, -2*L)))):
-        self.line(left, right, rounded=True)
-        self.line(left, (left[0], left[1]+L*1.75), rounded=True)
-        self.line(right, (right[0], right[1]+L*2), rounded=True)
+        self.line((left[0], min(left[1]+L*1.75, H)), left, right, (right[0], min(right[1]+L*2, H)))
         if index == 2:
             self.line((left[0]+L, left[1]-L/2), (left[0]+L, L/2), rounded=True)
             self.line((right[0]-L, right[1]), (right[0]-L, L/2), rounded=True)
@@ -178,7 +178,7 @@ def Babel(self, W, H, L, C, B) -> None:
 def Stopwatch(self, W, H, L, C, B) -> None:
     self.line((W*0.4, L/2), (W*0.6, L/2), rounded=True)
     self.line((W/2, 0), (W/2, H*0.15))
-    self.ellipse((W*0.075, H*0.15), (W*0.925, H), fill=B)
+    self.arc((W*0.075, H*0.15), (W*0.925, H))
     self.line((W/2, H*0.575), (W/2, H*0.35), rounded=True)
     self.line((W/2, H*0.575), (W/2+Math.cos(30)*W*0.15, H*0.575+Math.sin(30)*H*0.15), rounded=True)
     for i in (-45, -135):
@@ -186,8 +186,8 @@ def Stopwatch(self, W, H, L, C, B) -> None:
 
 @Files.createImage("Icons")
 def Crosshair(self, W, H, L, C, B) -> None:
-    self.ellipse((0.1*W, 0.1*H), (0.9*W, 0.9*H), fill=None)
-    self.ellipse((W/2-L/2, H/2-L/2), (W/2+L/2, H/2+L/2))
+    self.arc((0.1*W, 0.1*H), (0.9*W, 0.9*H))
+    self.dot((W/2, H/2))
     for i in range(0, 360, 90):
         self.line((W/2+Math.cos(i)*W/4, H/2+Math.sin(i)*H/4), (W/2+Math.cos(i)*(W/2-L/2), H/2+Math.sin(i)*(H/2-L/2)), rounded=True)
 
@@ -212,9 +212,9 @@ def Code(self, W, H, L, C, B) -> None:
 @Files.createImage("Icons")
 def Email(self, W, H, L, C, B) -> None:
     self.arc((0, 0), (W, H), start=60, end=360, rounded=True)
-    self.arc((W*0.275, H*0.275), (W*0.725, H*0.725), start=0, end=360)
+    self.arc((W*0.275, H*0.275), (W*0.725, H*0.725))
     self.line((W*0.725-L/2, H*0.275+L/2), (W*0.725-L/2, H/2), rounded=True)
-    self.arc((W*0.725-L, H*0.275+L/2), (W, H*0.725), rounded=True)
+    self.arc((W*0.725-L, H*0.275+L/2), (W, H*0.725), start=0, end=180, rounded=True)
 
 @Files.createImage("Icons")
 def Phone(self, W, H, L, C, B) -> None:

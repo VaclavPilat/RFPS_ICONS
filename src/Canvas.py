@@ -79,18 +79,6 @@ class Canvas:
             points = (points[1], ) + points + (points[-2], )
         self.draw.line(points, **settings)
     
-    @Settings.defaultDrawSettings("fill", "outline", "width")
-    def ellipse(self, *points, **settings) -> None:
-        """Drawing a full ellipse
-
-        Args:
-            *points (tuple): Top left and bottom right corner positions
-            fill (tuple, optional): Ellipse fill color. Defaults to image foreground color.
-            outline (tuple, optional): Ellipse border color. Defaults to image foreground color.
-            width (float, optional): Ellipse border width. Defaults to image line width.
-        """
-        self.draw.ellipse(points, **settings)
-    
     @Settings.defaultDrawSettings("start", "end", "fill", "width", "rounded")
     def arc(self, *points, rounded: bool, **settings) -> None:
         """Drawing an arc
@@ -138,18 +126,6 @@ class Canvas:
             corners (tuple, optional): Rectangle corner settings. Defaults to image corner settings.
         """
         self.draw.rounded_rectangle(points, **settings)
-    
-    @Settings.defaultDrawSettings("fill", "outline", "width")
-    def polygon(self, *points, **settings) -> None:
-        """Drawing a polygon
-
-        Args:
-            *points (tuple): Points representing the polygon
-            fill (tuple, optional): Polygon fill color. Defaults to image foreground color.
-            outline (tuple, optional): Polygon border color. Defaults to image foreground color.
-            width (float, optional): Polygon border width. Defaults to image line width.
-        """
-        self.draw.polygon(points, **settings)
     
     @Settings.defaultDrawSettings("fill", "outline", "width")
     def dot(self, point: tuple, **settings) -> None:

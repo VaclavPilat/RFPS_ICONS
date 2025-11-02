@@ -18,7 +18,7 @@ def defaultDrawSettings(*names):
                 "outline": self.color,
                 "fill": self.color,
                 "start": 0,
-                "end": 180,
+                "end": 360,
                 "joint": "curve",
                 "radius": self.width,
                 "corners": (True, True, True, True),

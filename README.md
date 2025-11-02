@@ -32,8 +32,8 @@ from src.Files import createImage
 
 @createImage()
 def Globe(self, W, H, L, C, B) -> None:
-    self.ellipse((0, 0), (W, H), fill=None)
-    self.ellipse((W*0.275, 0), (W*0.725, H), fill=None)
+    self.arc((0, 0), (W, H))
+    self.arc((W*0.275, 0), (W*0.725, H))
     for i in (-1, 1):
         self.line((L, H/2 + i*H*0.15), (W-L, H/2 + i*H*0.15))
 ```
