@@ -100,32 +100,23 @@ class Canvas:
                 width, height = (points[1][0]-points[0][0]-line, points[1][1]-points[0][1]-line)
                 self.dot((center[0] + cos*width/2, center[1] + sin*height/2), outline=color, fill=color, transform=False)
         self.draw.arc(points, **settings)
-    
-    @Settings.defaultDrawSettings("fill", "outline", "width")
-    def rectangle(self, *points, **settings) -> None:
-        """Drawing a rectangle
 
-        Args:
-            *points (tuple): Top left and bottom right corner positions
-            fill (tuple, optional): Rectangle fill color. Defaults to image foreground color.
-            outline (tuple, optional): Rectangle border color. Defaults to image foreground color.
-            width (float, optional): Rectangle border width. Defaults to image line width.
-        """
-        self.draw.rectangle(points, **settings)
-    
-    @Settings.defaultDrawSettings("fill", "outline", "width", "radius", "corners")
-    def roundedRectangle(self, *points, **settings) -> None:
+    @Settings.defaultDrawSettings("fill", "width", "joint")
+    def rectangle(self, point1, point2, **settings) -> None:
         """Drawing a rounded rectangle
 
         Args:
-            *points (tuple): Top left and bottom right corner positions
-            fill (tuple, optional): Rectangle fill color. Defaults to image foreground color.
-            outline (tuple, optional): Rectangle border color. Defaults to image foreground color.
-            width (float, optional): Rectangle border width. Defaults to image line width.
-            radius (float, optional): Rectangle border radius. Defaults to image line width.
-            corners (tuple, optional): Rectangle corner settings. Defaults to image corner settings.
+            point1 (tuple): Position of the first corner
+            point2 (tuple): Position of the second corner
+            fill (tuple, optional): Line fill color. Defaults to image foreground color.
+            width (float, optional): Line width. Defaults to image line width.
+            joint (str, optional): Line joint type. Defaults to "curve".
         """
-        self.draw.rounded_rectangle(points, **settings)
+        x1, x2 = sorted((point1[0], point2[0]))
+        y1, y2 = sorted((point1[1], point2[1]))
+        x1, y1 = map(lambda a: a + settings["width"] / 2, (x1, y1))
+        x2, y2 = map(lambda a: a - settings["width"] / 2, (x2, y2))
+        self.line((x1, y1), (x2, y1), (x2, y2), (x1, y2), (x1, y1), transform=False, rounded=True, **settings)
     
     @Settings.defaultDrawSettings("fill", "outline", "width")
     def dot(self, point: tuple, **settings) -> None:

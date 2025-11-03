@@ -36,7 +36,7 @@ def BasicDots(self, W, H, L, C, B) -> None:
 @Files.createImage("Docs", (300, 300), color=MEDIUM)
 def Strafing(self, W, H, L, C, B) -> None:
     self.load(Arrows, color=LIGHT)
-    self.roundedRectangle((W/2-SI*H/2, (1-FO)/2*H), (W/2+SI*H/2, (H+H*BA)/2), fill=None)
+    self.rectangle((W/2-SI*H/2, (1-FO)/2*H), (W/2+SI*H/2, (H+H*BA)/2))
     self.load(BasicDots, color=BLACK)
     self.dot((W/2-SI*H/2+L/2, (1-FO)/2*H+L/2), outline=BLACK)
     self.dot((W/2+SI*H/2-L/2, (1-FO)/2*H+L/2), outline=BLACK)
@@ -88,6 +88,6 @@ def Project(self, W, H, L, C, B) -> None:
     self.load(ProjectPipeline, size=(X*2.7, 0), offset=(X*0.2, 0), args=("RFPS_MAPS/", Icons.Cube, ".BLEND"))
     self.load(ProjectPipeline, size=(X*2.7, 0), offset=(X*0.2, X*1.5), args=("RFPS_ICONS/", Icons.Cursor, ".PNG"))
     self.load(HorizontalCurlyBracket, size=(X/2, X*2.8), offset=(X*3, 0), color=LIGHT)
-    self.load(ProjectPipeline, size=(X*2.7, 0), offset=(X*3.6, X*0.9), args=("RFPS/", Icons.Logo, ".EXE"))
+    self.load(ProjectPipeline, size=(X*2.7, 0), offset=(X*3.6, X*0.9), args=("RFPS/", Icons.Unity, ".EXE"))
     self.load(VerticalCurlyBracket, size=(X, X/2), offset=(X*1.9, X*2.9), color=LIGHT)
     self.load(ProjectPipeline, size=(X*2.7, 0), offset=(X*1.9, X*3.5), args=("RFPS_THESIS/", Icons.Book, ".PDF"))

@@ -27,10 +27,10 @@ def Users(self, W, H, L, C, B) -> None:
 
 @Files.createImage("Icons")
 def Sliders(self, W, H, L, C, B) -> None:
-    for y, x in {H/6: W/2, H/2: W-L/2, 5/6*H: W/4}.items():
-        self.line((L/2, y), (W-L/2, y))
-        self.rectangle((x-L, y-L), (x+L, y+L), outline=B, fill=B)
+    for y, x in {H/6: W/2, H/2: W-2*L, 5/6*H: W/4}.items():
+        self.line((x-L, y), (L/2, y), (x-L, y))
         self.line((x, y-L*3/4), (x, y+L*3/4), rounded=True)
+        self.line((x+L, y), (W-L/2, y), (x+L, y))
 
 @Files.createImage("Icons")
 def Graph(self, W, H, L, C, B) -> None:
@@ -46,7 +46,7 @@ def Audio(self, W, H, L, C, B) -> None:
 
 @Files.createImage("Icons")
 def Monitor(self, W, H, L, C, B) -> None:
-    self.roundedRectangle((0, L/2), (W, H*3/4), fill=None)
+    self.rectangle((0, L/2), (W, H*3/4))
     self.line((W*0.3, H-L), (W*0.7, H-L), rounded=True)
     self.line((W/2, H*3/4), (W/2, H-L))
 
@@ -77,9 +77,9 @@ def Cogs(self, W, H, L, C, B) -> None:
 def Keyboard(self, W, H, L, C, B) -> None:
     S = W/3-L/2
     G = L*3/4
-    self.roundedRectangle((S, H/2-S-G/2), (S*2, H/2-G/2), radius=L/2, fill=None)
+    self.rectangle((S, H/2-S-G/2), (S*2, H/2-G/2))
     for i in range(3):
-        self.roundedRectangle((S*i+G*i, H/2+G/2), (S*(i+1)+G*i, H/2+G/2+S), radius=L/2, fill=None)
+        self.rectangle((S*i+G*i, H/2+G/2), (S*(i+1)+G*i, H/2+G/2+S))
 
 @Files.createImage("Icons")
 def Play(self, W, H, L, C, B) -> None:
@@ -107,7 +107,7 @@ def Home(self, W, H, L, C, B) -> None:
     for i in (-1, 1):
         self.line((W/2+i*W*0.35, H), (W/2+i*W*0.35, H*0.4))
     self.line((L/2, H/2), (W/2, L/2), (W-L/2, H/2), rounded=True)
-    self.rectangle((W/2-L*1.5, H*3/5), (W/2+L*1.5, H), fill=None)
+    self.line((W/2-L, H), (W/2-L, H*0.65), (W/2+L, H*0.65), (W/2+L, H))
 
 @Files.createImage("Icons")
 def Search(self, W, H, L, C, B) -> None:
@@ -154,11 +154,11 @@ def Trash(self, W, H, L, C, B) -> None:
     self.line((W*1/3, L*2), (W*1/3, L/2), (W*2/3, L/2), (W*2/3, L*2), rounded=True)
 
 @Files.createImage("Icons")
-def Metro(self, W, H, L, C, B) -> None:
+def Metro(self, W, H, L, C, B) -> None:###############################
     for i in range(2):
         self.line((W/2, H/2), (i*W, H+L*2.5))
     self.line((0, H*0.8), (W, H*0.8), fill=B)
-    self.roundedRectangle((W*0.15, 0), (W*0.85, H*0.8), fill=B)
+    self.rectangle((W*0.15, 0), (W*0.85, H*0.8), fill=B)
     for i in (-1, 1):
         self.dot((W/2+i*W/6, H*0.6))
     self.line((W*0.15, H*0.45), (W*0.85, H*0.45))
@@ -238,7 +238,7 @@ def Star(self, W, H, L, C, B) -> None:
 @Files.createImage("Icons")
 def Bag(self, W, H, L, C, B) -> None:
     R = W*0.2
-    self.roundedRectangle((0, H*0.25), (W, H), fill=B)
+    self.rectangle((0, H*0.25), (W, H))
     self.arc((W/2-R, 0), (W/2+R, R*2), start=180, end=360)
     for i in (-1, 1):
         self.line((W/2+i*(R-L/2), R), (W/2+i*(R-L/2), R+R/2))
@@ -247,7 +247,7 @@ def Bag(self, W, H, L, C, B) -> None:
 
 @Files.createImage("Icons")
 def Certificate(self, W, H, L, C, B) -> None:
-    self.roundedRectangle((0, H*0.1), (W, H*0.9), fill=B)
+    self.rectangle((0, H*0.1), (W, H*0.9))
     self.load(Star, size=(W*0.5, H*0.5), offset=(W/2-W*0.25, H/2-H*0.25))
 
 @Files.createImage("Icons")
@@ -264,7 +264,7 @@ def Birth(self, W, H, L, C, B) -> None:
 @Files.createImage("Icons")
 def Server(self, W, H, L, C, B) -> None:
     P = L
-    self.roundedRectangle((P, 0), (W-P, H), fill=None)
+    self.rectangle((P, 0), (W-P, H))
     S = [L/2, H-L/2]
     for i in range(1, 3):
         Y = L/2+(H-L)*i/3
@@ -278,14 +278,14 @@ def Server(self, W, H, L, C, B) -> None:
 def Network(self, W, H, L, C, B) -> None:
     self.line((0, H/2), (W, H/2))
     self.line((W/2, H/2), (W/2, L*3))
-    self.roundedRectangle((W/2-L*1.75, 0), (W/2+L*1.75, L*3.5), fill=None)
+    self.rectangle((W/2-L*1.75, 0), (W/2+L*1.75, L*3.5))
     for i in (-1, 1):
         x = W/2+i*W/4
         self.line((x, H/2), (x, H-3*L))
-        self.roundedRectangle((x-L*1.75, H-L*3.5), (x+L*1.75, H), fill=None)
+        self.rectangle((x-L*1.75, H-L*3.5), (x+L*1.75, H))
 
 @Files.createImage("Icons")
-def Logo(self, W, H, L, C, B) -> None:
+def Unity(self, W, H, L, C, B) -> None:
     for a in range(30, 390, 60):
         self.line((W/2, H/2), (W/2+Math.cos(a)*(W/2-L/2), H/2+Math.sin(a)*(H/2-L/2)), rounded=True)
         self.line((W/2+Math.cos(a)*(W/2-L/2), H/2+Math.sin(a)*(H/2-L/2)), (W/2+Math.cos(a+60)*(W/2-L/2), H/2+Math.sin(a+60)*(H/2-L/2)), rounded=True)
