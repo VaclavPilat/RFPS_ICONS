@@ -46,9 +46,9 @@ def Audio(self, W, H, L, C, B) -> None:
 
 @Files.createImage("Icons")
 def Monitor(self, W, H, L, C, B) -> None:
-    self.rectangle((0, L/2), (W, H*3/4))
-    self.line((W*0.3, H-L), (W*0.7, H-L), rounded=True)
-    self.line((W/2, H*3/4), (W/2, H-L))
+    self.rectangle((0, L), (W, H*0.7))
+    self.line((W*0.3, H-L*1.5), (W*0.7, H-L*1.5), rounded=True)
+    self.line((W/2, H*0.7), (W/2, H-L))
 
 @Files.createImage("Icons")
 def Splitscreen(self, W, H, L, C, B) -> None:
@@ -75,11 +75,9 @@ def Cogs(self, W, H, L, C, B) -> None:
 
 @Files.createImage("Icons")
 def Keyboard(self, W, H, L, C, B) -> None:
-    S = W/3-L/2
-    G = L*3/4
-    self.rectangle((S, H/2-S-G/2), (S*2, H/2-G/2))
+    self.rectangle((W/2-L*2.25, H/2-L/4), (W/2+L*0.75, H/2-L*3.25))
     for i in range(3):
-        self.rectangle((S*i+G*i, H/2+G/2), (S*(i+1)+G*i, H/2+G/2+S))
+        self.rectangle((i*L*3.5, H/2+L/4), (i*L*3.5+L*3, H/2+L*3.25))
 
 @Files.createImage("Icons")
 def Play(self, W, H, L, C, B) -> None:
@@ -154,13 +152,11 @@ def Trash(self, W, H, L, C, B) -> None:
     self.line((W*1/3, L*2), (W*1/3, L/2), (W*2/3, L/2), (W*2/3, L*2), rounded=True)
 
 @Files.createImage("Icons")
-def Metro(self, W, H, L, C, B) -> None:###############################
-    for i in range(2):
-        self.line((W/2, H/2), (i*W, H+L*2.5))
-    self.line((0, H*0.8), (W, H*0.8), fill=B)
-    self.rectangle((W*0.15, 0), (W*0.85, H*0.8), fill=B)
+def Metro(self, W, H, L, C, B) -> None:
+    self.rectangle((W*0.15, 0), (W*0.85, H*0.8))
     for i in (-1, 1):
         self.dot((W/2+i*W/6, H*0.6))
+        self.line((W/2+i*W/6, H-L*1.5), (W/2+i*W/6, H))
     self.line((W*0.15, H*0.45), (W*0.85, H*0.45))
 
 @Files.createImage("Icons")
@@ -278,11 +274,11 @@ def Server(self, W, H, L, C, B) -> None:
 def Network(self, W, H, L, C, B) -> None:
     self.line((0, H/2), (W, H/2))
     self.line((W/2, H/2), (W/2, L*3))
-    self.rectangle((W/2-L*1.75, 0), (W/2+L*1.75, L*3.5))
+    self.rectangle((W/2-L*1.5, L/2), (W/2+L*1.5, L*3.5))
     for i in (-1, 1):
-        x = W/2+i*W/4
+        x = W/2+i*W/4.5
         self.line((x, H/2), (x, H-3*L))
-        self.rectangle((x-L*1.75, H-L*3.5), (x+L*1.75, H))
+        self.rectangle((x-L*1.5, H-L*3.5), (x+L*1.5, H-L/2))
 
 @Files.createImage("Icons")
 def Unity(self, W, H, L, C, B) -> None:

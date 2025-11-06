@@ -46,7 +46,8 @@ class Canvas:
             list: List of ofsetted coordinate tuples
         """
         return [(point[0] + self.offset[0], point[1] + self.offset[1]) for point in points]
-    
+
+    ## \todo Implement image loading with masks to ensure the the loaded image doesnt bleed out of its space: PIL.Image.composite()
     @Settings.defaultLoadSettings
     def load(self, function, offset: tuple, **settings) -> None:
         """Loading another image into this one
