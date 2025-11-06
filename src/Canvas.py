@@ -2,7 +2,7 @@
 # Functionality for generating images using simple shapes
 from . import Settings
 import math
-from PIL import ImageDraw
+from PIL import ImageDraw, ImageFont
 
 
 # noinspection PyIncorrectDocstring
@@ -132,15 +132,17 @@ class Canvas:
         radius = settings["width"] / 2
         self.draw.ellipse(((point[0]-radius, point[1]-radius), (point[0]+radius, point[1]+radius)), **settings)
 
-    @Settings.defaultDrawSettings("text", "fill", "font", "anchor")
-    def text(self, point: tuple, **settings) -> None:
+    @Settings.defaultDrawSettings("text", "fill", "file", "anchor", "size")
+    def text(self, point: tuple, file: str = None, size: float = None, **settings) -> None:
         """Drawing text
 
         Args:
             point (tuple): Point coordinates
             text (str, optional): Text contents. Defaults to "Hello world".
             fill (tuple, optional): Text color. Defaults to image foreground color.
-            font (ImageFont, optional): Text font. Defaults to some default one.
+            file (str, optional): TrueType font filepath. Defaults to None.
             anchor (str, optional): Text anchor. Defaults to "mt".
+            size (float, optional): Font size. Defaults to 2 * line width.
         """
-        self.draw.text(point, **settings)
+        font = ImageFont.truetype(file, size) if file else ImageFont.load_default(size)
+        self.draw.text(point, font=font, **settings)

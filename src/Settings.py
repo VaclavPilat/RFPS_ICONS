@@ -24,7 +24,8 @@ def defaultDrawSettings(*names):
                 "corners": (True, True, True, True),
                 "rounded": False,
                 "text": "Hello world",
-                "font": ImageFont.load_default(self.width*2),
+                "file": None,
+                "size": 2*self.width,
                 "anchor": "mt",
             }.items() if k in names}
             values.update(settings)

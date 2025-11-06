@@ -9,6 +9,8 @@ LIGHT = (200, 200, 200) # Light gray color
 MEDIUM = (120, 120, 120) # Medium gray color
 BLACK = (0, 0, 0) # Black color
 
+BOLD = "/usr/share/fonts/truetype/freefont/FreeSansBold.ttf" # Bold font
+
 def Arrow(self, W, H, L, C, B) -> None:
     self.line((0, 0), (W, H), rounded=True)
     degrees = math.degrees(math.atan2(-H, -W))
@@ -74,7 +76,7 @@ def VerticalCurlyBracket(self, W, H, L, C, B) -> None:
 
 def DescribedIcon(self, W, H, L, C, B, I, T) -> None:
     self.load(I, size=(W, W))
-    self.text((W/2, W+L), text=T, font=ImageFont.truetype("/usr/share/fonts/truetype/freefont/FreeSansBold.ttf", 2*L))
+    self.text((W/2, W+L), text=T, file=BOLD)
 
 def ProjectPipeline(self, W, H, L, C, B, D1, *D2) -> None:
     X = W//2.7
@@ -91,3 +93,12 @@ def Project(self, W, H, L, C, B) -> None:
     self.load(ProjectPipeline, size=(X*2.7, 0), offset=(X*3.6, X*0.9), args=("RFPS/", Icons.Unity, ".EXE"))
     self.load(VerticalCurlyBracket, size=(X, X/2), offset=(X*1.9, X*2.9), color=LIGHT)
     self.load(ProjectPipeline, size=(X*2.7, 0), offset=(X*1.9, X*3.5), args=("RFPS_THESIS/", Icons.Book, ".PDF"))
+
+def Key(self, W, H, L, C, B, K, D) -> None:
+    self.rectangle((0, 0), (W, H), fill=LIGHT)
+    self.text((W/2, H*3/7 ), text=K, anchor="mm", fill=MEDIUM, file=BOLD, size=3.5*L)
+    self.text((W/2, H-L*1.5), text=D, anchor="ms", fill=BLACK, file=BOLD)
+
+@Files.createImage("Docs", (100, 100))
+def Keyboard(self, W, H, L, C, B) -> None:
+    self.load(Key, args=("A", "LEFT"))
