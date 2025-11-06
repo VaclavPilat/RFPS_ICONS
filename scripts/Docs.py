@@ -2,7 +2,6 @@
 from src import Files
 import Icons
 import math
-from PIL import ImageFont
 
 
 LIGHT = (200, 200, 200) # Light gray color
@@ -99,6 +98,16 @@ def Key(self, W, H, L, C, B, K, D) -> None:
     self.text((W/2, H*3/7 ), text=K, anchor="mm", fill=MEDIUM, file=BOLD, size=3.5*L)
     self.text((W/2, H-L*1.5), text=D, anchor="ms", fill=BLACK, file=BOLD)
 
-@Files.createImage("Docs", (100, 100))
+cols = 15
+rows = 5
+@Files.createImage("Docs", (100*cols+10*(cols-1), 100*rows+10*(rows-1)))
 def Keyboard(self, W, H, L, C, B) -> None:
-    self.load(Key, args=("A", "LEFT"))
+    X = W/(cols+(cols-1)/10)
+    keys = (
+        (("`", ""), ("1", ""), ("2", ""),),
+        (("->|", ""), ("Q", "LAST"), ("W", "FORW."), ("E", "MAG"), ("E", "REL."),),
+        (("CAPS", ""), ("A", "LEFT"), ("S", "BACK."), ("D", "RIGHT"), ("F", "PICKUP"), ("G", "THROW")),
+    )
+    for r, row in enumerate(keys):
+        for c, cell in enumerate(row):
+            self.load(Key, size=(X, X), offset=(c*(X+L), r*(X+L)), args=cell)
