@@ -17,3 +17,15 @@ def Icons(self, W, H, L, C, B) -> None:
         row = index // cols
         col = index % cols
         self.load(function, size=(X, X), offset=(L+X*1.1*col, L+X*1.1*row))
+
+def rename(name):
+    def wrapper(func):
+        func.__name__ = name
+        return func
+    return wrapper
+
+for name, function in icons:
+    @Files.createImage("Variations", (50, 50), color=(0, 0, 0), width=5)
+    @rename(f"Mini{name}")
+    def Miniature(self, W, H, L, C, B) -> None:
+        self.load(function)
