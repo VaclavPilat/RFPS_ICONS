@@ -57,12 +57,12 @@ def NoStrafing(self, W, H, L, C, B) -> None:
         radians = math.radians(angle)
         self.dot((W/2+math.cos(radians)*(speed*H/2-L/2), H/2+math.sin(radians)*(speed*H/2-L/2)), outline=BLACK)
 
-def HorizontalCurlyBracket(self, W, H, L, C, B) -> None:
+def HorizontalCurlyBracket(self, W, H, L, C, B, F=0.5) -> None:
     self.arc((-W/2+L/2, 0), (W/2+L/2, W), start=-90, end=0, rounded=True)
-    self.line((W/2, W/2), (W/2, H/2-W/2+L))
-    self.arc((W/2-L/2, H/2-W+L/2), (W*1.5-L/2, H/2+L/2), start=90, end=180, rounded=True)
-    self.arc((W/2-L/2, H/2-L/2), (W*1.5-L/2, H/2+W-L/2), start=180, end=270, rounded=True)
-    self.line((W/2, H-W/2), (W/2, H/2+W/2-L))
+    self.line((W/2, W/2), (W/2, H*F-W/2+L))
+    self.arc((W/2-L/2, H*F-W+L/2), (W*1.5-L/2, H*F+L/2), start=90, end=180, rounded=True)
+    self.arc((W/2-L/2, H*F-L/2), (W*1.5-L/2, H*F+W-L/2), start=180, end=270, rounded=True)
+    self.line((W/2, H-W/2), (W/2, H*F+W/2-L))
     self.arc((-W/2+L/2, H-W), (W/2+L/2, H), start=0, end=90, rounded=True)
 
 def VerticalCurlyBracket(self, W, H, L, C, B) -> None:
@@ -83,15 +83,17 @@ def ProjectPipeline(self, W, H, L, C, B, D1, *D2) -> None:
     self.load(Arrow, offset=(X+L*1.5, X/2), size=(X/2-L, 0), color=LIGHT)
     self.load(DescribedIcon, size=(X, 0), offset=(W-X, 0), color=MEDIUM, args=D2)
 
-@Files.createImage("Docs", (630, 480), color=MEDIUM)
+@Files.createImage("Docs", (630, 630), color=MEDIUM)
 def Project(self, W, H, L, C, B) -> None:
     X = W/6.3
     self.load(ProjectPipeline, size=(X*2.7, 0), offset=(X*0.2, 0), args=("RFPS_MAPS/", Icons.Cube, ".BLEND"))
-    self.load(ProjectPipeline, size=(X*2.7, 0), offset=(X*0.2, X*1.5), args=("RFPS_ICONS/", Icons.Cursor, ".PNG"))
-    self.load(HorizontalCurlyBracket, size=(X/2, X*2.8), offset=(X*3, 0), color=LIGHT)
-    self.load(ProjectPipeline, size=(X*2.7, 0), offset=(X*3.6, X*0.9), args=("RFPS/", Icons.Unity, ".EXE"))
-    self.load(VerticalCurlyBracket, size=(X, X/2), offset=(X*1.9, X*2.9), color=LIGHT)
-    self.load(ProjectPipeline, size=(X*2.7, 0), offset=(X*1.9, X*3.5), args=("RFPS_THESIS/", Icons.Book, ".PDF"))
+    self.load(ProjectPipeline, size=(X*2.7, 0), offset=(X*0.2, X*1.5), args=("RFPS_AUDIO/", Icons.Audio, ".MP3"))
+    self.load(ProjectPipeline, size=(X*2.7, 0), offset=(X*0.2, X*3), args=("RFPS_ICONS/", Icons.Cursor, ".PNG"))
+    self.load(HorizontalCurlyBracket, size=(X/2, X*4.3), offset=(X*3, 0), color=LIGHT, args=(0.5/4.3,))
+    self.load(ProjectPipeline, size=(X*2.7, 0), offset=(X*3.6, 0), args=("RFPS/", Icons.Unity, ".EXE"))
+    self.load(ProjectPipeline, size=(X*2.7, 0), offset=(X*3.6, X*3), args=("RFPS_META/", Icons.Globe, "API"))
+    self.load(VerticalCurlyBracket, size=(X, X/2), offset=(X*1.9, X*4.4), color=LIGHT)
+    self.load(ProjectPipeline, size=(X*2.7, 0), offset=(X*1.9, X*5), args=("RFPS_THESIS/", Icons.Book, ".PDF"))
 
 def Key(self, W, H, L, C, B, K, D) -> None:
     self.rectangle((0, 0), (W, H), fill=LIGHT)
