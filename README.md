@@ -3,21 +3,21 @@
 ![Icon examples](docs/Examples.png)
 
 This repository is a part of the *RFPS* project.
-It is used for creating icons and other simple PNG images. Images are constructed using simple shapes, such as lines, circles and curves. Icons produced by this codebase are then used in the *RFPS* repository and diagrams are used in *RFPS_THESIS*.
+It is used for creating icons and other simple PNG images. Images are constructed using simple shapes, such as lines and circles. Icons produced by this codebase are then used in the *RFPS* repository and diagrams are used in *RFPS_THESIS*.
 
-This project is a wrapper to the python's Pillow library. Each image definition is meant to be stored in a function, which, when decorated, behaves like an instance method. Each function has 5 arguments - bounding box width and height, line width and foreground and background colors. These functions can then be loaded into one another. Images are generated in high resolution and then downscaled to their desired size.
+This project is a wrapper of the Pillow library. Each image definition is meant to be stored in a function, which, when decorated, behaves like an instance method. Each function has 5 arguments - bounding box width and height, line width and foreground and background colors. These functions can then be loaded into one another. Images are generated in high resolution and then downscaled to their desired size.
 
 The codebase could be improved by adding features such as image rotation or by ensuring that anything created beyond the bounding box of a single image does not bleed out when imported to another image. SVG output could be added as well.
 
 ## How to run
 
-Make sure that you have Python3 on your device (version 3.10 was used in development). Then install all dependencies:
+Make sure that you have Python3 installed on your device (version 3.10 was used in development). Then install all dependencies:
 
 ```shell
 make install
 ```
 
-To generate the images, use:
+To generate all defined images, use:
 
 ```shell
 make run
