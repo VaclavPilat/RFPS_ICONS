@@ -10,17 +10,21 @@ BLACK = (0, 0, 0) # Black color
 
 BOLD = "/usr/share/fonts/truetype/freefont/FreeSansBold.ttf" # Bold font
 
-def Arrow(self, W, H, L, C, B) -> None:
+def Arrow(self, W, H, L, C, B, S=False, E=True) -> None:
+    degrees = math.degrees(math.atan2(H, W))
+    if S:
+        for i in (-45, +45):
+            radians = math.radians(degrees + i)
+            self.line((0, 0), (math.cos(radians)*2*L, math.sin(radians)*2*L), rounded=True)
+    if E:
+        for i in (-45, +45):
+            radians = math.radians(degrees + 180 + i)
+            self.line((W, H), (W+math.cos(radians)*2*L, H+math.sin(radians)*2*L), rounded=True)
     self.line((0, 0), (W, H), rounded=True)
-    degrees = math.degrees(math.atan2(-H, -W))
-    for i in (-45, +45):
-        radians = math.radians(degrees + i)
-        self.line((W, H), (W+math.cos(radians)*2*L, H+math.sin(radians)*2*L), rounded=True)
 
 def Arrows(self, W, H, L, C, B) -> None:
-    for i in (-1, 1):
-        self.load(Arrow, offset=(W/2, H/2), size=(i*(W/2-L/2), 0))
-        self.load(Arrow, offset=(W/2, H/2), size=(0, i*(H/2-L/2)))
+    self.load(Arrow, offset=(L/2, H/2), size=(W-L, 0), args=(True, True))
+    self.load(Arrow, offset=(W/2, L/2), size=(0, H-L), args=(True, True))
 
 FO = 1 # Forward speed
 SI = 0.6 * FO # Side speed
@@ -59,18 +63,18 @@ def NoStrafing(self, W, H, L, C, B) -> None:
 
 def HorizontalCurlyBracket(self, W, H, L, C, B, F=0.5) -> None:
     self.arc((-W/2+L/2, 0), (W/2+L/2, W), start=-90, end=0, rounded=True)
-    self.line((W/2, W/2), (W/2, H*F-W/2+L))
+    self.line((W/2, W/2), (W/2, H*F-W/2+L/2))
     self.arc((W/2-L/2, H*F-W+L/2), (W*1.5-L/2, H*F+L/2), start=90, end=180, rounded=True)
     self.arc((W/2-L/2, H*F-L/2), (W*1.5-L/2, H*F+W-L/2), start=180, end=270, rounded=True)
-    self.line((W/2, H-W/2), (W/2, H*F+W/2-L))
+    self.line((W/2, H-W/2), (W/2, H*F+W/2-L/2))
     self.arc((-W/2+L/2, H-W), (W/2+L/2, H), start=0, end=90, rounded=True)
 
 def VerticalCurlyBracket(self, W, H, L, C, B) -> None:
     self.arc((0, -H/2+L/2), (H, H/2+L/2), start=90, end=180, rounded=True)
-    self.line((H/2, H/2), (W/2-H/2+L, H/2))
+    self.line((H/2, H/2), (W/2-H/2+L/2, H/2))
     self.arc((W/2-H+L/2, H/2-L/2), (W/2+L/2, H*1.5-L/2), start=-90, end=0, rounded=True)
     self.arc((W/2-L/2, H/2-L/2), (W/2+H-L/2, H*1.5-L/2), start=180, end=270, rounded=True)
-    self.line((W-H/2, H/2), (W/2+H/2-L, H/2))
+    self.line((W-H/2, H/2), (W/2+H/2-L/2, H/2))
     self.arc((W-H, -H/2+L/2), (W, H/2+L/2), start=0, end=90, rounded=True)
 
 def DescribedIcon(self, W, H, L, C, B, I, T) -> None:
@@ -91,6 +95,7 @@ def Project(self, W, H, L, C, B) -> None:
     self.load(ProjectPipeline, size=(X*2.7, 0), offset=(X*0.2, X*3), args=("RFPS_ICONS/", Icons.Cursor, ".PNG"))
     self.load(HorizontalCurlyBracket, size=(X/2, X*4.3), offset=(X*3, 0), color=LIGHT, args=(0.5/4.3,))
     self.load(ProjectPipeline, size=(X*2.7, 0), offset=(X*3.6, 0), args=("RFPS/", Icons.Unity, ".EXE"))
+    self.load(Arrow, size=(0, X*1.45), offset=(W-X/2, X*1.4), color=LIGHT, args=(True, True))
     self.load(ProjectPipeline, size=(X*2.7, 0), offset=(X*3.6, X*3), args=("RFPS_META/", Icons.Globe, "API"))
     self.load(VerticalCurlyBracket, size=(X, X/2), offset=(X*1.9, X*4.4), color=LIGHT)
     self.load(ProjectPipeline, size=(X*2.7, 0), offset=(X*1.9, X*5), args=("RFPS_THESIS/", Icons.Book, ".PDF"))
