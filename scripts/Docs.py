@@ -87,6 +87,11 @@ def ProjectPipeline(self, W, H, L, C, B, D1, *D2) -> None:
     self.load(Arrow, offset=(X+L*1.5, X/2), size=(X/2-L, 0), color=LIGHT)
     self.load(DescribedIcon, size=(X, 0), offset=(W-X, 0), color=MEDIUM, args=D2)
 
+def VerticalDots(self, W, H, L, C, B) -> None:
+    count = int(((H / L) * 2 + 1) / 3)
+    for i in range(count + 1):
+        self.dot((W/2, i/count * H))
+
 @Files.createImage("Docs", (630, 630), color=MEDIUM)
 def Project(self, W, H, L, C, B) -> None:
     X = W/6.3
@@ -95,7 +100,7 @@ def Project(self, W, H, L, C, B) -> None:
     self.load(ProjectPipeline, size=(X*2.7, 0), offset=(X*0.2, X*3), args=("RFPS_ICONS/", Icons.Cursor, ".PNG"))
     self.load(HorizontalCurlyBracket, size=(X/2, X*4.3), offset=(X*3, 0), color=LIGHT, args=(0.5/4.3,))
     self.load(ProjectPipeline, size=(X*2.7, 0), offset=(X*3.6, 0), args=("RFPS/", Icons.Unity, ".EXE"))
-    self.load(Arrow, size=(0, X*1.45), offset=(W-X/2, X*1.4), color=LIGHT, args=(True, True))
+    self.load(VerticalDots, size=(0, X*1.45), offset=(W-X/2, X*1.4), color=LIGHT)
     self.load(ProjectPipeline, size=(X*2.7, 0), offset=(X*3.6, X*3), args=("RFPS_META/", Icons.Globe, "API"))
     self.load(VerticalCurlyBracket, size=(X, X/2), offset=(X*1.9, X*4.4), color=LIGHT)
     self.load(ProjectPipeline, size=(X*2.7, 0), offset=(X*1.9, X*5), args=("RFPS_THESIS/", Icons.Book, ".PDF"))
