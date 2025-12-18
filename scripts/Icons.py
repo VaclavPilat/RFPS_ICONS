@@ -294,3 +294,7 @@ def Folder(self, W, H, L, C, B):
 def Cube(self, W, H, L, C, B):
     self.line((W*0.6, H-L/2), (L/2, H*0.85), (L/2, H*0.3), (W*0.6, H*0.4), (W*0.6, H-L/2), (W-L/2, H*0.7), (W-L/2, H*0.15), (W*0.6, H*0.4), rounded=True)
     self.line((L/2, H*0.3), (W*0.4, L/2), (W-L/2, H*0.15), rounded=True)
+
+@Files.createImage("Icons")
+def Checkmark(self, W, H, L, C, B):
+    self.line((L/2, H*2/3-L), (W/3+L/2, H-L*1.5), (W-L/2, L*1.5), rounded=True)
