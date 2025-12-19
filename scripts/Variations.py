@@ -11,10 +11,10 @@ rows = math.ceil(len(icons) / cols)
 @Files.createImage("Variations", (100*cols+10*(cols+1), 100*rows+10*(rows+1)), color=(100, 100, 100), width=10)
 def Icons(self, W, H, L, C, B):
     X = int(W/(cols+(cols+1)/10))
-    #for i in range(rows+1):
-    #    self.line((0, (X+L)*i+L/2), (W, (X+L)*i+L/2), fill=(255, 0, 0))
-    #for i in range(cols+1):
-    #    self.line(((X+L)*i+L/2, 0), ((X+L)*i+L/2, H), fill=(255, 0, 0))
+    for i in range(rows+1):
+        self.line((0, (X+L)*i+L/2), (W, (X+L)*i+L/2), fill=(255, 0, 0))
+    for i in range(cols+1):
+        self.line(((X+L)*i+L/2, 0), ((X+L)*i+L/2, H), fill=(255, 0, 0))
     for index, (name, function) in enumerate(icons):
         row = index // cols
         col = index % cols

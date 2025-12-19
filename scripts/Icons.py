@@ -1,5 +1,6 @@
 # Functions for generating icons
 from src import Files, Math
+import Shapes
 
 
 @Files.createImage("Icons")
@@ -298,3 +299,8 @@ def Cube(self, W, H, L, C, B):
 @Files.createImage("Icons")
 def Checkmark(self, W, H, L, C, B):
     self.line((L/2, H*2/3-L), (W/3+L/2, H-L*1.5), (W-L/2, L*1.5), rounded=True)
+
+@Files.createImage("Icons")
+def Sync(self, W, H, L, C, B):
+    self.load(Shapes.Arrow, size=(0, H-L), offset=(W/4, L/2), args=(False, True, 2.75*L))
+    self.load(Shapes.Arrow, size=(0, H-L), offset=(W*3/4, L/2), args=(True, False, 2.75*L))

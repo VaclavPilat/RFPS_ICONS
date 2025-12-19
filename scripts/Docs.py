@@ -1,6 +1,6 @@
 # Functions for generating charts and other documentation sketches
 from src import Files
-import Icons
+import Icons, Shapes
 import math
 
 
@@ -10,21 +10,9 @@ BLACK = (0, 0, 0) # Black color
 BOLD = "/usr/share/fonts/truetype/freefont/FreeSansBold.ttf" # Bold font
 
 
-def Arrow(self, W, H, L, C, B, S=False, E=True):
-    degrees = math.degrees(math.atan2(H, W))
-    if S:
-        for i in (-45, +45):
-            radians = math.radians(degrees + i)
-            self.line((0, 0), (math.cos(radians)*2*L, math.sin(radians)*2*L), rounded=True)
-    if E:
-        for i in (-45, +45):
-            radians = math.radians(degrees + 180 + i)
-            self.line((W, H), (W+math.cos(radians)*2*L, H+math.sin(radians)*2*L), rounded=True)
-    self.line((0, 0), (W, H), rounded=True)
-
 def Arrows(self, W, H, L, C, B):
-    self.load(Arrow, offset=(L/2, H/2), size=(W-L, 0), args=(True, True))
-    self.load(Arrow, offset=(W/2, L/2), size=(0, H-L), args=(True, True))
+    self.load(Shapes.Arrow, offset=(L/2, H/2), size=(W-L, 0), args=(True, True))
+    self.load(Shapes.Arrow, offset=(W/2, L/2), size=(0, H-L), args=(True, True))
 
 FO = 1 # Forward speed
 SI = 0.6 * FO # Side speed
@@ -84,7 +72,7 @@ def DescribedIcon(self, W, H, L, C, B, I, T):
 def ProjectPipeline(self, W, H, L, C, B, D1, *D2):
     X = W//2.7
     self.load(DescribedIcon, size=(X, 0), color=BLACK, args=(Icons.Folder, D1))
-    self.load(Arrow, offset=(X+L*1.5, X/2), size=(X/2-L, 0), color=LIGHT)
+    self.load(Shapes.Arrow, offset=(X+L*1.5, X/2), size=(X/2-L, 0), color=LIGHT)
     self.load(DescribedIcon, size=(X, 0), offset=(W-X, 0), color=MEDIUM, args=D2)
 
 def VerticalDots(self, W, H, L, C, B):
