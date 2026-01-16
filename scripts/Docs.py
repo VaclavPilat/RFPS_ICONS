@@ -94,23 +94,27 @@ def Project(self, W, H, L, C, B):
     self.load(ProjectPipeline, size=(X*2.7, 0), offset=(X*1.9, X*5), args=("RFPS_THESIS/", Icons.Book, ".PDF"))
 
 def Key(self, W, H, L, C, B, K, D=""):
-    self.rectangle((0, 0), (W, H), fill=LIGHT)
-    self.text((W/2, H*3/7 ), text=K, anchor="mm", fill=MEDIUM, file=BOLD, size=3*L+L//2)
+    self.rectangle((-L/2, -L/2), (W+L/2, H+L/2), fill=LIGHT)
+    self.text((W/2, H*3/7), text=K, anchor="mm", fill=MEDIUM, file=BOLD, size=3*L+L//2)
     self.text((W/2, H-L*1.5), text=D, anchor="ms", fill=BLACK, file=BOLD)
 
 cols = 15
 rows = 6
-@Files.createImage("Docs", (100*cols+10*(cols-1), 100*rows+10*(rows-1)))
+@Files.createImage("Docs", (100*cols+10, 100*rows+10))
 def Keyboard(self, W, H, L, C, B):
-    X = W/(cols+(cols-1)/10)
+    X = (H-L)/rows
     keys = (
         (("ESC",), ("F1",), ("F2",), ("F3",), ("F4",), ("F5",), ("F6",), ("F7",), ("F8",), ("F9",), ("F10",), ("F11",), ("F12",)),
-        (("`",), ("1",), ("2",), ("3",), ("4",), ("5",), ("6",), ("7",), ("8",), ("9",), ("0",), ("-",), ("=",)),
+        (("`",), ("1",), ("2",), ("3",), ("4",), ("5",), ("6",), ("7",), ("8",), ("9",), ("0",), ("-",), ("=",), ("\\",), ("←",)),
         (("TAB",), ("Q", "LAST"), ("W", "FORW."), ("E", "MAG"), ("R", "REL."), ("T",), ("Y",), ("U",), ("I",), ("O",), ("P",), ("[",), ("]",)),
-        (("CAPS",), ("A", "LEFT"), ("S", "BACK."), ("D", "RIGHT"), ("F", "PICKUP"), ("G", "THROW"), ("H",), ("J",), ("K",), ("L",), (";",), ("'",), ("\\",)),
-        (("SHIFT",), ("Z",), ("X",), ("C",), ("V",), ("B",), ("N",), ("M",), (",",), (".",), ("/",)),
-        (("CTRL",), ("WIN",), ("ALT",), ("SPACE",), ("ALT",), ("CTRL",))
+        (("CAPS",), ("A", "LEFT"), ("S", "BACK."), ("D", "RIGHT"), ("F", "PICKUP"), ("G", "THROW"), ("H",), ("J",), ("K",), ("L",), (";",), ("'",)),
+        (("SHIFT",), ("Z",), ("X",), ("C",), ("V",), ("B",), ("N",), ("M",), (",",), (".",), ("/",), ("SHIFT",)),
+        (("CTRL",), ("WIN",), ("ALT",), ("SPACE",), ("ALT",), ("WIN",), ("MENU",), ("CTRL",))
     )
-    for r, row in enumerate(keys):
-        for c, cell in enumerate(row):
-            self.load(Key, size=(X, X), offset=(c*(X+L), r*(X+L)), args=cell)
+    y = L/2
+    for row in keys:
+        x = L/2
+        for cell in row:
+            self.load(Key, size=(X, X), offset=(x, y), args=cell)
+            x += X
+        y += X
