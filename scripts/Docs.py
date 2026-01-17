@@ -1,7 +1,6 @@
 # Functions for generating charts and other documentation sketches
 from src import Files
-import Icons, Shapes
-import math
+import Icons, Shapes, math, inspect
 
 
 LIGHT = (200, 200, 200) # Light gray color
@@ -9,6 +8,8 @@ MEDIUM = (120, 120, 120) # Medium gray color
 BLACK = (0, 0, 0) # Black color
 BOLD = "/usr/share/fonts/truetype/freefont/FreeSansBold.ttf" # Bold font
 
+
+# Movement implementation images
 
 def Arrows(self, W, H, L, C, B):
     self.load(Shapes.Arrow, offset=(L/2, H/2), size=(W-L, 0), args=(True, True))
@@ -48,6 +49,8 @@ def NoStrafing(self, W, H, L, C, B):
     for speed, angle in ((FS, -45), (FS, -135), (BS, 45), (BS, 135)):
         radians = math.radians(angle)
         self.dot((W/2+math.cos(radians)*(speed*H/2-L/2), H/2+math.sin(radians)*(speed*H/2-L/2)), outline=BLACK)
+
+# Repository overview image
 
 def HorizontalCurlyBracket(self, W, H, L, C, B, F=0.5):
     self.arc((-W/2+L/2, 0), (W/2+L/2, W), start=-90, end=0, rounded=True)
@@ -93,6 +96,8 @@ def Project(self, W, H, L, C, B):
     self.load(VerticalCurlyBracket, size=(X, X/2), offset=(X*1.9, X*4.4), color=LIGHT)
     self.load(ProjectPipeline, size=(X*2.7, 0), offset=(X*1.9, X*5), args=("RFPS_THESIS/", Icons.Book, ".PDF"))
 
+# Keyboard setup image
+
 def Key(self, W, H, L, C, B, K, D=""):
     self.rectangle((-L/2, -L/2), (W+L/2, H+L/2), fill=LIGHT)
     self.text((W/2, H*0.375), text=K, anchor="mm", fill=MEDIUM, file=BOLD, size=3*L+L//2)
@@ -124,3 +129,20 @@ def Keyboard(self, W, H, L, C, B):
             x += X * (size + offset)
         y += X * (1 if i > 0 else 1.25)
     self.load(Enter, size=(2.25*X, 2*X), offset=(L/2+12.75*X, L/2+2.25*X), args=("Enter",))
+
+# Icon spreadsheet
+
+icons = tuple(i for i in inspect.getmembers(Icons, inspect.isfunction) if getattr(i[1], "decorated", False))
+cols = 8
+rows = math.ceil(len(icons) / cols)
+@Files.createImage("Docs", (100*cols+10*(cols+1), 100*rows+10*(rows+1)), color=MEDIUM, width=10)
+def Icons(self, W, H, L, C, B):
+    X = int(W/(cols+(cols+1)/10))
+    #for i in range(rows+1):
+    #    self.line((0, (X+L)*i+L/2), (W, (X+L)*i+L/2), fill=(255, 0, 0))
+    #for i in range(cols+1):
+    #    self.line(((X+L)*i+L/2, 0), ((X+L)*i+L/2, H), fill=(255, 0, 0))
+    for index, (name, function) in enumerate(icons):
+        row = index // cols
+        col = index % cols
+        self.load(function, size=(X, X), offset=(L+X*1.1*col, L+X*1.1*row))
