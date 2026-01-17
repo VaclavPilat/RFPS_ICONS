@@ -95,26 +95,26 @@ def Project(self, W, H, L, C, B):
 
 def Key(self, W, H, L, C, B, K, D=""):
     self.rectangle((-L/2, -L/2), (W+L/2, H+L/2), fill=LIGHT)
-    self.text((W/2, H*3/7), text=K, anchor="mm", fill=MEDIUM, file=BOLD, size=3*L+L//2)
+    self.text((W/2, H*0.375), text=K, anchor="mm", fill=MEDIUM, file=BOLD, size=3*L+L//2)
     self.text((W/2, H-L*1.5), text=D, anchor="ms", fill=BLACK, file=BOLD)
 
-cols = 15
 rows = 6
-@Files.createImage("Docs", (100*cols+10, 100*rows+10))
+@Files.createImage("Docs", (100*15+10, 100*rows+10))
 def Keyboard(self, W, H, L, C, B):
-    X = (H-L)/rows
+    X = (W-L)/15
     keys = (
-        (("ESC",), ("F1",), ("F2",), ("F3",), ("F4",), ("F5",), ("F6",), ("F7",), ("F8",), ("F9",), ("F10",), ("F11",), ("F12",)),
-        (("`",), ("1",), ("2",), ("3",), ("4",), ("5",), ("6",), ("7",), ("8",), ("9",), ("0",), ("-",), ("=",), ("\\",), ("←",)),
-        (("TAB",), ("Q", "LAST"), ("W", "FORW."), ("E", "MAG"), ("R", "REL."), ("T",), ("Y",), ("U",), ("I",), ("O",), ("P",), ("[",), ("]",)),
-        (("CAPS",), ("A", "LEFT"), ("S", "BACK."), ("D", "RIGHT"), ("F", "PICKUP"), ("G", "THROW"), ("H",), ("J",), ("K",), ("L",), (";",), ("'",)),
-        (("SHIFT",), ("Z",), ("X",), ("C",), ("V",), ("B",), ("N",), ("M",), (",",), (".",), ("/",), ("SHIFT",)),
-        (("CTRL",), ("WIN",), ("ALT",), ("SPACE",), ("ALT",), ("WIN",), ("MENU",), ("CTRL",))
+        (("Esc","Menu"),("F1","Yes"),("F2","No"),("F3",),("F4",),("F5",),("F6",),("F7",),("F8",),("F9",),("F10",),("F11",),("F12",)),
+        (("`","Debug"),("1","Primary"),("2","Secon..."),("3",),("4",),("5",),("6",),("7",),("8",),("9",),("0",),("-",),("=",),("\\",),("←",)),
+        (("Tab","",1.5),("Q","Last"),("W","Forward"),("E","Magaz..."),("R","Reload"),("T",),("Y",),("U",),("I",),("O",),("P",),("[",),("]",)),
+        (("Caps","",1.75),("A","Left"),("S","Backw..."),("D","Right"),("F","Pickup"),("G","Throw"),("H",),("J",),("K",),("L",),(";",),("'",)),
+        (("Shift","Crouch",2.25),("Z",),("X",),("C",),("V",),("B",),("N",),("M",),(",",),(".",),("/",),("Shift","",2.75)),
+        (("Ctrl","",1.5),("Win","",1.25),("Alt","",1.25),("Space","Jump",5.75),("Alt","",1.25),("Win","",1.25),("Menu","",1.25),("Ctrl","",1.5))
     )
     y = L/2
     for row in keys:
         x = L/2
         for cell in row:
-            self.load(Key, size=(X, X), offset=(x, y), args=cell)
-            x += X
+            size = cell[2] if len(cell) > 2 else 1
+            self.load(Key, size=(X * size, X), offset=(x, y), args=cell[:2])
+            x += X * size
         y += X
