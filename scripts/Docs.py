@@ -98,6 +98,11 @@ def Key(self, W, H, L, C, B, K, D=""):
     self.text((W/2, H*0.375), text=K, anchor="mm", fill=MEDIUM, file=BOLD, size=3*L+L//2)
     self.text((W/2, H-L*1.5), text=D, anchor="ms", fill=BLACK, file=BOLD)
 
+def Enter(self, W, H, L, C, B, K, D=""):
+    self.line((0, H), (0, H/2), (W/3, H/2), (W/3, 0), (W, 0), (W, H), (0, H), rounded=True, fill=LIGHT)
+    self.text((W*2/3, H/2*0.375), text=K, anchor="mm", fill=MEDIUM, file=BOLD, size=3*L+L//2)
+    self.text((W*2/3, H/2-L*1.5), text=D, anchor="ms", fill=BLACK, file=BOLD)
+
 @Files.createImage("Docs", (1510, 635))
 def Keyboard(self, W, H, L, C, B):
     X = (W-L)/15
@@ -118,3 +123,4 @@ def Keyboard(self, W, H, L, C, B):
             self.load(Key, size=(X * size, X), offset=(x, y), args=cell[:2])
             x += X * (size + offset)
         y += X * (1 if i > 0 else 1.25)
+    self.load(Enter, size=(2.25*X, 2*X), offset=(L/2+12.75*X, L/2+2.25*X), args=("Enter",))
