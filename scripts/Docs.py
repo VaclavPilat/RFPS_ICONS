@@ -98,12 +98,11 @@ def Key(self, W, H, L, C, B, K, D=""):
     self.text((W/2, H*0.375), text=K, anchor="mm", fill=MEDIUM, file=BOLD, size=3*L+L//2)
     self.text((W/2, H-L*1.5), text=D, anchor="ms", fill=BLACK, file=BOLD)
 
-rows = 6
-@Files.createImage("Docs", (100*15+10, 100*rows+10))
+@Files.createImage("Docs", (1510, 635))
 def Keyboard(self, W, H, L, C, B):
     X = (W-L)/15
     keys = (
-        (("Esc","Menu"),("F1","Yes"),("F2","No"),("F3",),("F4",),("F5",),("F6",),("F7",),("F8",),("F9",),("F10",),("F11",),("F12",)),
+        (("Esc","Menu",1,1),("F1","Yes"),("F2","No"),("F3",),("F4","",1,0.5),("F5",),("F6",),("F7",),("F8","",1,0.5),("F9",),("F10",),("F11",),("F12",)),
         (("`","Debug"),("1","Primary"),("2","Secon..."),("3",),("4",),("5",),("6",),("7",),("8",),("9",),("0",),("-",),("=",),("\\",),("←",)),
         (("Tab","",1.5),("Q","Last"),("W","Forward"),("E","Magaz..."),("R","Reload"),("T",),("Y",),("U",),("I",),("O",),("P",),("[",),("]",)),
         (("Caps","",1.75),("A","Left"),("S","Backw..."),("D","Right"),("F","Pickup"),("G","Throw"),("H",),("J",),("K",),("L",),(";",),("'",)),
@@ -111,10 +110,11 @@ def Keyboard(self, W, H, L, C, B):
         (("Ctrl","",1.5),("Win","",1.25),("Alt","",1.25),("Space","Jump",5.75),("Alt","",1.25),("Win","",1.25),("Menu","",1.25),("Ctrl","",1.5))
     )
     y = L/2
-    for row in keys:
+    for i, row in enumerate(keys):
         x = L/2
         for cell in row:
             size = cell[2] if len(cell) > 2 else 1
+            offset = cell[3] if len(cell) > 3 else 0
             self.load(Key, size=(X * size, X), offset=(x, y), args=cell[:2])
-            x += X * size
-        y += X
+            x += X * (size + offset)
+        y += X * (1 if i > 0 else 1.25)
